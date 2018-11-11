@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -32,6 +33,8 @@ namespace NumericListGenerator
         progressBarProcress.Value = i;
         if (checkBoxFillWithZeros.Checked)
         {
+          if (i < 1000000000 && numericUpDownNumberMaximum.Value > 999999999) strTemp = strTemp + "0";
+          if (i < 100000000 && numericUpDownNumberMaximum.Value > 99999999) strTemp = strTemp + "0";
           if (i < 10000000 && numericUpDownNumberMaximum.Value > 9999999) strTemp = strTemp + "0";
           if (i < 1000000 && numericUpDownNumberMaximum.Value > 999999) strTemp = strTemp + "0";
           if (i < 100000 && numericUpDownNumberMaximum.Value > 99999) strTemp = strTemp + "0";
@@ -52,7 +55,16 @@ namespace NumericListGenerator
 
     private void buttonSaveList_Click(object sender, EventArgs e)
     {
-
+        SaveFileDialog save = new SaveFileDialog();
+        save.FileName = "DefaultOutputName.txt";
+        save.Filter = "Text File | *.txt";
+        if (save.ShowDialog() == DialogResult.OK)
+        {
+            StreamWriter writer = new StreamWriter(save.OpenFile());
+            writer.WriteLine(textBoxList.Text);
+            writer.Dispose();
+            writer.Close();
+        }
     }
 
     private void buttonDeleteList_Click(object sender, EventArgs e)
