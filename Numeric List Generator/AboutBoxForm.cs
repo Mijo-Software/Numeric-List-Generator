@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
 namespace NumericListGenerator
 {
-  partial class AboutBoxForm : Form
+	partial class AboutBoxForm : Form
   {
     public AboutBoxForm()
     {
@@ -98,6 +95,10 @@ namespace NumericListGenerator
         return ((AssemblyCompanyAttribute)attributes[0]).Company;
       }
     }
-    #endregion
-  }
+		#endregion
+
+		private void AboutBoxForm_Load(object sender, EventArgs e)
+		{
+		}
+	}
 }

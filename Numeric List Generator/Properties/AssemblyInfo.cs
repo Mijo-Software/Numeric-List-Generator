@@ -1,17 +1,18 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die mit einer Assembly verknüpft sind.
-[assembly: AssemblyTitle("Numeric List Generator")]
-[assembly: AssemblyDescription("Erstellt Listen mit Nummern")]
+[assembly: AssemblyTitle("Numeric List Generator (NLG)")]
+[assembly: AssemblyDescription("Erstellt Listen mit numerischen Einträgen (z. B. URLs)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("McJoe Software")]
+[assembly: AssemblyCompany("Mijo Software")]
 [assembly: AssemblyProduct("Numeric List Generator")]
-[assembly: AssemblyCopyright("McJoe Software 2013-2014")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("2013-2018 Mijo Software")]
+[assembly: AssemblyTrademark("Numeric List Generator")]
 [assembly: AssemblyCulture("")]
 
 // Durch Festlegen von ComVisible auf "false" werden die Typen in dieser Assembly unsichtbar 
@@ -32,5 +33,7 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.2")]
-[assembly: AssemblyFileVersion("1.0.0.2")]
+[assembly: AssemblyVersion("1.1.0.3")]
+[assembly: AssemblyFileVersion("1.1.0.3")]
+[assembly: NeutralResourcesLanguage("de")]
+
