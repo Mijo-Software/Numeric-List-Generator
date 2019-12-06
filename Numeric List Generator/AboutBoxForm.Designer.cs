@@ -27,7 +27,11 @@
     /// </summary>
     private void InitializeComponent()
     {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBoxForm));
+			this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
+			this.statusStrip = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
 			this.logoPictureBox = new System.Windows.Forms.PictureBox();
 			this.labelProductName = new System.Windows.Forms.Label();
@@ -36,138 +40,133 @@
 			this.labelCompanyName = new System.Windows.Forms.Label();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
 			this.okButton = new System.Windows.Forms.Button();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.toolStripContainer.BottomToolStripPanel.SuspendLayout();
+			this.toolStripContainer.ContentPanel.SuspendLayout();
+			this.toolStripContainer.SuspendLayout();
+			this.statusStrip.SuspendLayout();
 			this.tableLayoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
+			// toolStripContainer
+			// 
+			this.toolStripContainer.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+			// 
+			// toolStripContainer.BottomToolStripPanel
+			// 
+			this.toolStripContainer.BottomToolStripPanel.Controls.Add(this.statusStrip);
+			// 
+			// toolStripContainer.ContentPanel
+			// 
+			resources.ApplyResources(this.toolStripContainer.ContentPanel, "toolStripContainer.ContentPanel");
+			this.toolStripContainer.ContentPanel.Controls.Add(this.tableLayoutPanel);
+			resources.ApplyResources(this.toolStripContainer, "toolStripContainer");
+			this.toolStripContainer.Name = "toolStripContainer";
+			// 
+			// statusStrip
+			// 
+			this.statusStrip.AccessibleRole = System.Windows.Forms.AccessibleRole.StatusBar;
+			resources.ApplyResources(this.statusStrip, "statusStrip");
+			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+			this.statusStrip.Name = "statusStrip";
+			this.statusStrip.ShowItemToolTips = true;
+			this.statusStrip.SizingGrip = false;
+			// 
+			// toolStripStatusLabel
+			// 
+			this.toolStripStatusLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.StaticText;
+			this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+			resources.ApplyResources(this.toolStripStatusLabel, "toolStripStatusLabel");
+			// 
 			// tableLayoutPanel
 			// 
-			this.tableLayoutPanel.ColumnCount = 2;
-			this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.50365F));
-			this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.49635F));
-			this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
-			this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
-			this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
-			this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
-			this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 3);
-			this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 4);
-			this.tableLayoutPanel.Controls.Add(this.okButton, 1, 5);
-			this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
+			this.tableLayoutPanel.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+			resources.ApplyResources(this.tableLayoutPanel, "tableLayoutPanel");
+			this.tableLayoutPanel.Controls.Add(this.logoPictureBox);
+			this.tableLayoutPanel.Controls.Add(this.labelProductName);
+			this.tableLayoutPanel.Controls.Add(this.labelVersion);
+			this.tableLayoutPanel.Controls.Add(this.labelCopyright);
+			this.tableLayoutPanel.Controls.Add(this.labelCompanyName);
+			this.tableLayoutPanel.Controls.Add(this.textBoxDescription);
+			this.tableLayoutPanel.Controls.Add(this.okButton);
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
-			this.tableLayoutPanel.RowCount = 6;
-			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.50265F));
-			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.40212F));
-			this.tableLayoutPanel.Size = new System.Drawing.Size(274, 189);
-			this.tableLayoutPanel.TabIndex = 0;
 			// 
 			// logoPictureBox
 			// 
-			this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.logoPictureBox.AccessibleRole = System.Windows.Forms.AccessibleRole.Graphic;
+			resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
 			this.logoPictureBox.Image = global::NumericListGenerator.Properties.Resources.text_list_numbers;
-			this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
 			this.logoPictureBox.Name = "logoPictureBox";
 			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
-			this.logoPictureBox.Size = new System.Drawing.Size(31, 183);
-			this.logoPictureBox.TabIndex = 12;
 			this.logoPictureBox.TabStop = false;
 			// 
 			// labelProductName
 			// 
-			this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelProductName.Location = new System.Drawing.Point(43, 0);
-			this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-			this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
+			this.labelProductName.AccessibleRole = System.Windows.Forms.AccessibleRole.StaticText;
+			this.labelProductName.BackColor = System.Drawing.Color.Transparent;
+			resources.ApplyResources(this.labelProductName, "labelProductName");
 			this.labelProductName.Name = "labelProductName";
-			this.labelProductName.Size = new System.Drawing.Size(228, 17);
-			this.labelProductName.TabIndex = 0;
-			this.labelProductName.Text = "Produktname";
-			this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// labelVersion
 			// 
-			this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelVersion.Location = new System.Drawing.Point(43, 18);
-			this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-			this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
+			this.labelVersion.AccessibleRole = System.Windows.Forms.AccessibleRole.StaticText;
+			this.labelVersion.BackColor = System.Drawing.Color.Transparent;
+			resources.ApplyResources(this.labelVersion, "labelVersion");
 			this.labelVersion.Name = "labelVersion";
-			this.labelVersion.Size = new System.Drawing.Size(228, 17);
-			this.labelVersion.TabIndex = 1;
-			this.labelVersion.Text = "Version";
-			this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// labelCopyright
 			// 
-			this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelCopyright.Location = new System.Drawing.Point(43, 36);
-			this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-			this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
+			this.labelCopyright.AccessibleRole = System.Windows.Forms.AccessibleRole.StaticText;
+			this.labelCopyright.BackColor = System.Drawing.Color.Transparent;
+			resources.ApplyResources(this.labelCopyright, "labelCopyright");
 			this.labelCopyright.Name = "labelCopyright";
-			this.labelCopyright.Size = new System.Drawing.Size(228, 17);
-			this.labelCopyright.TabIndex = 2;
-			this.labelCopyright.Text = "Copyright";
-			this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// labelCompanyName
 			// 
-			this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labelCompanyName.Location = new System.Drawing.Point(43, 54);
-			this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-			this.labelCompanyName.MaximumSize = new System.Drawing.Size(0, 17);
+			this.labelCompanyName.AccessibleRole = System.Windows.Forms.AccessibleRole.StaticText;
+			this.labelCompanyName.BackColor = System.Drawing.Color.Transparent;
+			resources.ApplyResources(this.labelCompanyName, "labelCompanyName");
 			this.labelCompanyName.Name = "labelCompanyName";
-			this.labelCompanyName.Size = new System.Drawing.Size(228, 17);
-			this.labelCompanyName.TabIndex = 3;
-			this.labelCompanyName.Text = "Firmenname";
-			this.labelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// textBoxDescription
 			// 
-			this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBoxDescription.Location = new System.Drawing.Point(43, 75);
-			this.textBoxDescription.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
-			this.textBoxDescription.Multiline = true;
+			this.textBoxDescription.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
+			resources.ApplyResources(this.textBoxDescription, "textBoxDescription");
 			this.textBoxDescription.Name = "textBoxDescription";
 			this.textBoxDescription.ReadOnly = true;
-			this.textBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxDescription.Size = new System.Drawing.Size(228, 78);
-			this.textBoxDescription.TabIndex = 4;
 			this.textBoxDescription.TabStop = false;
-			this.textBoxDescription.Text = "Beschreibung";
 			// 
 			// okButton
 			// 
-			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			resources.ApplyResources(this.okButton, "okButton");
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.okButton.Image = global::NumericListGenerator.Properties.Resources.tick;
-			this.okButton.Location = new System.Drawing.Point(214, 163);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(57, 23);
-			this.okButton.TabIndex = 5;
-			this.okButton.Text = "&OK";
-			this.okButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			// 
 			// AboutBoxForm
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(292, 207);
-			this.Controls.Add(this.tableLayoutPanel);
+			this.Controls.Add(this.toolStripContainer);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "AboutBoxForm";
-			this.Padding = new System.Windows.Forms.Padding(9);
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "AboutBoxForm";
 			this.Load += new System.EventHandler(this.AboutBoxForm_Load);
+			this.toolStripContainer.BottomToolStripPanel.ResumeLayout(false);
+			this.toolStripContainer.BottomToolStripPanel.PerformLayout();
+			this.toolStripContainer.ContentPanel.ResumeLayout(false);
+			this.toolStripContainer.ResumeLayout(false);
+			this.toolStripContainer.PerformLayout();
+			this.statusStrip.ResumeLayout(false);
+			this.statusStrip.PerformLayout();
 			this.tableLayoutPanel.ResumeLayout(false);
 			this.tableLayoutPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
@@ -185,5 +184,9 @@
     private System.Windows.Forms.Label labelCompanyName;
     private System.Windows.Forms.TextBox textBoxDescription;
     private System.Windows.Forms.Button okButton;
-  }
+		private System.Windows.Forms.ToolTip toolTip;
+		private System.Windows.Forms.StatusStrip statusStrip;
+		private System.Windows.Forms.ToolStripContainer toolStripContainer;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+	}
 }
