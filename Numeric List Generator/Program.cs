@@ -1,20 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace NumericListGenerator
 {
-  static class Program
+  /// <summary>
+  /// Program
+  /// </summary>
+  internal static class Program
   {
     /// <summary>
-    /// Der Haupteinstiegspunkt für die Anwendung.
+    /// main entrance point of the application
     /// </summary>
     [STAThread]
-    static void Main()
+    private static void Main()
     {
       Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new NumericListGeneratorForm());
+      Application.SetCompatibleTextRenderingDefault(defaultValue: false);
+      using (NumericListGeneratorForm numericListGenerator = new NumericListGeneratorForm())
+      {
+        Application.Run(mainForm: numericListGenerator);
+      }
     }
   }
 }

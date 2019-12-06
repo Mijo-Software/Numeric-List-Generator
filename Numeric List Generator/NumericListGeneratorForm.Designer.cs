@@ -40,7 +40,7 @@
 			this.textBoxList = new System.Windows.Forms.TextBox();
 			this.labelProcress = new System.Windows.Forms.Label();
 			this.progressBarProcress = new System.Windows.Forms.ProgressBar();
-			this.buttonCreateListe = new System.Windows.Forms.Button();
+			this.buttonCreateList = new System.Windows.Forms.Button();
 			this.buttonInformationAboutApp = new System.Windows.Forms.Button();
 			this.buttonExitApp = new System.Windows.Forms.Button();
 			this.buttonDeleteList = new System.Windows.Forms.Button();
@@ -50,50 +50,38 @@
 			this.comboBoxStringAfterNumber = new System.Windows.Forms.ComboBox();
 			this.comboBoxStringBeforeNumber = new System.Windows.Forms.ComboBox();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
 			this.labelResult = new System.Windows.Forms.Label();
+			this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberMinimum)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberMaximum)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// labelStringBeforeNumber
 			// 
-			this.labelStringBeforeNumber.AutoSize = true;
-			this.labelStringBeforeNumber.Location = new System.Drawing.Point(9, 9);
+			resources.ApplyResources(this.labelStringBeforeNumber, "labelStringBeforeNumber");
 			this.labelStringBeforeNumber.Name = "labelStringBeforeNumber";
-			this.labelStringBeforeNumber.Size = new System.Drawing.Size(133, 13);
-			this.labelStringBeforeNumber.TabIndex = 0;
-			this.labelStringBeforeNumber.Text = "Zeichenkette &vor der Zahl:";
 			// 
 			// labelStringAfterNumber
 			// 
-			this.labelStringAfterNumber.AutoSize = true;
-			this.labelStringAfterNumber.Location = new System.Drawing.Point(9, 93);
+			resources.ApplyResources(this.labelStringAfterNumber, "labelStringAfterNumber");
 			this.labelStringAfterNumber.Name = "labelStringAfterNumber";
-			this.labelStringAfterNumber.Size = new System.Drawing.Size(142, 13);
-			this.labelStringAfterNumber.TabIndex = 7;
-			this.labelStringAfterNumber.Text = "Zeichenkette &nach der Zahl:";
 			// 
 			// labelNumberMin
 			// 
-			this.labelNumberMin.AutoSize = true;
-			this.labelNumberMin.Location = new System.Drawing.Point(9, 60);
+			resources.ApplyResources(this.labelNumberMin, "labelNumberMin");
 			this.labelNumberMin.Name = "labelNumberMin";
-			this.labelNumberMin.Size = new System.Drawing.Size(61, 13);
-			this.labelNumberMin.TabIndex = 2;
-			this.labelNumberMin.Text = "Zahlen von";
 			// 
 			// numericUpDownNumberMinimum
 			// 
-			this.numericUpDownNumberMinimum.Location = new System.Drawing.Point(76, 58);
+			resources.ApplyResources(this.numericUpDownNumberMinimum, "numericUpDownNumberMinimum");
 			this.numericUpDownNumberMinimum.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
 			this.numericUpDownNumberMinimum.Name = "numericUpDownNumberMinimum";
-			this.numericUpDownNumberMinimum.Size = new System.Drawing.Size(49, 20);
-			this.numericUpDownNumberMinimum.TabIndex = 3;
-			this.toolTip.SetToolTip(this.numericUpDownNumberMinimum, "Minimun der Zahl, mit der die Einträge erstellt werden sollen");
+			this.toolTip.SetToolTip(this.numericUpDownNumberMinimum, resources.GetString("numericUpDownNumberMinimum.ToolTip"));
 			this.numericUpDownNumberMinimum.Value = new decimal(new int[] {
             1,
             0,
@@ -102,25 +90,19 @@
 			// 
 			// labelNumberMax
 			// 
-			this.labelNumberMax.AutoSize = true;
-			this.labelNumberMax.Location = new System.Drawing.Point(131, 60);
+			resources.ApplyResources(this.labelNumberMax, "labelNumberMax");
 			this.labelNumberMax.Name = "labelNumberMax";
-			this.labelNumberMax.Size = new System.Drawing.Size(20, 13);
-			this.labelNumberMax.TabIndex = 4;
-			this.labelNumberMax.Text = "bis";
 			// 
 			// numericUpDownNumberMaximum
 			// 
-			this.numericUpDownNumberMaximum.Location = new System.Drawing.Point(157, 58);
+			resources.ApplyResources(this.numericUpDownNumberMaximum, "numericUpDownNumberMaximum");
 			this.numericUpDownNumberMaximum.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
 			this.numericUpDownNumberMaximum.Name = "numericUpDownNumberMaximum";
-			this.numericUpDownNumberMaximum.Size = new System.Drawing.Size(49, 20);
-			this.numericUpDownNumberMaximum.TabIndex = 5;
-			this.toolTip.SetToolTip(this.numericUpDownNumberMaximum, "Maximun der Zahl, mit der die Einträge erstellt werden sollen");
+			this.toolTip.SetToolTip(this.numericUpDownNumberMaximum, resources.GetString("numericUpDownNumberMaximum.ToolTip"));
 			this.numericUpDownNumberMaximum.Value = new decimal(new int[] {
             10,
             0,
@@ -129,174 +111,135 @@
 			// 
 			// checkBoxFillWithZeros
 			// 
-			this.checkBoxFillWithZeros.AutoSize = true;
-			this.checkBoxFillWithZeros.Location = new System.Drawing.Point(219, 60);
+			resources.ApplyResources(this.checkBoxFillWithZeros, "checkBoxFillWithZeros");
 			this.checkBoxFillWithZeros.Name = "checkBoxFillWithZeros";
-			this.checkBoxFillWithZeros.Size = new System.Drawing.Size(115, 17);
-			this.checkBoxFillWithZeros.TabIndex = 6;
-			this.checkBoxFillWithZeros.Text = "&mit Nullen auffüllen";
-			this.toolTip.SetToolTip(this.checkBoxFillWithZeros, "Markieren, wenn die Einträge mit voranführenden Nullen aufgefüllt werden sollen");
+			this.toolTip.SetToolTip(this.checkBoxFillWithZeros, resources.GetString("checkBoxFillWithZeros.ToolTip"));
 			this.checkBoxFillWithZeros.UseVisualStyleBackColor = true;
 			// 
 			// textBoxList
 			// 
-			this.textBoxList.Location = new System.Drawing.Point(12, 262);
-			this.textBoxList.MaxLength = 2147483647;
-			this.textBoxList.Multiline = true;
+			resources.ApplyResources(this.textBoxList, "textBoxList");
 			this.textBoxList.Name = "textBoxList";
-			this.textBoxList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxList.Size = new System.Drawing.Size(322, 167);
-			this.textBoxList.TabIndex = 17;
-			this.toolTip.SetToolTip(this.textBoxList, "Zeigt die Liste mit den generierten Einträgen an");
-			this.textBoxList.WordWrap = false;
+			this.toolTip.SetToolTip(this.textBoxList, resources.GetString("textBoxList.ToolTip"));
 			// 
 			// labelProcress
 			// 
-			this.labelProcress.AutoSize = true;
-			this.labelProcress.Location = new System.Drawing.Point(9, 219);
+			resources.ApplyResources(this.labelProcress, "labelProcress");
 			this.labelProcress.Name = "labelProcress";
-			this.labelProcress.Size = new System.Drawing.Size(70, 13);
-			this.labelProcress.TabIndex = 14;
-			this.labelProcress.Text = "Verarbeitung:";
 			// 
 			// progressBarProcress
 			// 
-			this.progressBarProcress.Location = new System.Drawing.Point(85, 219);
+			resources.ApplyResources(this.progressBarProcress, "progressBarProcress");
 			this.progressBarProcress.Name = "progressBarProcress";
-			this.progressBarProcress.Size = new System.Drawing.Size(249, 17);
-			this.progressBarProcress.TabIndex = 15;
-			this.toolTip.SetToolTip(this.progressBarProcress, "Zeigt den laufenden Verarbeitungsstatus an");
+			this.progressBarProcress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			this.toolTip.SetToolTip(this.progressBarProcress, resources.GetString("progressBarProcress.ToolTip"));
 			// 
-			// buttonCreateListe
+			// buttonCreateList
 			// 
-			this.buttonCreateListe.Image = global::NumericListGenerator.Properties.Resources.gear_in;
-			this.buttonCreateListe.Location = new System.Drawing.Point(12, 146);
-			this.buttonCreateListe.Name = "buttonCreateListe";
-			this.buttonCreateListe.Size = new System.Drawing.Size(212, 26);
-			this.buttonCreateListe.TabIndex = 9;
-			this.buttonCreateListe.Text = "Liste neu &erstellen";
-			this.buttonCreateListe.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.buttonCreateListe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonCreateListe, "Erstellt eine neue Liste");
-			this.buttonCreateListe.UseVisualStyleBackColor = true;
-			this.buttonCreateListe.Click += new System.EventHandler(this.ButtonCreateListe_Click);
+			this.buttonCreateList.Image = global::NumericListGenerator.Properties.Resources.gear_in;
+			resources.ApplyResources(this.buttonCreateList, "buttonCreateList");
+			this.buttonCreateList.Name = "buttonCreateList";
+			this.toolTip.SetToolTip(this.buttonCreateList, resources.GetString("buttonCreateList.ToolTip"));
+			this.buttonCreateList.UseVisualStyleBackColor = true;
+			this.buttonCreateList.Click += new System.EventHandler(this.ButtonCreateListe_Click);
 			// 
 			// buttonInformationAboutApp
 			// 
 			this.buttonInformationAboutApp.Image = global::NumericListGenerator.Properties.Resources.information;
-			this.buttonInformationAboutApp.Location = new System.Drawing.Point(12, 435);
+			resources.ApplyResources(this.buttonInformationAboutApp, "buttonInformationAboutApp");
 			this.buttonInformationAboutApp.Name = "buttonInformationAboutApp";
-			this.buttonInformationAboutApp.Size = new System.Drawing.Size(58, 26);
-			this.buttonInformationAboutApp.TabIndex = 18;
-			this.buttonInformationAboutApp.Text = "&Info";
-			this.buttonInformationAboutApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonInformationAboutApp, "Öffnet ein neues Fenste rmit ein paar Programminformationen");
+			this.toolTip.SetToolTip(this.buttonInformationAboutApp, resources.GetString("buttonInformationAboutApp.ToolTip"));
 			this.buttonInformationAboutApp.UseVisualStyleBackColor = true;
 			this.buttonInformationAboutApp.Click += new System.EventHandler(this.ButtonInformationAboutApp_Click);
 			// 
 			// buttonExitApp
 			// 
 			this.buttonExitApp.Image = global::NumericListGenerator.Properties.Resources.door_open;
-			this.buttonExitApp.Location = new System.Drawing.Point(204, 435);
+			resources.ApplyResources(this.buttonExitApp, "buttonExitApp");
 			this.buttonExitApp.Name = "buttonExitApp";
-			this.buttonExitApp.Size = new System.Drawing.Size(130, 26);
-			this.buttonExitApp.TabIndex = 19;
-			this.buttonExitApp.Text = "Programm &beenden";
-			this.buttonExitApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonExitApp, "Beendet das Programm");
+			this.toolTip.SetToolTip(this.buttonExitApp, resources.GetString("buttonExitApp.ToolTip"));
 			this.buttonExitApp.UseVisualStyleBackColor = true;
 			this.buttonExitApp.Click += new System.EventHandler(this.ButtonExitApp_Click);
 			// 
 			// buttonDeleteList
 			// 
 			this.buttonDeleteList.Image = global::NumericListGenerator.Properties.Resources.bin_empty;
-			this.buttonDeleteList.Location = new System.Drawing.Point(230, 178);
+			resources.ApplyResources(this.buttonDeleteList, "buttonDeleteList");
 			this.buttonDeleteList.Name = "buttonDeleteList";
-			this.buttonDeleteList.Size = new System.Drawing.Size(104, 26);
-			this.buttonDeleteList.TabIndex = 13;
-			this.buttonDeleteList.Text = "Liste &löschen";
-			this.buttonDeleteList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonDeleteList, "Löscht die Liste");
+			this.toolTip.SetToolTip(this.buttonDeleteList, resources.GetString("buttonDeleteList.ToolTip"));
 			this.buttonDeleteList.UseVisualStyleBackColor = true;
 			this.buttonDeleteList.Click += new System.EventHandler(this.ButtonDeleteList_Click);
 			// 
 			// buttonSaveList
 			// 
 			this.buttonSaveList.Image = global::NumericListGenerator.Properties.Resources.diskette;
-			this.buttonSaveList.Location = new System.Drawing.Point(230, 146);
+			resources.ApplyResources(this.buttonSaveList, "buttonSaveList");
 			this.buttonSaveList.Name = "buttonSaveList";
-			this.buttonSaveList.Size = new System.Drawing.Size(104, 26);
-			this.buttonSaveList.TabIndex = 10;
-			this.buttonSaveList.Text = "Liste &speichern";
-			this.buttonSaveList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonSaveList, "Speichert die Liste als Textdatei ab");
+			this.toolTip.SetToolTip(this.buttonSaveList, resources.GetString("buttonSaveList.ToolTip"));
 			this.buttonSaveList.UseVisualStyleBackColor = true;
 			this.buttonSaveList.Click += new System.EventHandler(this.ButtonSaveList_Click);
 			// 
 			// buttonCopyList
 			// 
 			this.buttonCopyList.Image = global::NumericListGenerator.Properties.Resources.page_copy;
-			this.buttonCopyList.Location = new System.Drawing.Point(120, 178);
+			resources.ApplyResources(this.buttonCopyList, "buttonCopyList");
 			this.buttonCopyList.Name = "buttonCopyList";
-			this.buttonCopyList.Size = new System.Drawing.Size(104, 26);
-			this.buttonCopyList.TabIndex = 12;
-			this.buttonCopyList.Text = "Liste &kopieren";
-			this.buttonCopyList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonCopyList, "Kopiert die Liste in die Zwischenanlage");
+			this.toolTip.SetToolTip(this.buttonCopyList, resources.GetString("buttonCopyList.ToolTip"));
 			this.buttonCopyList.UseVisualStyleBackColor = true;
 			this.buttonCopyList.Click += new System.EventHandler(this.ButtonCopyList_Click);
 			// 
 			// buttonAddToList
 			// 
 			this.buttonAddToList.Image = global::NumericListGenerator.Properties.Resources.add;
-			this.buttonAddToList.Location = new System.Drawing.Point(12, 178);
+			resources.ApplyResources(this.buttonAddToList, "buttonAddToList");
 			this.buttonAddToList.Name = "buttonAddToList";
-			this.buttonAddToList.Size = new System.Drawing.Size(102, 26);
-			this.buttonAddToList.TabIndex = 11;
-			this.buttonAddToList.Text = "Liste &anfügen";
-			this.buttonAddToList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonAddToList, "Fügt die Einträge an der vorhandenen Liste an");
+			this.toolTip.SetToolTip(this.buttonAddToList, resources.GetString("buttonAddToList.ToolTip"));
 			this.buttonAddToList.UseVisualStyleBackColor = true;
 			this.buttonAddToList.Click += new System.EventHandler(this.ButtonAddToList_Click);
 			// 
 			// comboBoxStringAfterNumber
 			// 
 			this.comboBoxStringAfterNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-			this.comboBoxStringAfterNumber.Location = new System.Drawing.Point(12, 108);
+			resources.ApplyResources(this.comboBoxStringAfterNumber, "comboBoxStringAfterNumber");
 			this.comboBoxStringAfterNumber.Name = "comboBoxStringAfterNumber";
-			this.comboBoxStringAfterNumber.Size = new System.Drawing.Size(322, 21);
-			this.comboBoxStringAfterNumber.TabIndex = 8;
-			this.comboBoxStringAfterNumber.Text = ".jpg";
-			this.toolTip.SetToolTip(this.comboBoxStringAfterNumber, "Eingabe des Textes nach der Zahlenangabe");
+			this.toolTip.SetToolTip(this.comboBoxStringAfterNumber, resources.GetString("comboBoxStringAfterNumber.ToolTip"));
 			// 
 			// comboBoxStringBeforeNumber
 			// 
 			this.comboBoxStringBeforeNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-			this.comboBoxStringBeforeNumber.Location = new System.Drawing.Point(12, 25);
+			resources.ApplyResources(this.comboBoxStringBeforeNumber, "comboBoxStringBeforeNumber");
 			this.comboBoxStringBeforeNumber.Name = "comboBoxStringBeforeNumber";
-			this.comboBoxStringBeforeNumber.Size = new System.Drawing.Size(322, 21);
-			this.comboBoxStringBeforeNumber.TabIndex = 1;
-			this.comboBoxStringBeforeNumber.Text = "http://www.domain.com/files/picture";
-			this.toolTip.SetToolTip(this.comboBoxStringBeforeNumber, "Eingabe des Textes vor der Zahlenangabe");
+			this.toolTip.SetToolTip(this.comboBoxStringBeforeNumber, resources.GetString("comboBoxStringBeforeNumber.ToolTip"));
+			// 
+			// comboBoxLanguage
+			// 
+			this.comboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxLanguage.FormattingEnabled = true;
+			resources.ApplyResources(this.comboBoxLanguage, "comboBoxLanguage");
+			this.comboBoxLanguage.Name = "comboBoxLanguage";
+			this.toolTip.SetToolTip(this.comboBoxLanguage, resources.GetString("comboBoxLanguage.ToolTip"));
+			this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLanguage_SelectedIndexChanged);
 			// 
 			// labelResult
 			// 
-			this.labelResult.AutoSize = true;
-			this.labelResult.Location = new System.Drawing.Point(9, 246);
+			resources.ApplyResources(this.labelResult, "labelResult");
 			this.labelResult.Name = "labelResult";
-			this.labelResult.Size = new System.Drawing.Size(51, 13);
-			this.labelResult.TabIndex = 16;
-			this.labelResult.Text = "E&rgebnis:";
 			// 
-			// NumericListGeneratorForm
+			// backgroundWorker
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.backgroundWorker.WorkerReportsProgress = true;
+			this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
+			this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker_ProgressChanged);
+			// 
+			// NumericListGenerator
+			// 
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(346, 472);
+			this.Controls.Add(this.comboBoxLanguage);
 			this.Controls.Add(this.labelResult);
 			this.Controls.Add(this.comboBoxStringBeforeNumber);
 			this.Controls.Add(this.comboBoxStringAfterNumber);
-			this.Controls.Add(this.buttonCreateListe);
+			this.Controls.Add(this.buttonCreateList);
 			this.Controls.Add(this.buttonInformationAboutApp);
 			this.Controls.Add(this.buttonExitApp);
 			this.Controls.Add(this.progressBarProcress);
@@ -314,11 +257,8 @@
 			this.Controls.Add(this.labelStringAfterNumber);
 			this.Controls.Add(this.labelStringBeforeNumber);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
-			this.Name = "NumericListGeneratorForm";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Numeric List Generator";
+			this.Name = "NumericListGenerator";
 			this.Load += new System.EventHandler(this.NumericListGeneratorForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberMinimum)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberMaximum)).EndInit();
@@ -345,11 +285,13 @@
     private System.Windows.Forms.ProgressBar progressBarProcress;
     private System.Windows.Forms.Button buttonExitApp;
     private System.Windows.Forms.Button buttonInformationAboutApp;
-		private System.Windows.Forms.Button buttonCreateListe;
+		private System.Windows.Forms.Button buttonCreateList;
 		private System.Windows.Forms.ComboBox comboBoxStringAfterNumber;
 		private System.Windows.Forms.ComboBox comboBoxStringBeforeNumber;
 		private System.Windows.Forms.ToolTip toolTip;
 		private System.Windows.Forms.Label labelResult;
+		private System.Windows.Forms.ComboBox comboBoxLanguage;
+		private System.ComponentModel.BackgroundWorker backgroundWorker;
 	}
 }
 
