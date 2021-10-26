@@ -1,64 +1,76 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace NumericListGenerator
 {
-	/// <summary>
-	/// NumericListGeneratorForm
-	/// </summary>
-	public partial class NumericListGeneratorForm : Form
-	{
-		/// <summary>
-		/// culture info for the date
-		/// </summary>
-		private static readonly CultureInfo culture = CultureInfo.CurrentUICulture;
+  public partial class NumericListGeneratorForm : Form
+  {
+    private TimeSpan timeSpan;
+    private String backupList;
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public NumericListGeneratorForm() => InitializeComponent();
+		private void UpdateStatusBar()
+    {
+      toolStripStatusLabelSize.Text = $"Größe: {textBoxList.Text.Length} Bytes";
+      toolStripStatusLabelLines.Text = $"Linien: {textBoxList.Lines.LongLength}";
+      toolStripStatusLabelLim.Text = $"LIM: {(int)numericUpDownNumberMaximum.Value / timeSpan.TotalSeconds:N4} ips";
+    }
 
-		/// <summary>
-		/// Load the form
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void NumericListGeneratorForm_Load(object sender, EventArgs e)
+    public NumericListGeneratorForm()
+    {
+      InitializeComponent();
+    }
+
+    private void NumericListGeneratorForm_Load(object sender, EventArgs e)
+    {
+      buttonUndo.Enabled = false;
+      UpdateStatusBar();
+    }
+
+    private void ButtonAddToList_Click(object sender, EventArgs e)
+    {
+      buttonUndo.Enabled = true;
+      backupList = textBoxList.Text;
+      DateTime startTime = DateTime.Now, endTime;
+      progressBar.Minimum = 0;
+      progressBar.Maximum = (int)numericUpDownNumberMaximum.Value;
+			progressBar.Value = 0;
+			progressBar.Step = 1;
+      for (int i = (int)numericUpDownNumberMinimum.Value; i < (int)numericUpDownNumberMaximum.Value + 1; i++)
+      {
+        // Alternativen: progressBar.Increment(1); oder progressBar.Value = i;
+        progressBar.PerformStep();
+        if (textBoxList.Text.Length > 0)
+        {
+          textBoxList.AppendText(text: Environment.NewLine);
+        }
+        if (checkBoxFillWithZeros.Checked)
+        {
+          textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}");
+        }
+        else
+        {
+          textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
+        }
+        endTime = DateTime.Now;
+        timeSpan = endTime - startTime;
+        UpdateStatusBar();
+      }
+    }
+
+    private void ButtonCopyList_Click(object sender, EventArgs e)
+    {
+      textBoxList.SelectAll();
+      textBoxList.Copy();
+			MessageBox.Show(text: "Die Liste wurde in die Zwischenablage kopiert.");
+    }
+
+    private void ButtonSaveList_Click(object sender, EventArgs e)
 		{
-			comboBoxLanguage.Items.Add(new CultureInfo(name: "de"));
-			comboBoxLanguage.Items.Add(new CultureInfo(name: "en"));
-			comboBoxLanguage.Items.Add(new CultureInfo(name: "es"));
-			comboBoxLanguage.Items.Add(new CultureInfo(name: "fr"));
-			comboBoxLanguage.Items.Add(new CultureInfo(name: "it"));
-			comboBoxLanguage.SelectedIndex = 0;
-		}
-
-		private void ButtonAddToList_Click(object sender, EventArgs e)
-		{
-			progressBarProcress.Minimum = 0;
-			progressBarProcress.Maximum = (int)numericUpDownNumberMaximum.Value;
-			progressBarProcress.Value = 0;
-			progressBarProcress.Step = 1;
-			backgroundWorker.RunWorkerAsync();
-		}
-
-		private void ButtonCopyList_Click(object sender, EventArgs e)
-		{
-			textBoxList.SelectAll();
-			textBoxList.Copy();
-			MessageBox.Show(text: L10N.strCopiedToClipboard, caption: L10N.strCaptionInformation);
-		}
-
-		private void ButtonSaveList_Click(object sender, EventArgs e)
-		{
-			using (SaveFileDialog save = new SaveFileDialog()
+			using (SaveFileDialog save = new SaveFileDialog
 			{
-				FileName = L10N.strDefaultFilename,
-				Filter = L10N.strDefaultFileFilter
+				FileName = "liste.txt",
+				Filter = "Textdatei | *.txt"
 			})
 			{
 				if (save.ShowDialog() == DialogResult.OK)
@@ -71,15 +83,20 @@ namespace NumericListGenerator
 					finally
 					{
 						writer.Close();
-						MessageBox.Show(text: L10N.strSavedToFile, caption: L10N.strCaptionInformation);
+						MessageBox.Show(text: "Die Liste wurde in die Textdatei kopiert.");
 					}
 				}
 			}
 		}
 
-		private void ButtonDeleteList_Click(object sender, EventArgs e) => textBoxList.Clear();
+		private void ButtonDeleteList_Click(object sender, EventArgs e)
+    {
+      textBoxList.Clear();
+      timeSpan = TimeSpan.Zero;
+      UpdateStatusBar();
+    }
 
-		private void ButtonInformationAboutApp_Click(object sender, EventArgs e)
+    private void ButtonInformationAboutApp_Click(object sender, EventArgs e)
 		{
 			using (AboutBoxForm formAboutBox = new AboutBoxForm())
 			{
@@ -95,81 +112,11 @@ namespace NumericListGenerator
 			ButtonAddToList_Click(sender: sender, e: e);
 		}
 
-		private static void ApplyResourceToControl(ComponentResourceManager res, Control control)
+		private void ButtonUndo_Click(object sender, EventArgs e)
 		{
-			foreach (Control c in control.Controls)
-			{
-				ApplyResourceToControl(res: res, control: c);
-			}
-
-			string text = res.GetString(name: $"{control.Name}.Text", culture: culture);
-			control.Text = text ?? control.Text;
-		}
-
-		private void ComboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (comboBoxLanguage.SelectedIndex == -1)
-			{
-				return;
-			}
-			Thread.CurrentThread.CurrentUICulture = (CultureInfo)comboBoxLanguage.SelectedItem;
-			ComponentResourceManager resources = new ComponentResourceManager(t: GetType());
-			ApplyResourceToControl(res: resources, control: this);
-		}
-
-		private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			for (int i = (int)numericUpDownNumberMinimum.Value; i < (int)numericUpDownNumberMaximum.Value + 1; i++)
-			{
-				string strTemp = string.Empty;
-				// Alternativen: progressBarProcress.Increment(1); oder progressBarProcress.Value = i;
-				if (checkBoxFillWithZeros.Checked)
-				{
-					if (i < 1000000000 && numericUpDownNumberMaximum.Value > 999999999)
-					{
-						strTemp += "0";
-					}
-					if (i < 100000000 && numericUpDownNumberMaximum.Value > 99999999)
-					{
-						strTemp += "0";
-					}
-					if (i < 10000000 && numericUpDownNumberMaximum.Value > 9999999)
-					{
-						strTemp += "0";
-					}
-					if (i < 1000000 && numericUpDownNumberMaximum.Value > 999999)
-					{
-						strTemp += "0";
-					}
-					if (i < 100000 && numericUpDownNumberMaximum.Value > 99999)
-					{
-						strTemp += "0";
-					}
-					if (i < 10000 && numericUpDownNumberMaximum.Value > 9999)
-					{
-						strTemp += "0";
-					}
-					if (i < 1000 && numericUpDownNumberMaximum.Value > 999)
-					{
-						strTemp += "0";
-					}
-					if (i < 100 && numericUpDownNumberMaximum.Value > 99)
-					{
-						strTemp += "0";
-					}
-					if (i < 10 && numericUpDownNumberMaximum.Value > 9)
-					{
-						strTemp += "0";
-					}
-				}
-				backgroundWorker.ReportProgress(percentProgress: 0, userState: $"{comboBoxStringBeforeNumber.Text}{strTemp}{i.ToString(provider: culture)}{comboBoxStringAfterNumber.Text}{Environment.NewLine}");
-			}
-		}
-
-		private void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-		{
-			progressBarProcress.PerformStep();
-			textBoxList.Text += e.UserState.ToString();
-		}
-	}
+      textBoxList.Text = backupList;
+      buttonUndo.Enabled = false;
+      UpdateStatusBar();
+    }
+  }
 }
