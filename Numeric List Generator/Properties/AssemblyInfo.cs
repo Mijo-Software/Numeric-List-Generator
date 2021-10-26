@@ -1,16 +1,17 @@
-﻿using System.Reflection;
-using System.Resources;
+﻿using System.Resources;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die mit einer Assembly verknüpft sind.
 [assembly: AssemblyTitle("Numeric List Generator (NLG)")]
-[assembly: AssemblyDescription("Erstellt Listen mit numerischen Einträgen (z. B. URLs)")]
+[assembly: AssemblyDescription("Erstellt Listen mit numerischen Einträgen (z. B. URLs oder Bildergalerien)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mijo Software")]
 [assembly: AssemblyProduct("Numeric List Generator")]
-[assembly: AssemblyCopyright("2013-2019 Mijo Software")]
+[assembly: AssemblyCopyright("2013-2021 Mijo Software")]
 [assembly: AssemblyTrademark("Numeric List Generator")]
 [assembly: AssemblyCulture("")]
 
