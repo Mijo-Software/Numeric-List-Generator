@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mijo Software")]
 [assembly: AssemblyProduct("Numeric List Generator")]
-[assembly: AssemblyCopyright("2013-2021 Mijo Software")]
+[assembly: AssemblyCopyright("2013–2021 Mijo Software")]
 [assembly: AssemblyTrademark("Numeric List Generator")]
 [assembly: AssemblyCulture("")]
 
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.0.4")]
-[assembly: AssemblyFileVersion("1.2.0.4")]
+[assembly: AssemblyVersion("1.3.0.5")]
+[assembly: AssemblyFileVersion("1.3.0.5")]
 [assembly: NeutralResourcesLanguage("de")]
 

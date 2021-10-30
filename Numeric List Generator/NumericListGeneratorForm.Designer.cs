@@ -41,21 +41,28 @@
 			this.labelProcress = new System.Windows.Forms.Label();
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-			this.labelResult = new System.Windows.Forms.Label();
+			this.textBoxStringBeforeNumber = new System.Windows.Forms.TextBox();
+			this.textBoxStringAfterNumber = new System.Windows.Forms.TextBox();
+			this.buttonRedo = new System.Windows.Forms.Button();
 			this.buttonUndo = new System.Windows.Forms.Button();
-			this.buttonCreateListe = new System.Windows.Forms.Button();
+			this.buttonCreateList = new System.Windows.Forms.Button();
 			this.buttonInformationAboutApp = new System.Windows.Forms.Button();
 			this.buttonExitApp = new System.Windows.Forms.Button();
 			this.buttonDeleteList = new System.Windows.Forms.Button();
 			this.buttonSaveList = new System.Windows.Forms.Button();
 			this.buttonCopyList = new System.Windows.Forms.Button();
 			this.buttonAddToList = new System.Windows.Forms.Button();
+			this.labelResult = new System.Windows.Forms.Label();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabelSize = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabelLines = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabelTimeSpan = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabelLim = new System.Windows.Forms.ToolStripStatusLabel();
-			this.textBoxStringBeforeNumber = new System.Windows.Forms.TextBox();
-			this.textBoxStringAfterNumber = new System.Windows.Forms.TextBox();
+			this.toolStripSplitButtonStyle = new System.Windows.Forms.ToolStripSplitButton();
+			this.toolStripMenuItemActivateVisualStyle = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemDeactivateVisualStyle = new System.Windows.Forms.ToolStripMenuItem();
+			this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+			this.buttonSettings = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberMinimum)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberMaximum)).BeginInit();
 			this.statusStrip.SuspendLayout();
@@ -86,7 +93,7 @@
 			this.labelNumberMin.Name = "labelNumberMin";
 			this.labelNumberMin.Size = new System.Drawing.Size(61, 13);
 			this.labelNumberMin.TabIndex = 2;
-			this.labelNumberMin.Text = "Zahlen von";
+			this.labelNumberMin.Text = "Zahlen v&on";
 			// 
 			// numericUpDownNumberMinimum
 			// 
@@ -113,7 +120,7 @@
 			this.labelNumberMax.Name = "labelNumberMax";
 			this.labelNumberMax.Size = new System.Drawing.Size(20, 13);
 			this.labelNumberMax.TabIndex = 4;
-			this.labelNumberMax.Text = "bis";
+			this.labelNumberMax.Text = "b&is";
 			// 
 			// numericUpDownNumberMaximum
 			// 
@@ -152,7 +159,7 @@
 			this.textBoxList.Name = "textBoxList";
 			this.textBoxList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBoxList.Size = new System.Drawing.Size(339, 167);
-			this.textBoxList.TabIndex = 18;
+			this.textBoxList.TabIndex = 19;
 			this.toolTip.SetToolTip(this.textBoxList, "Zeigt die Liste mit den generierten Einträgen an");
 			this.textBoxList.WordWrap = false;
 			// 
@@ -162,7 +169,7 @@
 			this.labelProcress.Location = new System.Drawing.Point(9, 219);
 			this.labelProcress.Name = "labelProcress";
 			this.labelProcress.Size = new System.Drawing.Size(70, 13);
-			this.labelProcress.TabIndex = 15;
+			this.labelProcress.TabIndex = 16;
 			this.labelProcress.Text = "Verarbeitung:";
 			// 
 			// progressBar
@@ -171,24 +178,51 @@
 			this.progressBar.Name = "progressBar";
 			this.progressBar.Size = new System.Drawing.Size(266, 17);
 			this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.progressBar.TabIndex = 16;
+			this.progressBar.TabIndex = 17;
 			this.toolTip.SetToolTip(this.progressBar, "Zeigt den laufenden Verarbeitungsstatus an");
 			// 
-			// labelResult
+			// textBoxStringBeforeNumber
 			// 
-			this.labelResult.AutoSize = true;
-			this.labelResult.Location = new System.Drawing.Point(9, 246);
-			this.labelResult.Name = "labelResult";
-			this.labelResult.Size = new System.Drawing.Size(51, 13);
-			this.labelResult.TabIndex = 17;
-			this.labelResult.Text = "E&rgebnis:";
+			this.textBoxStringBeforeNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.textBoxStringBeforeNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+			this.textBoxStringBeforeNumber.Location = new System.Drawing.Point(12, 25);
+			this.textBoxStringBeforeNumber.Name = "textBoxStringBeforeNumber";
+			this.textBoxStringBeforeNumber.Size = new System.Drawing.Size(339, 20);
+			this.textBoxStringBeforeNumber.TabIndex = 1;
+			this.textBoxStringBeforeNumber.Text = "http://www.domain.com/files/picture";
+			this.toolTip.SetToolTip(this.textBoxStringBeforeNumber, "Eingabe des Textes vor der Zahlenangabe");
+			// 
+			// textBoxStringAfterNumber
+			// 
+			this.textBoxStringAfterNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.textBoxStringAfterNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+			this.textBoxStringAfterNumber.Location = new System.Drawing.Point(12, 109);
+			this.textBoxStringAfterNumber.Name = "textBoxStringAfterNumber";
+			this.textBoxStringAfterNumber.Size = new System.Drawing.Size(339, 20);
+			this.textBoxStringAfterNumber.TabIndex = 8;
+			this.textBoxStringAfterNumber.Text = ".jpg";
+			this.toolTip.SetToolTip(this.textBoxStringAfterNumber, "Eingabe des Textes nach der Zahlenangabe");
+			// 
+			// buttonRedo
+			// 
+			this.buttonRedo.Image = global::NumericListGenerator.Properties.Resources.redo;
+			this.buttonRedo.Location = new System.Drawing.Point(74, 178);
+			this.buttonRedo.Name = "buttonRedo";
+			this.buttonRedo.Size = new System.Drawing.Size(58, 26);
+			this.buttonRedo.TabIndex = 13;
+			this.buttonRedo.Text = "&Redo";
+			this.buttonRedo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.buttonRedo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.toolTip.SetToolTip(this.buttonRedo, "Verwirft die letzte rückgängig gemachte Änderung");
+			this.buttonRedo.UseVisualStyleBackColor = true;
+			this.buttonRedo.Click += new System.EventHandler(this.ButtonRedo_Click);
 			// 
 			// buttonUndo
 			// 
-			this.buttonUndo.Image = global::NumericListGenerator.Properties.Resources.arrow_undo;
+			this.buttonUndo.Image = ((System.Drawing.Image)(resources.GetObject("buttonUndo.Image")));
 			this.buttonUndo.Location = new System.Drawing.Point(12, 178);
 			this.buttonUndo.Name = "buttonUndo";
-			this.buttonUndo.Size = new System.Drawing.Size(120, 26);
+			this.buttonUndo.Size = new System.Drawing.Size(58, 26);
 			this.buttonUndo.TabIndex = 12;
 			this.buttonUndo.Text = "&Undo";
 			this.buttonUndo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,19 +231,19 @@
 			this.buttonUndo.UseVisualStyleBackColor = true;
 			this.buttonUndo.Click += new System.EventHandler(this.ButtonUndo_Click);
 			// 
-			// buttonCreateListe
+			// buttonCreateList
 			// 
-			this.buttonCreateListe.Image = global::NumericListGenerator.Properties.Resources.gear_in;
-			this.buttonCreateListe.Location = new System.Drawing.Point(12, 146);
-			this.buttonCreateListe.Name = "buttonCreateListe";
-			this.buttonCreateListe.Size = new System.Drawing.Size(120, 26);
-			this.buttonCreateListe.TabIndex = 9;
-			this.buttonCreateListe.Text = "Liste neu &erstellen";
-			this.buttonCreateListe.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.buttonCreateListe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.toolTip.SetToolTip(this.buttonCreateListe, "Erstellt eine neue Liste");
-			this.buttonCreateListe.UseVisualStyleBackColor = true;
-			this.buttonCreateListe.Click += new System.EventHandler(this.ButtonCreateListe_Click);
+			this.buttonCreateList.Image = global::NumericListGenerator.Properties.Resources.document_index;
+			this.buttonCreateList.Location = new System.Drawing.Point(12, 146);
+			this.buttonCreateList.Name = "buttonCreateList";
+			this.buttonCreateList.Size = new System.Drawing.Size(120, 26);
+			this.buttonCreateList.TabIndex = 9;
+			this.buttonCreateList.Text = "Liste neu &erstellen";
+			this.buttonCreateList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.buttonCreateList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.toolTip.SetToolTip(this.buttonCreateList, "Erstellt eine neue Liste");
+			this.buttonCreateList.UseVisualStyleBackColor = true;
+			this.buttonCreateList.Click += new System.EventHandler(this.ButtonCreateList_Click);
 			// 
 			// buttonInformationAboutApp
 			// 
@@ -217,7 +251,7 @@
 			this.buttonInformationAboutApp.Location = new System.Drawing.Point(12, 435);
 			this.buttonInformationAboutApp.Name = "buttonInformationAboutApp";
 			this.buttonInformationAboutApp.Size = new System.Drawing.Size(58, 26);
-			this.buttonInformationAboutApp.TabIndex = 19;
+			this.buttonInformationAboutApp.TabIndex = 20;
 			this.buttonInformationAboutApp.Text = "&Info";
 			this.buttonInformationAboutApp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonInformationAboutApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -231,7 +265,7 @@
 			this.buttonExitApp.Location = new System.Drawing.Point(222, 435);
 			this.buttonExitApp.Name = "buttonExitApp";
 			this.buttonExitApp.Size = new System.Drawing.Size(129, 26);
-			this.buttonExitApp.TabIndex = 20;
+			this.buttonExitApp.TabIndex = 22;
 			this.buttonExitApp.Text = "Programm &beenden";
 			this.buttonExitApp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonExitApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -259,7 +293,7 @@
 			this.buttonSaveList.Location = new System.Drawing.Point(248, 178);
 			this.buttonSaveList.Name = "buttonSaveList";
 			this.buttonSaveList.Size = new System.Drawing.Size(103, 26);
-			this.buttonSaveList.TabIndex = 14;
+			this.buttonSaveList.TabIndex = 15;
 			this.buttonSaveList.Text = "Liste &speichern";
 			this.buttonSaveList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonSaveList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -273,7 +307,7 @@
 			this.buttonCopyList.Location = new System.Drawing.Point(138, 178);
 			this.buttonCopyList.Name = "buttonCopyList";
 			this.buttonCopyList.Size = new System.Drawing.Size(104, 26);
-			this.buttonCopyList.TabIndex = 13;
+			this.buttonCopyList.TabIndex = 14;
 			this.buttonCopyList.Text = "Liste &kopieren";
 			this.buttonCopyList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.buttonCopyList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -295,19 +329,30 @@
 			this.buttonAddToList.UseVisualStyleBackColor = true;
 			this.buttonAddToList.Click += new System.EventHandler(this.ButtonAddToList_Click);
 			// 
+			// labelResult
+			// 
+			this.labelResult.AutoSize = true;
+			this.labelResult.Location = new System.Drawing.Point(9, 246);
+			this.labelResult.Name = "labelResult";
+			this.labelResult.Size = new System.Drawing.Size(51, 13);
+			this.labelResult.TabIndex = 18;
+			this.labelResult.Text = "E&rgebnis:";
+			// 
 			// statusStrip
 			// 
 			this.statusStrip.AllowItemReorder = true;
 			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelSize,
             this.toolStripStatusLabelLines,
-            this.toolStripStatusLabelLim});
-			this.statusStrip.Location = new System.Drawing.Point(0, 465);
+            this.toolStripStatusLabelTimeSpan,
+            this.toolStripStatusLabelLim,
+            this.toolStripSplitButtonStyle});
+			this.statusStrip.Location = new System.Drawing.Point(0, 467);
 			this.statusStrip.Name = "statusStrip";
 			this.statusStrip.ShowItemToolTips = true;
-			this.statusStrip.Size = new System.Drawing.Size(363, 24);
+			this.statusStrip.Size = new System.Drawing.Size(363, 22);
 			this.statusStrip.SizingGrip = false;
-			this.statusStrip.TabIndex = 21;
+			this.statusStrip.TabIndex = 23;
 			this.statusStrip.TabStop = true;
 			this.statusStrip.Text = "statusStrip";
 			// 
@@ -317,9 +362,12 @@
 			this.toolStripStatusLabelSize.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusLabelSize.Font = new System.Drawing.Font("Segoe UI", 6.75F);
 			this.toolStripStatusLabelSize.Name = "toolStripStatusLabelSize";
-			this.toolStripStatusLabelSize.Size = new System.Drawing.Size(43, 19);
+			this.toolStripStatusLabelSize.Size = new System.Drawing.Size(33, 17);
+			this.toolStripStatusLabelSize.Tag = "Größe";
 			this.toolStripStatusLabelSize.Text = "Größe";
+			this.toolStripStatusLabelSize.Click += new System.EventHandler(this.ToolStripStatusLabelSize_Click);
 			// 
 			// toolStripStatusLabelLines
 			// 
@@ -327,9 +375,26 @@
 			this.toolStripStatusLabelLines.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusLabelLines.Font = new System.Drawing.Font("Segoe UI", 6.75F);
 			this.toolStripStatusLabelLines.Name = "toolStripStatusLabelLines";
-			this.toolStripStatusLabelLines.Size = new System.Drawing.Size(43, 19);
-			this.toolStripStatusLabelLines.Text = "Linien";
+			this.toolStripStatusLabelLines.Size = new System.Drawing.Size(33, 17);
+			this.toolStripStatusLabelLines.Tag = "Zeilen";
+			this.toolStripStatusLabelLines.Text = "Zeilen";
+			this.toolStripStatusLabelLines.Click += new System.EventHandler(this.ToolStripStatusLabelLines_Click);
+			// 
+			// toolStripStatusLabelTimeSpan
+			// 
+			this.toolStripStatusLabelTimeSpan.AutoToolTip = true;
+			this.toolStripStatusLabelTimeSpan.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusLabelTimeSpan.Font = new System.Drawing.Font("Segoe UI", 6.75F);
+			this.toolStripStatusLabelTimeSpan.Name = "toolStripStatusLabelTimeSpan";
+			this.toolStripStatusLabelTimeSpan.Size = new System.Drawing.Size(33, 17);
+			this.toolStripStatusLabelTimeSpan.Tag = "Dauer";
+			this.toolStripStatusLabelTimeSpan.Text = "Dauer";
+			this.toolStripStatusLabelTimeSpan.ToolTipText = "Dauer";
+			this.toolStripStatusLabelTimeSpan.Click += new System.EventHandler(this.ToolStripStatusLabelTimeSpan_Click);
 			// 
 			// toolStripStatusLabelLim
 			// 
@@ -337,44 +402,81 @@
 			this.toolStripStatusLabelLim.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusLabelLim.Font = new System.Drawing.Font("Segoe UI", 6.75F);
 			this.toolStripStatusLabelLim.Name = "toolStripStatusLabelLim";
-			this.toolStripStatusLabelLim.Size = new System.Drawing.Size(262, 19);
+			this.toolStripStatusLabelLim.Size = new System.Drawing.Size(186, 17);
 			this.toolStripStatusLabelLim.Spring = true;
+			this.toolStripStatusLabelLim.Tag = "LIM";
 			this.toolStripStatusLabelLim.Text = "LIM";
+			this.toolStripStatusLabelLim.Click += new System.EventHandler(this.ToolStripStatusLabelLim_Click);
 			// 
-			// textBoxStringBeforeNumber
+			// toolStripSplitButtonStyle
 			// 
-			this.textBoxStringBeforeNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-			this.textBoxStringBeforeNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-			this.textBoxStringBeforeNumber.Location = new System.Drawing.Point(12, 25);
-			this.textBoxStringBeforeNumber.Name = "textBoxStringBeforeNumber";
-			this.textBoxStringBeforeNumber.Size = new System.Drawing.Size(339, 20);
-			this.textBoxStringBeforeNumber.TabIndex = 1;
-			this.textBoxStringBeforeNumber.Text = "http://www.domain.com/files/picture";
-			this.toolTip.SetToolTip(this.textBoxStringBeforeNumber, "Eingabe des Textes vor der Zahlenangabe");
+			this.toolStripSplitButtonStyle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripSplitButtonStyle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemActivateVisualStyle,
+            this.toolStripMenuItemDeactivateVisualStyle});
+			this.toolStripSplitButtonStyle.Image = global::NumericListGenerator.Properties.Resources.application_grey;
+			this.toolStripSplitButtonStyle.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripSplitButtonStyle.Name = "toolStripSplitButtonStyle";
+			this.toolStripSplitButtonStyle.Size = new System.Drawing.Size(32, 20);
+			this.toolStripSplitButtonStyle.Text = "Visueller Stil";
+			this.toolStripSplitButtonStyle.ButtonClick += new System.EventHandler(this.ToolStripStatusLabelStyle_Click);
 			// 
-			// textBoxStringAfterNumber
+			// toolStripMenuItemActivateVisualStyle
 			// 
-			this.textBoxStringAfterNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-			this.textBoxStringAfterNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-			this.textBoxStringAfterNumber.Location = new System.Drawing.Point(12, 109);
-			this.textBoxStringAfterNumber.Name = "textBoxStringAfterNumber";
-			this.textBoxStringAfterNumber.Size = new System.Drawing.Size(339, 20);
-			this.textBoxStringAfterNumber.TabIndex = 8;
-			this.textBoxStringAfterNumber.Text = ".jpg";
-			this.toolTip.SetToolTip(this.textBoxStringAfterNumber, "Eingabe des Textes nach der Zahlenangabe");
+			this.toolStripMenuItemActivateVisualStyle.AutoToolTip = true;
+			this.toolStripMenuItemActivateVisualStyle.Image = global::NumericListGenerator.Properties.Resources.application;
+			this.toolStripMenuItemActivateVisualStyle.Name = "toolStripMenuItemActivateVisualStyle";
+			this.toolStripMenuItemActivateVisualStyle.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemActivateVisualStyle.Text = "Visueller Stil &aktivieren";
+			this.toolStripMenuItemActivateVisualStyle.ToolTipText = "Visueller Stil aktivieren";
+			this.toolStripMenuItemActivateVisualStyle.Click += new System.EventHandler(this.ToolStripMenuItemActivateVisualStyle_Click);
+			// 
+			// toolStripMenuItemDeactivateVisualStyle
+			// 
+			this.toolStripMenuItemDeactivateVisualStyle.AutoToolTip = true;
+			this.toolStripMenuItemDeactivateVisualStyle.Image = global::NumericListGenerator.Properties.Resources.application_grey;
+			this.toolStripMenuItemDeactivateVisualStyle.Name = "toolStripMenuItemDeactivateVisualStyle";
+			this.toolStripMenuItemDeactivateVisualStyle.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemDeactivateVisualStyle.Text = "Visueller Stil &deaktivieren";
+			this.toolStripMenuItemDeactivateVisualStyle.ToolTipText = "Visueller Stil deaktivieren";
+			this.toolStripMenuItemDeactivateVisualStyle.Click += new System.EventHandler(this.ToolStripMenuItemDeactivateVisualStyle_Click);
+			// 
+			// backgroundWorker
+			// 
+			this.backgroundWorker.WorkerReportsProgress = true;
+			this.backgroundWorker.WorkerSupportsCancellation = true;
+			this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
+			this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker_ProgressChanged);
+			this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
+			// 
+			// buttonSettings
+			// 
+			this.buttonSettings.Image = global::NumericListGenerator.Properties.Resources.wrench_orange;
+			this.buttonSettings.Location = new System.Drawing.Point(76, 435);
+			this.buttonSettings.Name = "buttonSettings";
+			this.buttonSettings.Size = new System.Drawing.Size(99, 26);
+			this.buttonSettings.TabIndex = 21;
+			this.buttonSettings.Text = "Eins&tellungen";
+			this.buttonSettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.buttonSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.buttonSettings.UseVisualStyleBackColor = true;
+			this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
 			// 
 			// NumericListGeneratorForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(363, 489);
+			this.Controls.Add(this.buttonRedo);
+			this.Controls.Add(this.buttonSettings);
 			this.Controls.Add(this.textBoxStringAfterNumber);
 			this.Controls.Add(this.textBoxStringBeforeNumber);
 			this.Controls.Add(this.statusStrip);
 			this.Controls.Add(this.buttonUndo);
 			this.Controls.Add(this.labelResult);
-			this.Controls.Add(this.buttonCreateListe);
+			this.Controls.Add(this.buttonCreateList);
 			this.Controls.Add(this.buttonInformationAboutApp);
 			this.Controls.Add(this.buttonExitApp);
 			this.Controls.Add(this.progressBar);
@@ -425,7 +527,7 @@
     private System.Windows.Forms.ProgressBar progressBar;
     private System.Windows.Forms.Button buttonExitApp;
     private System.Windows.Forms.Button buttonInformationAboutApp;
-		private System.Windows.Forms.Button buttonCreateListe;
+		private System.Windows.Forms.Button buttonCreateList;
 		private System.Windows.Forms.ToolTip toolTip;
 		private System.Windows.Forms.Label labelResult;
 		private System.Windows.Forms.Button buttonUndo;
@@ -435,6 +537,13 @@
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelLim;
 		private System.Windows.Forms.TextBox textBoxStringBeforeNumber;
 		private System.Windows.Forms.TextBox textBoxStringAfterNumber;
+		private System.ComponentModel.BackgroundWorker backgroundWorker;
+		private System.Windows.Forms.Button buttonSettings;
+		private System.Windows.Forms.Button buttonRedo;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelTimeSpan;
+		private System.Windows.Forms.ToolStripSplitButton toolStripSplitButtonStyle;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemActivateVisualStyle;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeactivateVisualStyle;
 	}
 }
 
