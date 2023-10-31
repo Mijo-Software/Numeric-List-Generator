@@ -46,8 +46,6 @@
 			buttonRedo = new Button();
 			buttonUndo = new Button();
 			buttonCreateList = new Button();
-			buttonInformationAboutApp = new Button();
-			buttonExitApp = new Button();
 			buttonDeleteList = new Button();
 			buttonSaveList = new Button();
 			buttonCopyList = new Button();
@@ -58,17 +56,38 @@
 			toolStripStatusLabelLines = new ToolStripStatusLabel();
 			toolStripStatusLabelTimeSpan = new ToolStripStatusLabel();
 			toolStripStatusLabelLim = new ToolStripStatusLabel();
-			toolStripSplitButtonStyle = new ToolStripSplitButton();
-			toolStripMenuItemActivateVisualStyle = new ToolStripMenuItem();
-			toolStripMenuItemDeactivateVisualStyle = new ToolStripMenuItem();
-			backgroundWorker = new System.ComponentModel.BackgroundWorker();
-			buttonSettings = new Button();
 			statusStripInfo = new StatusStrip();
 			toolStripStatusLabelInformation = new ToolStripStatusLabel();
+			menuStrip = new MenuStrip();
+			toolStripMenuItemProgram = new ToolStripMenuItem();
+			toolStripMenuItemInfo = new ToolStripMenuItem();
+			toolStripMenuItemLicense = new ToolStripMenuItem();
+			toolStripSeparator1 = new ToolStripSeparator();
+			toolStripMenuItemExit = new ToolStripMenuItem();
+			toolStripMenuItemList = new ToolStripMenuItem();
+			toolStripMenuItemListCreate = new ToolStripMenuItem();
+			toolStripMenuItemListAdd = new ToolStripMenuItem();
+			toolStripMenuItemListDelete = new ToolStripMenuItem();
+			toolStripSeparator2 = new ToolStripSeparator();
+			toolStripMenuItemListUndo = new ToolStripMenuItem();
+			toolStripMenuItemListRedo = new ToolStripMenuItem();
+			toolStripSeparator3 = new ToolStripSeparator();
+			toolStripMenuItemListCopy = new ToolStripMenuItem();
+			toolStripMenuItemListSave = new ToolStripMenuItem();
+			toolStripMenuItemSettings = new ToolStripMenuItem();
+			toolStripMenuItemSettingsStayOnTop = new ToolStripMenuItem();
+			toolStripMenuItemSettingsDisableVisualStyle = new ToolStripMenuItem();
+			backgroundWorker = new System.ComponentModel.BackgroundWorker();
+			toolStripContainer = new ToolStripContainer();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMinimum).BeginInit();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMaximum).BeginInit();
 			statusStripStatistic.SuspendLayout();
 			statusStripInfo.SuspendLayout();
+			menuStrip.SuspendLayout();
+			toolStripContainer.BottomToolStripPanel.SuspendLayout();
+			toolStripContainer.ContentPanel.SuspendLayout();
+			toolStripContainer.TopToolStripPanel.SuspendLayout();
+			toolStripContainer.SuspendLayout();
 			SuspendLayout();
 			// 
 			// labelStringBeforeNumber
@@ -78,7 +97,7 @@
 			labelStringBeforeNumber.AccessibleRole = AccessibleRole.StaticText;
 			labelStringBeforeNumber.AutoEllipsis = true;
 			labelStringBeforeNumber.AutoSize = true;
-			labelStringBeforeNumber.Location = new Point(10, 10);
+			labelStringBeforeNumber.Location = new Point(13, 12);
 			labelStringBeforeNumber.Margin = new Padding(4, 0, 4, 0);
 			labelStringBeforeNumber.Name = "labelStringBeforeNumber";
 			labelStringBeforeNumber.Size = new Size(144, 15);
@@ -96,7 +115,7 @@
 			labelStringAfterNumber.AccessibleRole = AccessibleRole.StaticText;
 			labelStringAfterNumber.AutoEllipsis = true;
 			labelStringAfterNumber.AutoSize = true;
-			labelStringAfterNumber.Location = new Point(10, 107);
+			labelStringAfterNumber.Location = new Point(13, 109);
 			labelStringAfterNumber.Margin = new Padding(4, 0, 4, 0);
 			labelStringAfterNumber.Name = "labelStringAfterNumber";
 			labelStringAfterNumber.Size = new Size(153, 15);
@@ -115,7 +134,7 @@
 			labelNumberMin.AccessibleRole = AccessibleRole.StaticText;
 			labelNumberMin.AutoEllipsis = true;
 			labelNumberMin.AutoSize = true;
-			labelNumberMin.Location = new Point(10, 69);
+			labelNumberMin.Location = new Point(13, 70);
 			labelNumberMin.Margin = new Padding(4, 0, 4, 0);
 			labelNumberMin.Name = "labelNumberMin";
 			labelNumberMin.Size = new Size(66, 15);
@@ -132,7 +151,7 @@
 			numericUpDownNumberMinimum.AccessibleDescription = "Minimun der Zahl, mit der die Einträge erstellt werden sollen";
 			numericUpDownNumberMinimum.AccessibleName = "Minimun der Zahl, mit der die Einträge erstellt werden sollen";
 			numericUpDownNumberMinimum.AccessibleRole = AccessibleRole.SpinButton;
-			numericUpDownNumberMinimum.Location = new Point(89, 67);
+			numericUpDownNumberMinimum.Location = new Point(88, 68);
 			numericUpDownNumberMinimum.Margin = new Padding(4, 3, 4, 3);
 			numericUpDownNumberMinimum.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
 			numericUpDownNumberMinimum.Name = "numericUpDownNumberMinimum";
@@ -149,7 +168,7 @@
 			labelNumberMax.AccessibleName = "Zahlen Maximum";
 			labelNumberMax.AccessibleRole = AccessibleRole.StaticText;
 			labelNumberMax.AutoSize = true;
-			labelNumberMax.Location = new Point(153, 69);
+			labelNumberMax.Location = new Point(152, 70);
 			labelNumberMax.Margin = new Padding(4, 0, 4, 0);
 			labelNumberMax.Name = "labelNumberMax";
 			labelNumberMax.Size = new Size(22, 15);
@@ -166,7 +185,7 @@
 			numericUpDownNumberMaximum.AccessibleDescription = "Maximun der Zahl, mit der die Einträge erstellt werden sollen";
 			numericUpDownNumberMaximum.AccessibleName = "Maximun der Zahl, mit der die Einträge erstellt werden sollen";
 			numericUpDownNumberMaximum.AccessibleRole = AccessibleRole.SpinButton;
-			numericUpDownNumberMaximum.Location = new Point(183, 67);
+			numericUpDownNumberMaximum.Location = new Point(182, 68);
 			numericUpDownNumberMaximum.Margin = new Padding(4, 3, 4, 3);
 			numericUpDownNumberMaximum.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
 			numericUpDownNumberMaximum.Name = "numericUpDownNumberMaximum";
@@ -183,7 +202,7 @@
 			checkBoxFillWithZeros.AccessibleName = "Markieren, wenn die Einträge mit voranführenden Nullen aufgefüllt werden sollen";
 			checkBoxFillWithZeros.AccessibleRole = AccessibleRole.CheckButton;
 			checkBoxFillWithZeros.AutoSize = true;
-			checkBoxFillWithZeros.Location = new Point(255, 69);
+			checkBoxFillWithZeros.Location = new Point(254, 70);
 			checkBoxFillWithZeros.Margin = new Padding(4, 3, 4, 3);
 			checkBoxFillWithZeros.Name = "checkBoxFillWithZeros";
 			checkBoxFillWithZeros.Size = new Size(132, 19);
@@ -201,14 +220,14 @@
 			textBoxList.AccessibleDescription = "Zeigt die Liste mit den generierten Einträgen an";
 			textBoxList.AccessibleName = "Generierten Einträge";
 			textBoxList.AccessibleRole = AccessibleRole.Text;
-			textBoxList.Location = new Point(14, 302);
+			textBoxList.Location = new Point(13, 303);
 			textBoxList.Margin = new Padding(4, 3, 4, 3);
 			textBoxList.MaxLength = int.MaxValue;
 			textBoxList.Multiline = true;
 			textBoxList.Name = "textBoxList";
 			textBoxList.ScrollBars = ScrollBars.Both;
 			textBoxList.Size = new Size(395, 192);
-			textBoxList.TabIndex = 19;
+			textBoxList.TabIndex = 0;
 			toolTip.SetToolTip(textBoxList, "Zeigt die Liste mit den generierten Einträgen an");
 			textBoxList.WordWrap = false;
 			textBoxList.Enter += SetStatusbar_Enter;
@@ -223,7 +242,7 @@
 			labelProcress.AccessibleRole = AccessibleRole.StaticText;
 			labelProcress.AutoEllipsis = true;
 			labelProcress.AutoSize = true;
-			labelProcress.Location = new Point(10, 253);
+			labelProcress.Location = new Point(13, 254);
 			labelProcress.Margin = new Padding(4, 0, 4, 0);
 			labelProcress.Name = "labelProcress";
 			labelProcress.Size = new Size(77, 15);
@@ -240,10 +259,10 @@
 			progressBar.AccessibleDescription = "Zeigt den laufenden Verarbeitungsstatus an";
 			progressBar.AccessibleName = "Verarbeitungsstatus";
 			progressBar.AccessibleRole = AccessibleRole.ProgressBar;
-			progressBar.Location = new Point(95, 253);
+			progressBar.Location = new Point(98, 254);
 			progressBar.Margin = new Padding(4, 3, 4, 3);
 			progressBar.Name = "progressBar";
-			progressBar.Size = new Size(314, 20);
+			progressBar.Size = new Size(310, 20);
 			progressBar.Style = ProgressBarStyle.Continuous;
 			progressBar.TabIndex = 17;
 			toolTip.SetToolTip(progressBar, "Zeigt den laufenden Verarbeitungsstatus an");
@@ -257,7 +276,7 @@
 			textBoxStringBeforeNumber.AccessibleRole = AccessibleRole.Text;
 			textBoxStringBeforeNumber.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			textBoxStringBeforeNumber.AutoCompleteSource = AutoCompleteSource.CustomSource;
-			textBoxStringBeforeNumber.Location = new Point(14, 29);
+			textBoxStringBeforeNumber.Location = new Point(13, 30);
 			textBoxStringBeforeNumber.Margin = new Padding(4, 3, 4, 3);
 			textBoxStringBeforeNumber.Name = "textBoxStringBeforeNumber";
 			textBoxStringBeforeNumber.PlaceholderText = "Eingabe des Textes vor der Zahlenangabe";
@@ -277,7 +296,7 @@
 			textBoxStringAfterNumber.AccessibleRole = AccessibleRole.Text;
 			textBoxStringAfterNumber.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			textBoxStringAfterNumber.AutoCompleteSource = AutoCompleteSource.CustomSource;
-			textBoxStringAfterNumber.Location = new Point(14, 126);
+			textBoxStringAfterNumber.Location = new Point(13, 127);
 			textBoxStringAfterNumber.Margin = new Padding(4, 3, 4, 3);
 			textBoxStringAfterNumber.Name = "textBoxStringAfterNumber";
 			textBoxStringAfterNumber.PlaceholderText = "Eingabe des Textes nach der Zahlenangabe";
@@ -297,7 +316,7 @@
 			buttonRedo.AccessibleRole = AccessibleRole.PushButton;
 			buttonRedo.AutoEllipsis = true;
 			buttonRedo.Image = Properties.Resources.redo;
-			buttonRedo.Location = new Point(86, 205);
+			buttonRedo.Location = new Point(85, 206);
 			buttonRedo.Margin = new Padding(4, 3, 4, 3);
 			buttonRedo.Name = "buttonRedo";
 			buttonRedo.Size = new Size(68, 30);
@@ -320,7 +339,7 @@
 			buttonUndo.AccessibleRole = AccessibleRole.PushButton;
 			buttonUndo.AutoEllipsis = true;
 			buttonUndo.Image = (Image)resources.GetObject("buttonUndo.Image");
-			buttonUndo.Location = new Point(14, 205);
+			buttonUndo.Location = new Point(13, 206);
 			buttonUndo.Margin = new Padding(4, 3, 4, 3);
 			buttonUndo.Name = "buttonUndo";
 			buttonUndo.Size = new Size(68, 30);
@@ -343,7 +362,7 @@
 			buttonCreateList.AccessibleRole = AccessibleRole.PushButton;
 			buttonCreateList.AutoEllipsis = true;
 			buttonCreateList.Image = Properties.Resources.document_index;
-			buttonCreateList.Location = new Point(14, 168);
+			buttonCreateList.Location = new Point(13, 169);
 			buttonCreateList.Margin = new Padding(4, 3, 4, 3);
 			buttonCreateList.Name = "buttonCreateList";
 			buttonCreateList.Size = new Size(140, 30);
@@ -359,52 +378,6 @@
 			buttonCreateList.MouseEnter += SetStatusbar_Enter;
 			buttonCreateList.MouseLeave += ClearStatusbar_Leave;
 			// 
-			// buttonInformationAboutApp
-			// 
-			buttonInformationAboutApp.AccessibleDescription = "Ruft die Programminformationen auf";
-			buttonInformationAboutApp.AccessibleName = "Programminformationen";
-			buttonInformationAboutApp.AccessibleRole = AccessibleRole.PushButton;
-			buttonInformationAboutApp.AutoEllipsis = true;
-			buttonInformationAboutApp.Image = Properties.Resources.information;
-			buttonInformationAboutApp.Location = new Point(14, 502);
-			buttonInformationAboutApp.Margin = new Padding(4, 3, 4, 3);
-			buttonInformationAboutApp.Name = "buttonInformationAboutApp";
-			buttonInformationAboutApp.Size = new Size(68, 30);
-			buttonInformationAboutApp.TabIndex = 20;
-			buttonInformationAboutApp.Text = "&Info";
-			buttonInformationAboutApp.TextAlign = ContentAlignment.MiddleRight;
-			buttonInformationAboutApp.TextImageRelation = TextImageRelation.ImageBeforeText;
-			toolTip.SetToolTip(buttonInformationAboutApp, "Ruft die Programminformationen auf");
-			buttonInformationAboutApp.UseVisualStyleBackColor = true;
-			buttonInformationAboutApp.Click += ButtonInformationAboutApp_Click;
-			buttonInformationAboutApp.Enter += SetStatusbar_Enter;
-			buttonInformationAboutApp.Leave += ClearStatusbar_Leave;
-			buttonInformationAboutApp.MouseEnter += SetStatusbar_Enter;
-			buttonInformationAboutApp.MouseLeave += ClearStatusbar_Leave;
-			// 
-			// buttonExitApp
-			// 
-			buttonExitApp.AccessibleDescription = "Beendet das Program";
-			buttonExitApp.AccessibleName = "Programm beenden";
-			buttonExitApp.AccessibleRole = AccessibleRole.PushButton;
-			buttonExitApp.AutoEllipsis = true;
-			buttonExitApp.Image = Properties.Resources.door_open;
-			buttonExitApp.Location = new Point(259, 502);
-			buttonExitApp.Margin = new Padding(4, 3, 4, 3);
-			buttonExitApp.Name = "buttonExitApp";
-			buttonExitApp.Size = new Size(150, 30);
-			buttonExitApp.TabIndex = 22;
-			buttonExitApp.Text = "Programm &beenden";
-			buttonExitApp.TextAlign = ContentAlignment.MiddleRight;
-			buttonExitApp.TextImageRelation = TextImageRelation.ImageBeforeText;
-			toolTip.SetToolTip(buttonExitApp, "Beendet das Programm");
-			buttonExitApp.UseVisualStyleBackColor = true;
-			buttonExitApp.Click += ButtonExitApp_Click;
-			buttonExitApp.Enter += SetStatusbar_Enter;
-			buttonExitApp.Leave += ClearStatusbar_Leave;
-			buttonExitApp.MouseEnter += SetStatusbar_Enter;
-			buttonExitApp.MouseLeave += ClearStatusbar_Leave;
-			// 
 			// buttonDeleteList
 			// 
 			buttonDeleteList.AccessibleDescription = "Löscht die Liste";
@@ -412,7 +385,7 @@
 			buttonDeleteList.AccessibleRole = AccessibleRole.PushButton;
 			buttonDeleteList.AutoEllipsis = true;
 			buttonDeleteList.Image = Properties.Resources.bin_empty;
-			buttonDeleteList.Location = new Point(289, 168);
+			buttonDeleteList.Location = new Point(288, 169);
 			buttonDeleteList.Margin = new Padding(4, 3, 4, 3);
 			buttonDeleteList.Name = "buttonDeleteList";
 			buttonDeleteList.Size = new Size(120, 30);
@@ -431,11 +404,11 @@
 			// buttonSaveList
 			// 
 			buttonSaveList.AccessibleDescription = "Speichert die Liste als Textdatei ab";
-			buttonSaveList.AccessibleName = "Liste abspeichern";
+			buttonSaveList.AccessibleName = "Liste speichern";
 			buttonSaveList.AccessibleRole = AccessibleRole.PushButton;
 			buttonSaveList.AutoEllipsis = true;
 			buttonSaveList.Image = Properties.Resources.diskette;
-			buttonSaveList.Location = new Point(289, 205);
+			buttonSaveList.Location = new Point(288, 206);
 			buttonSaveList.Margin = new Padding(4, 3, 4, 3);
 			buttonSaveList.Name = "buttonSaveList";
 			buttonSaveList.Size = new Size(120, 30);
@@ -454,11 +427,11 @@
 			// buttonCopyList
 			// 
 			buttonCopyList.AccessibleDescription = "Kopiert die Liste in die Windows-Zwischenablage";
-			buttonCopyList.AccessibleName = "Liste koperien";
+			buttonCopyList.AccessibleName = "Liste kopieren";
 			buttonCopyList.AccessibleRole = AccessibleRole.PushButton;
 			buttonCopyList.AutoEllipsis = true;
 			buttonCopyList.Image = Properties.Resources.page_copy;
-			buttonCopyList.Location = new Point(161, 205);
+			buttonCopyList.Location = new Point(160, 206);
 			buttonCopyList.Margin = new Padding(4, 3, 4, 3);
 			buttonCopyList.Name = "buttonCopyList";
 			buttonCopyList.Size = new Size(121, 30);
@@ -481,7 +454,7 @@
 			buttonAddToList.AccessibleRole = AccessibleRole.PushButton;
 			buttonAddToList.AutoEllipsis = true;
 			buttonAddToList.Image = Properties.Resources.add;
-			buttonAddToList.Location = new Point(161, 168);
+			buttonAddToList.Location = new Point(160, 169);
 			buttonAddToList.Margin = new Padding(4, 3, 4, 3);
 			buttonAddToList.Name = "buttonAddToList";
 			buttonAddToList.Size = new Size(121, 30);
@@ -504,12 +477,12 @@
 			labelResult.AccessibleRole = AccessibleRole.StaticText;
 			labelResult.AutoEllipsis = true;
 			labelResult.AutoSize = true;
-			labelResult.Location = new Point(10, 284);
+			labelResult.Location = new Point(13, 285);
 			labelResult.Margin = new Padding(4, 0, 4, 0);
 			labelResult.Name = "labelResult";
 			labelResult.Size = new Size(55, 15);
 			labelResult.TabIndex = 18;
-			labelResult.Text = "E&rgebnis:";
+			labelResult.Text = "Er&gebnis:";
 			toolTip.SetToolTip(labelResult, "Ergebnis");
 			labelResult.MouseEnter += SetStatusbar_Enter;
 			labelResult.MouseLeave += ClearStatusbar_Leave;
@@ -520,16 +493,22 @@
 			statusStripStatistic.AccessibleName = "Statusbar";
 			statusStripStatistic.AccessibleRole = AccessibleRole.StatusBar;
 			statusStripStatistic.AllowItemReorder = true;
-			statusStripStatistic.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelSize, toolStripStatusLabelLines, toolStripStatusLabelTimeSpan, toolStripStatusLabelLim, toolStripSplitButtonStyle });
-			statusStripStatistic.Location = new Point(0, 561);
+			statusStripStatistic.Dock = DockStyle.None;
+			statusStripStatistic.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelSize, toolStripStatusLabelLines, toolStripStatusLabelTimeSpan, toolStripStatusLabelLim });
+			statusStripStatistic.Location = new Point(0, 22);
 			statusStripStatistic.Name = "statusStripStatistic";
 			statusStripStatistic.Padding = new Padding(1, 0, 16, 0);
 			statusStripStatistic.ShowItemToolTips = true;
-			statusStripStatistic.Size = new Size(424, 24);
+			statusStripStatistic.Size = new Size(422, 24);
 			statusStripStatistic.SizingGrip = false;
-			statusStripStatistic.TabIndex = 23;
+			statusStripStatistic.TabIndex = 1;
 			statusStripStatistic.TabStop = true;
 			statusStripStatistic.Text = "statusStripStatistic";
+			toolTip.SetToolTip(statusStripStatistic, "Statusbar für statistische Angaben");
+			statusStripStatistic.Enter += SetStatusbar_Enter;
+			statusStripStatistic.Leave += SetStatusbar_Enter;
+			statusStripStatistic.MouseEnter += SetStatusbar_Enter;
+			statusStripStatistic.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// toolStripStatusLabelSize
 			// 
@@ -543,6 +522,8 @@
 			toolStripStatusLabelSize.Tag = "Größe";
 			toolStripStatusLabelSize.Text = "Größe";
 			toolStripStatusLabelSize.Click += ToolStripStatusLabelSize_Click;
+			toolStripStatusLabelSize.MouseEnter += SetStatusbar_Enter;
+			toolStripStatusLabelSize.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// toolStripStatusLabelLines
 			// 
@@ -556,6 +537,8 @@
 			toolStripStatusLabelLines.Tag = "Zeilen";
 			toolStripStatusLabelLines.Text = "Zeilen";
 			toolStripStatusLabelLines.Click += ToolStripStatusLabelLines_Click;
+			toolStripStatusLabelLines.MouseEnter += SetStatusbar_Enter;
+			toolStripStatusLabelLines.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// toolStripStatusLabelTimeSpan
 			// 
@@ -570,6 +553,8 @@
 			toolStripStatusLabelTimeSpan.Text = "Dauer";
 			toolStripStatusLabelTimeSpan.ToolTipText = "Dauer";
 			toolStripStatusLabelTimeSpan.Click += ToolStripStatusLabelTimeSpan_Click;
+			toolStripStatusLabelTimeSpan.MouseEnter += SetStatusbar_Enter;
+			toolStripStatusLabelTimeSpan.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// toolStripStatusLabelLim
 			// 
@@ -579,97 +564,34 @@
 			toolStripStatusLabelLim.AutoToolTip = true;
 			toolStripStatusLabelLim.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
 			toolStripStatusLabelLim.Name = "toolStripStatusLabelLim";
-			toolStripStatusLabelLim.Size = new Size(247, 19);
+			toolStripStatusLabelLim.Size = new Size(277, 19);
 			toolStripStatusLabelLim.Spring = true;
 			toolStripStatusLabelLim.Tag = "LIM";
 			toolStripStatusLabelLim.Text = "LIM";
 			toolStripStatusLabelLim.Click += ToolStripStatusLabelLim_Click;
-			// 
-			// toolStripSplitButtonStyle
-			// 
-			toolStripSplitButtonStyle.AccessibleDescription = "Aktiviert oder deaktiviert den visuellen Stil des Programms";
-			toolStripSplitButtonStyle.AccessibleName = "Visuellen Stil de-/aktivieren";
-			toolStripSplitButtonStyle.AccessibleRole = AccessibleRole.PushButton;
-			toolStripSplitButtonStyle.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			toolStripSplitButtonStyle.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemActivateVisualStyle, toolStripMenuItemDeactivateVisualStyle });
-			toolStripSplitButtonStyle.Image = Properties.Resources.application_grey;
-			toolStripSplitButtonStyle.ImageTransparentColor = Color.Magenta;
-			toolStripSplitButtonStyle.Name = "toolStripSplitButtonStyle";
-			toolStripSplitButtonStyle.Size = new Size(32, 22);
-			toolStripSplitButtonStyle.Text = "Visueller Stil";
-			toolStripSplitButtonStyle.ButtonClick += ToolStripStatusLabelStyle_Click;
-			// 
-			// toolStripMenuItemActivateVisualStyle
-			// 
-			toolStripMenuItemActivateVisualStyle.AccessibleDescription = "Aktiviert den visuellen Stil des Programms";
-			toolStripMenuItemActivateVisualStyle.AccessibleName = "Visuellen Stil aktivieren";
-			toolStripMenuItemActivateVisualStyle.AccessibleRole = AccessibleRole.MenuItem;
-			toolStripMenuItemActivateVisualStyle.AutoToolTip = true;
-			toolStripMenuItemActivateVisualStyle.Image = Properties.Resources.application;
-			toolStripMenuItemActivateVisualStyle.Name = "toolStripMenuItemActivateVisualStyle";
-			toolStripMenuItemActivateVisualStyle.Size = new Size(204, 22);
-			toolStripMenuItemActivateVisualStyle.Text = "Visueller Stil &aktivieren";
-			toolStripMenuItemActivateVisualStyle.ToolTipText = "Visueller Stil aktivieren";
-			toolStripMenuItemActivateVisualStyle.Click += ToolStripMenuItemActivateVisualStyle_Click;
-			// 
-			// toolStripMenuItemDeactivateVisualStyle
-			// 
-			toolStripMenuItemDeactivateVisualStyle.AccessibleDescription = "Deaktiviert den visuellen Stil des Programms";
-			toolStripMenuItemDeactivateVisualStyle.AccessibleName = "Visuellen Stil deaktivieren";
-			toolStripMenuItemDeactivateVisualStyle.AccessibleRole = AccessibleRole.MenuItem;
-			toolStripMenuItemDeactivateVisualStyle.AutoToolTip = true;
-			toolStripMenuItemDeactivateVisualStyle.Image = Properties.Resources.application_grey;
-			toolStripMenuItemDeactivateVisualStyle.Name = "toolStripMenuItemDeactivateVisualStyle";
-			toolStripMenuItemDeactivateVisualStyle.Size = new Size(204, 22);
-			toolStripMenuItemDeactivateVisualStyle.Text = "Visueller Stil &deaktivieren";
-			toolStripMenuItemDeactivateVisualStyle.ToolTipText = "Visueller Stil deaktivieren";
-			toolStripMenuItemDeactivateVisualStyle.Click += ToolStripMenuItemDeactivateVisualStyle_Click;
-			// 
-			// backgroundWorker
-			// 
-			backgroundWorker.WorkerReportsProgress = true;
-			backgroundWorker.WorkerSupportsCancellation = true;
-			backgroundWorker.DoWork += BackgroundWorker_DoWork;
-			backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
-			backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
-			// 
-			// buttonSettings
-			// 
-			buttonSettings.AccessibleDescription = "Öffnet die Einstellungen";
-			buttonSettings.AccessibleName = "Einstellungen";
-			buttonSettings.AccessibleRole = AccessibleRole.PushButton;
-			buttonSettings.AutoEllipsis = true;
-			buttonSettings.Image = Properties.Resources.wrench_orange;
-			buttonSettings.Location = new Point(89, 502);
-			buttonSettings.Margin = new Padding(4, 3, 4, 3);
-			buttonSettings.Name = "buttonSettings";
-			buttonSettings.Size = new Size(115, 30);
-			buttonSettings.TabIndex = 21;
-			buttonSettings.Text = "Eins&tellungen";
-			buttonSettings.TextAlign = ContentAlignment.MiddleRight;
-			buttonSettings.TextImageRelation = TextImageRelation.ImageBeforeText;
-			toolTip.SetToolTip(buttonSettings, "Öffnet die Einstellungen");
-			buttonSettings.UseVisualStyleBackColor = true;
-			buttonSettings.Click += ButtonSettings_Click;
-			buttonSettings.Enter += SetStatusbar_Enter;
-			buttonSettings.Leave += ClearStatusbar_Leave;
-			buttonSettings.MouseEnter += SetStatusbar_Enter;
-			buttonSettings.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelLim.MouseEnter += SetStatusbar_Enter;
+			toolStripStatusLabelLim.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// statusStripInfo
 			// 
 			statusStripInfo.AccessibleDescription = "Statusbar für Informationstext";
 			statusStripInfo.AccessibleName = "Statusbar";
 			statusStripInfo.AccessibleRole = AccessibleRole.StatusBar;
+			statusStripInfo.Dock = DockStyle.None;
 			statusStripInfo.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelInformation });
-			statusStripInfo.Location = new Point(0, 539);
+			statusStripInfo.Location = new Point(0, 0);
 			statusStripInfo.Name = "statusStripInfo";
 			statusStripInfo.ShowItemToolTips = true;
-			statusStripInfo.Size = new Size(424, 22);
+			statusStripInfo.Size = new Size(422, 22);
 			statusStripInfo.SizingGrip = false;
-			statusStripInfo.TabIndex = 24;
+			statusStripInfo.TabIndex = 0;
 			statusStripInfo.TabStop = true;
 			statusStripInfo.Text = "statusStripInfo";
+			toolTip.SetToolTip(statusStripInfo, "Statusbar für Informationstext");
+			statusStripInfo.Enter += SetStatusbar_Enter;
+			statusStripInfo.Leave += ClearStatusbar_Leave;
+			statusStripInfo.MouseEnter += SetStatusbar_Enter;
+			statusStripInfo.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// toolStripStatusLabelInformation
 			// 
@@ -681,6 +603,329 @@
 			toolStripStatusLabelInformation.Size = new Size(28, 17);
 			toolStripStatusLabelInformation.Text = "info";
 			// 
+			// menuStrip
+			// 
+			menuStrip.AccessibleDescription = "Zeigt die Menübar";
+			menuStrip.AccessibleName = "Menübar";
+			menuStrip.AccessibleRole = AccessibleRole.MenuBar;
+			menuStrip.AllowItemReorder = true;
+			menuStrip.Dock = DockStyle.None;
+			menuStrip.Items.AddRange(new ToolStripItem[] { toolStripMenuItemProgram, toolStripMenuItemList, toolStripMenuItemSettings });
+			menuStrip.Location = new Point(0, 0);
+			menuStrip.MdiWindowListItem = toolStripMenuItemList;
+			menuStrip.Name = "menuStrip";
+			menuStrip.RenderMode = ToolStripRenderMode.System;
+			menuStrip.ShowItemToolTips = true;
+			menuStrip.Size = new Size(422, 24);
+			menuStrip.TabIndex = 0;
+			menuStrip.Text = "Menu";
+			toolTip.SetToolTip(menuStrip, "Menü");
+			menuStrip.Enter += SetStatusbar_Enter;
+			menuStrip.Leave += ClearStatusbar_Leave;
+			menuStrip.MouseEnter += SetStatusbar_Enter;
+			menuStrip.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemProgram
+			// 
+			toolStripMenuItemProgram.AccessibleDescription = "Öffnet das Menü \"Programm\"";
+			toolStripMenuItemProgram.AccessibleName = "Menü \"Programm\"";
+			toolStripMenuItemProgram.AccessibleRole = AccessibleRole.MenuPopup;
+			toolStripMenuItemProgram.AutoToolTip = true;
+			toolStripMenuItemProgram.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemInfo, toolStripMenuItemLicense, toolStripSeparator1, toolStripMenuItemExit });
+			toolStripMenuItemProgram.Name = "toolStripMenuItemProgram";
+			toolStripMenuItemProgram.ShortcutKeys = Keys.Alt | Keys.P;
+			toolStripMenuItemProgram.Size = new Size(76, 20);
+			toolStripMenuItemProgram.Text = "&Programm";
+			toolStripMenuItemProgram.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemProgram.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemInfo
+			// 
+			toolStripMenuItemInfo.AccessibleDescription = "Ruft die Programminformationen auf";
+			toolStripMenuItemInfo.AccessibleName = "Programminformationen";
+			toolStripMenuItemInfo.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemInfo.AutoToolTip = true;
+			toolStripMenuItemInfo.Image = Properties.Resources.information;
+			toolStripMenuItemInfo.Name = "toolStripMenuItemInfo";
+			toolStripMenuItemInfo.ShortcutKeyDisplayString = "";
+			toolStripMenuItemInfo.ShortcutKeys = Keys.Alt | Keys.I;
+			toolStripMenuItemInfo.Size = new Size(157, 22);
+			toolStripMenuItemInfo.Text = "&Info";
+			toolStripMenuItemInfo.Click += ToolStripMenuItemInfo_Click;
+			toolStripMenuItemInfo.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemInfo.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemLicense
+			// 
+			toolStripMenuItemLicense.AccessibleDescription = "Ruft die Lizenz auf";
+			toolStripMenuItemLicense.AccessibleName = "Lizenz";
+			toolStripMenuItemLicense.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemLicense.AutoToolTip = true;
+			toolStripMenuItemLicense.Image = Properties.Resources.script;
+			toolStripMenuItemLicense.Name = "toolStripMenuItemLicense";
+			toolStripMenuItemLicense.ShortcutKeys = Keys.Alt | Keys.Z;
+			toolStripMenuItemLicense.Size = new Size(157, 22);
+			toolStripMenuItemLicense.Text = "Lizen&z";
+			toolStripMenuItemLicense.Click += ToolStripMenuItemLicense_Click;
+			toolStripMenuItemLicense.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemLicense.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripSeparator1
+			// 
+			toolStripSeparator1.AccessibleRole = AccessibleRole.Separator;
+			toolStripSeparator1.Name = "toolStripSeparator1";
+			toolStripSeparator1.Size = new Size(154, 6);
+			toolStripSeparator1.MouseEnter += SetStatusbar_Enter;
+			toolStripSeparator1.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemExit
+			// 
+			toolStripMenuItemExit.AccessibleDescription = "Beendet das Programm";
+			toolStripMenuItemExit.AccessibleName = "Programm beenden";
+			toolStripMenuItemExit.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemExit.AutoToolTip = true;
+			toolStripMenuItemExit.Image = Properties.Resources.door_open;
+			toolStripMenuItemExit.Name = "toolStripMenuItemExit";
+			toolStripMenuItemExit.ShortcutKeys = Keys.Alt | Keys.B;
+			toolStripMenuItemExit.Size = new Size(157, 22);
+			toolStripMenuItemExit.Text = "&Beenden";
+			toolStripMenuItemExit.Click += ToolStripMenuItemExit_Click;
+			toolStripMenuItemExit.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemExit.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemList
+			// 
+			toolStripMenuItemList.AccessibleDescription = "Öffnet das Menü \"Liste\"";
+			toolStripMenuItemList.AccessibleName = "Menü \"Liste\"";
+			toolStripMenuItemList.AccessibleRole = AccessibleRole.MenuPopup;
+			toolStripMenuItemList.AutoToolTip = true;
+			toolStripMenuItemList.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemListCreate, toolStripMenuItemListAdd, toolStripMenuItemListDelete, toolStripSeparator2, toolStripMenuItemListUndo, toolStripMenuItemListRedo, toolStripSeparator3, toolStripMenuItemListCopy, toolStripMenuItemListSave });
+			toolStripMenuItemList.Name = "toolStripMenuItemList";
+			toolStripMenuItemList.ShortcutKeys = Keys.Alt | Keys.L;
+			toolStripMenuItemList.Size = new Size(43, 20);
+			toolStripMenuItemList.Text = "Lis&te";
+			toolStripMenuItemList.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemList.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemListCreate
+			// 
+			toolStripMenuItemListCreate.AccessibleDescription = "Erstellt eine neue Liste";
+			toolStripMenuItemListCreate.AccessibleName = "Liste neu erstellen";
+			toolStripMenuItemListCreate.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemListCreate.Image = Properties.Resources.document_index;
+			toolStripMenuItemListCreate.Name = "toolStripMenuItemListCreate";
+			toolStripMenuItemListCreate.ShortcutKeys = Keys.Alt | Keys.E;
+			toolStripMenuItemListCreate.Size = new Size(179, 22);
+			toolStripMenuItemListCreate.Text = "Neu &erstellen";
+			toolStripMenuItemListCreate.ToolTipText = "Liste neu erstellen";
+			toolStripMenuItemListCreate.Click += ToolStripMenuItemListCreate_Click;
+			toolStripMenuItemListCreate.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemListCreate.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemListAdd
+			// 
+			toolStripMenuItemListAdd.AccessibleDescription = "Fügt die Einträge an der vorhandenen Liste an";
+			toolStripMenuItemListAdd.AccessibleName = "Liste anfügen";
+			toolStripMenuItemListAdd.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemListAdd.Image = Properties.Resources.add;
+			toolStripMenuItemListAdd.Name = "toolStripMenuItemListAdd";
+			toolStripMenuItemListAdd.ShortcutKeys = Keys.Alt | Keys.A;
+			toolStripMenuItemListAdd.Size = new Size(179, 22);
+			toolStripMenuItemListAdd.Text = "&Anfügen";
+			toolStripMenuItemListAdd.ToolTipText = "Liste anfügen";
+			toolStripMenuItemListAdd.Click += ToolStripMenuItemListAdd_Click;
+			toolStripMenuItemListAdd.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemListAdd.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemListDelete
+			// 
+			toolStripMenuItemListDelete.AccessibleDescription = "Löscht die Liste";
+			toolStripMenuItemListDelete.AccessibleName = "Liste löschen";
+			toolStripMenuItemListDelete.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemListDelete.Image = Properties.Resources.bin_empty;
+			toolStripMenuItemListDelete.Name = "toolStripMenuItemListDelete";
+			toolStripMenuItemListDelete.ShortcutKeys = Keys.Alt | Keys.L;
+			toolStripMenuItemListDelete.Size = new Size(179, 22);
+			toolStripMenuItemListDelete.Text = "&Löschen";
+			toolStripMenuItemListDelete.ToolTipText = "Liste löschen";
+			toolStripMenuItemListDelete.Click += ToolStripMenuItemListDelete_Click;
+			toolStripMenuItemListDelete.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemListDelete.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripSeparator2
+			// 
+			toolStripSeparator2.AccessibleRole = AccessibleRole.Separator;
+			toolStripSeparator2.Name = "toolStripSeparator2";
+			toolStripSeparator2.Size = new Size(176, 6);
+			toolStripSeparator2.MouseEnter += SetStatusbar_Enter;
+			toolStripSeparator2.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemListUndo
+			// 
+			toolStripMenuItemListUndo.AccessibleDescription = "Macht die letzte Änderung rückgängig";
+			toolStripMenuItemListUndo.AccessibleName = "Änderung rückgängigmachen";
+			toolStripMenuItemListUndo.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemListUndo.AutoToolTip = true;
+			toolStripMenuItemListUndo.Image = Properties.Resources.undo;
+			toolStripMenuItemListUndo.Name = "toolStripMenuItemListUndo";
+			toolStripMenuItemListUndo.ShortcutKeys = Keys.Alt | Keys.U;
+			toolStripMenuItemListUndo.Size = new Size(179, 22);
+			toolStripMenuItemListUndo.Text = "&Undo";
+			toolStripMenuItemListUndo.Click += ToolStripMenuItemListUndo_Click;
+			toolStripMenuItemListUndo.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemListUndo.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemListRedo
+			// 
+			toolStripMenuItemListRedo.AccessibleDescription = "Verwirft die letzte rückgängig gemachte Änderung";
+			toolStripMenuItemListRedo.AccessibleName = "Letzte Änderung verwerfen";
+			toolStripMenuItemListRedo.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemListRedo.AutoToolTip = true;
+			toolStripMenuItemListRedo.Image = Properties.Resources.redo;
+			toolStripMenuItemListRedo.Name = "toolStripMenuItemListRedo";
+			toolStripMenuItemListRedo.ShortcutKeys = Keys.Alt | Keys.R;
+			toolStripMenuItemListRedo.Size = new Size(179, 22);
+			toolStripMenuItemListRedo.Text = "&Redo";
+			toolStripMenuItemListRedo.Click += ToolStripMenuItemListRedo_Click;
+			toolStripMenuItemListRedo.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemListRedo.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripSeparator3
+			// 
+			toolStripSeparator3.AccessibleRole = AccessibleRole.Separator;
+			toolStripSeparator3.Name = "toolStripSeparator3";
+			toolStripSeparator3.Size = new Size(176, 6);
+			toolStripSeparator3.MouseEnter += SetStatusbar_Enter;
+			toolStripSeparator3.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemListCopy
+			// 
+			toolStripMenuItemListCopy.AccessibleDescription = "Kopiert die Liste in die Windows-Zwischenablage";
+			toolStripMenuItemListCopy.AccessibleName = "Liste kopieren";
+			toolStripMenuItemListCopy.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemListCopy.Image = Properties.Resources.page_copy;
+			toolStripMenuItemListCopy.Name = "toolStripMenuItemListCopy";
+			toolStripMenuItemListCopy.ShortcutKeys = Keys.Alt | Keys.K;
+			toolStripMenuItemListCopy.Size = new Size(179, 22);
+			toolStripMenuItemListCopy.Text = "&Kopieren";
+			toolStripMenuItemListCopy.ToolTipText = "Liste kopieren";
+			toolStripMenuItemListCopy.Click += ToolStripMenuItemListCopy_Click;
+			toolStripMenuItemListCopy.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemListCopy.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemListSave
+			// 
+			toolStripMenuItemListSave.AccessibleDescription = "Speichert die Liste als Textdatei ab";
+			toolStripMenuItemListSave.AccessibleName = "Liste speichern";
+			toolStripMenuItemListSave.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemListSave.Image = Properties.Resources.diskette;
+			toolStripMenuItemListSave.Name = "toolStripMenuItemListSave";
+			toolStripMenuItemListSave.ShortcutKeys = Keys.Alt | Keys.S;
+			toolStripMenuItemListSave.Size = new Size(179, 22);
+			toolStripMenuItemListSave.Text = "&Speichern";
+			toolStripMenuItemListSave.ToolTipText = "Liste speichern";
+			toolStripMenuItemListSave.Click += ToolStripMenuItemListSave_Click;
+			toolStripMenuItemListSave.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemListSave.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemSettings
+			// 
+			toolStripMenuItemSettings.AccessibleDescription = "Öffnet das Menü \"Einstellungen\"";
+			toolStripMenuItemSettings.AccessibleName = "Menü \"Einstellungen\"";
+			toolStripMenuItemSettings.AccessibleRole = AccessibleRole.MenuPopup;
+			toolStripMenuItemSettings.AutoToolTip = true;
+			toolStripMenuItemSettings.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemSettingsStayOnTop, toolStripMenuItemSettingsDisableVisualStyle });
+			toolStripMenuItemSettings.Name = "toolStripMenuItemSettings";
+			toolStripMenuItemSettings.ShortcutKeys = Keys.Alt | Keys.E;
+			toolStripMenuItemSettings.Size = new Size(90, 20);
+			toolStripMenuItemSettings.Text = "&Einstellungen";
+			toolStripMenuItemSettings.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemSettings.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemSettingsStayOnTop
+			// 
+			toolStripMenuItemSettingsStayOnTop.AccessibleDescription = "Hält das Fenster immer in den Vordergrund";
+			toolStripMenuItemSettingsStayOnTop.AccessibleName = "Immer im Vordergrund halten";
+			toolStripMenuItemSettingsStayOnTop.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemSettingsStayOnTop.AutoToolTip = true;
+			toolStripMenuItemSettingsStayOnTop.CheckOnClick = true;
+			toolStripMenuItemSettingsStayOnTop.Name = "toolStripMenuItemSettingsStayOnTop";
+			toolStripMenuItemSettingsStayOnTop.ShortcutKeys = Keys.Alt | Keys.D1;
+			toolStripMenuItemSettingsStayOnTop.Size = new Size(267, 22);
+			toolStripMenuItemSettingsStayOnTop.Text = "Immer im Vordergrund halten";
+			toolStripMenuItemSettingsStayOnTop.Click += ToolStripMenuItemSettingsStayOnTop_Click;
+			toolStripMenuItemSettingsStayOnTop.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemSettingsStayOnTop.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemSettingsDisableVisualStyle
+			// 
+			toolStripMenuItemSettingsDisableVisualStyle.AccessibleDescription = "Aktiviert oder deaktiviert den visuellen Stil des Programms";
+			toolStripMenuItemSettingsDisableVisualStyle.AccessibleName = "Visuellen Stil de-/aktivieren";
+			toolStripMenuItemSettingsDisableVisualStyle.AccessibleRole = AccessibleRole.MenuItem;
+			toolStripMenuItemSettingsDisableVisualStyle.AutoToolTip = true;
+			toolStripMenuItemSettingsDisableVisualStyle.CheckOnClick = true;
+			toolStripMenuItemSettingsDisableVisualStyle.Name = "toolStripMenuItemSettingsDisableVisualStyle";
+			toolStripMenuItemSettingsDisableVisualStyle.ShortcutKeys = Keys.Alt | Keys.D2;
+			toolStripMenuItemSettingsDisableVisualStyle.Size = new Size(267, 22);
+			toolStripMenuItemSettingsDisableVisualStyle.Text = "Visuellen Stil deaktivieren";
+			toolStripMenuItemSettingsDisableVisualStyle.Click += ToolStripMenuItemSettingsDisableVisualStyle_Click;
+			toolStripMenuItemSettingsDisableVisualStyle.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemSettingsDisableVisualStyle.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// backgroundWorker
+			// 
+			backgroundWorker.WorkerReportsProgress = true;
+			backgroundWorker.WorkerSupportsCancellation = true;
+			backgroundWorker.DoWork += BackgroundWorker_DoWork;
+			backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
+			backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+			// 
+			// toolStripContainer
+			// 
+			toolStripContainer.AccessibleDescription = "Container";
+			toolStripContainer.AccessibleName = "Container";
+			toolStripContainer.AccessibleRole = AccessibleRole.Pane;
+			// 
+			// toolStripContainer.BottomToolStripPanel
+			// 
+			toolStripContainer.BottomToolStripPanel.Controls.Add(statusStripInfo);
+			toolStripContainer.BottomToolStripPanel.Controls.Add(statusStripStatistic);
+			// 
+			// toolStripContainer.ContentPanel
+			// 
+			toolStripContainer.ContentPanel.BackColor = SystemColors.Control;
+			toolStripContainer.ContentPanel.Controls.Add(labelStringBeforeNumber);
+			toolStripContainer.ContentPanel.Controls.Add(buttonRedo);
+			toolStripContainer.ContentPanel.Controls.Add(labelStringAfterNumber);
+			toolStripContainer.ContentPanel.Controls.Add(labelNumberMin);
+			toolStripContainer.ContentPanel.Controls.Add(textBoxStringAfterNumber);
+			toolStripContainer.ContentPanel.Controls.Add(numericUpDownNumberMinimum);
+			toolStripContainer.ContentPanel.Controls.Add(textBoxStringBeforeNumber);
+			toolStripContainer.ContentPanel.Controls.Add(labelNumberMax);
+			toolStripContainer.ContentPanel.Controls.Add(buttonUndo);
+			toolStripContainer.ContentPanel.Controls.Add(numericUpDownNumberMaximum);
+			toolStripContainer.ContentPanel.Controls.Add(labelResult);
+			toolStripContainer.ContentPanel.Controls.Add(checkBoxFillWithZeros);
+			toolStripContainer.ContentPanel.Controls.Add(buttonCreateList);
+			toolStripContainer.ContentPanel.Controls.Add(buttonAddToList);
+			toolStripContainer.ContentPanel.Controls.Add(buttonCopyList);
+			toolStripContainer.ContentPanel.Controls.Add(buttonSaveList);
+			toolStripContainer.ContentPanel.Controls.Add(progressBar);
+			toolStripContainer.ContentPanel.Controls.Add(buttonDeleteList);
+			toolStripContainer.ContentPanel.Controls.Add(labelProcress);
+			toolStripContainer.ContentPanel.Controls.Add(textBoxList);
+			toolStripContainer.ContentPanel.Size = new Size(422, 508);
+			toolStripContainer.Dock = DockStyle.Fill;
+			toolStripContainer.Location = new Point(0, 0);
+			toolStripContainer.Name = "toolStripContainer";
+			toolStripContainer.Size = new Size(422, 578);
+			toolStripContainer.TabIndex = 0;
+			toolStripContainer.Text = "Container";
+			// 
+			// toolStripContainer.TopToolStripPanel
+			// 
+			toolStripContainer.TopToolStripPanel.Controls.Add(menuStrip);
+			// 
 			// NumericListGeneratorForm
 			// 
 			AccessibleDescription = "Programmfenster";
@@ -688,34 +933,11 @@
 			AccessibleRole = AccessibleRole.Window;
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(424, 585);
-			Controls.Add(statusStripInfo);
-			Controls.Add(buttonRedo);
-			Controls.Add(buttonSettings);
-			Controls.Add(textBoxStringAfterNumber);
-			Controls.Add(textBoxStringBeforeNumber);
-			Controls.Add(statusStripStatistic);
-			Controls.Add(buttonUndo);
-			Controls.Add(labelResult);
-			Controls.Add(buttonCreateList);
-			Controls.Add(buttonInformationAboutApp);
-			Controls.Add(buttonExitApp);
-			Controls.Add(progressBar);
-			Controls.Add(labelProcress);
-			Controls.Add(textBoxList);
-			Controls.Add(buttonDeleteList);
-			Controls.Add(buttonSaveList);
-			Controls.Add(buttonCopyList);
-			Controls.Add(buttonAddToList);
-			Controls.Add(checkBoxFillWithZeros);
-			Controls.Add(numericUpDownNumberMaximum);
-			Controls.Add(labelNumberMax);
-			Controls.Add(numericUpDownNumberMinimum);
-			Controls.Add(labelNumberMin);
-			Controls.Add(labelStringAfterNumber);
-			Controls.Add(labelStringBeforeNumber);
+			ClientSize = new Size(422, 578);
+			Controls.Add(toolStripContainer);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			Icon = (Icon)resources.GetObject("$this.Icon");
+			KeyPreview = true;
 			Margin = new Padding(4, 3, 4, 3);
 			MaximizeBox = false;
 			Name = "NumericListGeneratorForm";
@@ -728,8 +950,17 @@
 			statusStripStatistic.PerformLayout();
 			statusStripInfo.ResumeLayout(false);
 			statusStripInfo.PerformLayout();
+			menuStrip.ResumeLayout(false);
+			menuStrip.PerformLayout();
+			toolStripContainer.BottomToolStripPanel.ResumeLayout(false);
+			toolStripContainer.BottomToolStripPanel.PerformLayout();
+			toolStripContainer.ContentPanel.ResumeLayout(false);
+			toolStripContainer.ContentPanel.PerformLayout();
+			toolStripContainer.TopToolStripPanel.ResumeLayout(false);
+			toolStripContainer.TopToolStripPanel.PerformLayout();
+			toolStripContainer.ResumeLayout(false);
+			toolStripContainer.PerformLayout();
 			ResumeLayout(false);
-			PerformLayout();
 		}
 
 		#endregion
@@ -748,8 +979,6 @@
 		private TextBox textBoxList;
 		private Label labelProcress;
 		private ProgressBar progressBar;
-		private Button buttonExitApp;
-		private Button buttonInformationAboutApp;
 		private Button buttonCreateList;
 		private ToolTip toolTip;
 		private Label labelResult;
@@ -761,14 +990,30 @@
 		private TextBox textBoxStringBeforeNumber;
 		private TextBox textBoxStringAfterNumber;
 		private System.ComponentModel.BackgroundWorker backgroundWorker;
-		private Button buttonSettings;
 		private Button buttonRedo;
 		private ToolStripStatusLabel toolStripStatusLabelTimeSpan;
-		private ToolStripSplitButton toolStripSplitButtonStyle;
-		private ToolStripMenuItem toolStripMenuItemActivateVisualStyle;
-		private ToolStripMenuItem toolStripMenuItemDeactivateVisualStyle;
 		private StatusStrip statusStripInfo;
 		private ToolStripStatusLabel toolStripStatusLabelInformation;
+		private ToolStripContainer toolStripContainer;
+		private MenuStrip menuStrip;
+		private ToolStripMenuItem toolStripMenuItemProgram;
+		private ToolStripMenuItem toolStripMenuItemInfo;
+		private ToolStripMenuItem toolStripMenuItemLicense;
+		private ToolStripSeparator toolStripSeparator1;
+		private ToolStripMenuItem toolStripMenuItemExit;
+		private ToolStripMenuItem toolStripMenuItemList;
+		private ToolStripMenuItem toolStripMenuItemListCreate;
+		private ToolStripMenuItem toolStripMenuItemListAdd;
+		private ToolStripMenuItem toolStripMenuItemListDelete;
+		private ToolStripSeparator toolStripSeparator2;
+		private ToolStripMenuItem toolStripMenuItemListUndo;
+		private ToolStripMenuItem toolStripMenuItemListRedo;
+		private ToolStripSeparator toolStripSeparator3;
+		private ToolStripMenuItem toolStripMenuItemListCopy;
+		private ToolStripMenuItem toolStripMenuItemListSave;
+		private ToolStripMenuItem toolStripMenuItemSettings;
+		private ToolStripMenuItem toolStripMenuItemSettingsStayOnTop;
+		private ToolStripMenuItem toolStripMenuItemSettingsDisableVisualStyle;
 	}
 }
 

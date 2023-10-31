@@ -22,5 +22,152 @@ namespace Numeric_List_Generator.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool userStayOnTop {
+            get {
+                return ((bool)(this["userStayOnTop"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool systemStayOnTop {
+            get {
+                return ((bool)(this["systemStayOnTop"]));
+            }
+            set {
+                this["systemStayOnTop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool userMinimizeToTray {
+            get {
+                return ((bool)(this["userMinimizeToTray"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool systemMinimizeToTray {
+            get {
+                return ((bool)(this["systemMinimizeToTray"]));
+            }
+            set {
+                this["systemMinimizeToTray"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool userEnableVisualStyle {
+            get {
+                return ((bool)(this["userEnableVisualStyle"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool systemEnableVisualStyle {
+            get {
+                return ((bool)(this["systemEnableVisualStyle"]));
+            }
+            set {
+                this["systemEnableVisualStyle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool userEnableStatusbarSize {
+            get {
+                return ((bool)(this["userEnableStatusbarSize"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool systemEnableStatusbarSize {
+            get {
+                return ((bool)(this["systemEnableStatusbarSize"]));
+            }
+            set {
+                this["systemEnableStatusbarSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool userEnableStatusbarLines {
+            get {
+                return ((bool)(this["userEnableStatusbarLines"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool systemEnableStatusbarLines {
+            get {
+                return ((bool)(this["systemEnableStatusbarLines"]));
+            }
+            set {
+                this["systemEnableStatusbarLines"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool userEnableStatusbarTimespan {
+            get {
+                return ((bool)(this["userEnableStatusbarTimespan"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool systemEnableStatusbarTimespan {
+            get {
+                return ((bool)(this["systemEnableStatusbarTimespan"]));
+            }
+            set {
+                this["systemEnableStatusbarTimespan"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool userEnableStatusbarLIM {
+            get {
+                return ((bool)(this["userEnableStatusbarLIM"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool systemEnableStatusbarLIM {
+            get {
+                return ((bool)(this["systemEnableStatusbarLIM"]));
+            }
+            set {
+                this["systemEnableStatusbarLIM"] = value;
+            }
+        }
     }
 }

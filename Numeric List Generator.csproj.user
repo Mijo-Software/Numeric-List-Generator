@@ -7,10 +7,13 @@
     <Compile Update="AboutBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="NumericListGeneratorForm.cs">
+    <Compile Update="BatchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SettingsForm.cs">
+    <Compile Update="LicenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NumericListGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
