@@ -73,6 +73,7 @@ namespace Numeric_List_Generator
 
 		private void DisableControls()
 		{
+			toolStripMenuItemList.Enabled = false;
 			textBoxStringBeforeNumber.Enabled = false;
 			numericUpDownNumberMinimum.Enabled = false;
 			numericUpDownNumberMaximum.Enabled = false;
@@ -81,15 +82,18 @@ namespace Numeric_List_Generator
 			buttonCreateList.Enabled = false;
 			buttonAddToList.Enabled = false;
 			buttonDeleteList.Enabled = false;
-			buttonUndo.Enabled = false;
-			buttonRedo.Enabled = false;
 			buttonCopyList.Enabled = false;
 			buttonSaveList.Enabled = false;
+			buttonUndo.Enabled = false;
+			buttonRedo.Enabled = false;
+			toolStripMenuItemListUndo.Enabled = false;
+			toolStripMenuItemListRedo.Enabled = false;
 			textBoxList.Enabled = false;
 		}
 
 		private void EnableControls()
 		{
+			toolStripMenuItemList.Enabled = true;
 			textBoxStringBeforeNumber.Enabled = true;
 			numericUpDownNumberMinimum.Enabled = true;
 			numericUpDownNumberMaximum.Enabled = true;
@@ -98,20 +102,26 @@ namespace Numeric_List_Generator
 			buttonCreateList.Enabled = true;
 			buttonAddToList.Enabled = true;
 			buttonDeleteList.Enabled = true;
-			buttonUndo.Enabled = true;
 			buttonCopyList.Enabled = true;
 			buttonSaveList.Enabled = true;
+			buttonUndo.Enabled = true;
+			buttonRedo.Enabled = true;
+			toolStripMenuItemListUndo.Enabled = true;
+			toolStripMenuItemListRedo.Enabled = true;
 			textBoxList.Enabled = true;
 		}
+
+		private void CheckStayOnTop() => TopMost = toolStripMenuItemSettingsStayOnTop.Checked;
 
 		#endregion
 
 		private void NumericListGeneratorForm_Load(object sender, EventArgs e)
 		{
 			SetStatusbarText(text: string.Empty);
-			buttonSettings.Visible = false;
 			buttonUndo.Enabled = false;
 			buttonRedo.Enabled = false;
+			toolStripMenuItemListUndo.Enabled = false;
+			toolStripMenuItemListRedo.Enabled = false;
 			UpdateStatusBarStatistic();
 		}
 
@@ -203,7 +213,7 @@ namespace Numeric_List_Generator
 			};
 			if (save.ShowDialog() == DialogResult.OK)
 			{
-				StreamWriter writer = new(stream: save.OpenFile());
+				using StreamWriter writer = new(stream: save.OpenFile());
 				try
 				{
 					writer.WriteLine(value: textBoxList.Text);
@@ -223,14 +233,6 @@ namespace Numeric_List_Generator
 			UpdateStatusBarStatistic();
 		}
 
-		private void ButtonInformationAboutApp_Click(object sender, EventArgs e)
-		{
-			using AboutBoxForm formAboutBox = new();
-			formAboutBox.ShowDialog();
-		}
-
-		private void ButtonExitApp_Click(object sender, EventArgs e) => Close();
-
 		private void ButtonCreateList_Click(object sender, EventArgs e)
 		{
 			DisableControls();
@@ -243,6 +245,8 @@ namespace Numeric_List_Generator
 			textBoxList.Text = backupListUndo;
 			buttonUndo.Enabled = false;
 			buttonRedo.Enabled = true;
+			toolStripMenuItemListUndo.Enabled = false;
+			toolStripMenuItemListRedo.Enabled = true;
 			UpdateStatusBarStatistic();
 		}
 
@@ -251,6 +255,8 @@ namespace Numeric_List_Generator
 			textBoxList.Text = backupListRedo;
 			buttonUndo.Enabled = true;
 			buttonRedo.Enabled = false;
+			toolStripMenuItemListUndo.Enabled = true;
+			toolStripMenuItemListRedo.Enabled = false;
 			UpdateStatusBarStatistic();
 		}
 
@@ -279,12 +285,6 @@ namespace Numeric_List_Generator
 		}
 
 		private void BackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e) => progressBar.PerformStep();
-
-		private void ButtonSettings_Click(object sender, EventArgs e)
-		{
-			using SettingsForm formSettings = new();
-			formSettings.ShowDialog();
-		}
 
 		private void ToolStripStatusLabelSize_Click(object sender, EventArgs e)
 		{
@@ -340,33 +340,47 @@ namespace Numeric_List_Generator
 
 		private void ToolStripStatusLabelStyle_Click(object sender, EventArgs e)
 		{
-			if (Application.VisualStyleState == VisualStyleState.ClientAndNonClientAreasEnabled)
-			{
-				toolStripSplitButtonStyle.Image = Properties.Resources.application;
-				Application.VisualStyleState = VisualStyleState.NoneEnabled;
-			}
-			else
-			{
-				toolStripSplitButtonStyle.Image = Properties.Resources.application_grey;
-				Application.VisualStyleState = VisualStyleState.ClientAndNonClientAreasEnabled;
-			}
-			Invalidate(invalidateChildren: true);
-		}
-
-		private void ToolStripMenuItemActivateVisualStyle_Click(object sender, EventArgs e)
-		{
-			toolStripSplitButtonStyle.Image = Properties.Resources.application_grey;
-			Application.VisualStyleState = VisualStyleState.ClientAndNonClientAreasEnabled;
-			Invalidate(invalidateChildren: true);
-		}
-
-		private void ToolStripMenuItemDeactivateVisualStyle_Click(object sender, EventArgs e)
-		{
-			toolStripSplitButtonStyle.Image = Properties.Resources.application;
-			Application.VisualStyleState = VisualStyleState.NoneEnabled;
+			Application.VisualStyleState = Application.VisualStyleState == VisualStyleState.ClientAndNonClientAreasEnabled
+				? VisualStyleState.NoneEnabled
+				: VisualStyleState.ClientAndNonClientAreasEnabled;
 			Invalidate(invalidateChildren: true);
 		}
 
 		private void BackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) => EnableControls();
+
+		private void ToolStripMenuItemInfo_Click(object sender, EventArgs e)
+		{
+			using AboutBoxForm formAboutBox = new();
+			formAboutBox.TopMost = TopMost;
+			formAboutBox.ShowDialog();
+		}
+
+		private void ToolStripMenuItemLicense_Click(object sender, EventArgs e)
+		{
+			//LicenseForm
+			using LicenseForm formLicense = new();
+			formLicense.TopMost = TopMost;
+			formLicense.ShowDialog();
+		}
+
+		private void ToolStripMenuItemExit_Click(object sender, EventArgs e) => Close();
+
+		private void ToolStripMenuItemListCreate_Click(object sender, EventArgs e) => ButtonCreateList_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemListAdd_Click(object sender, EventArgs e) => ButtonAddToList_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemListDelete_Click(object sender, EventArgs e) => ButtonDeleteList_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemListUndo_Click(object sender, EventArgs e) => ButtonUndo_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemListRedo_Click(object sender, EventArgs e) => ButtonRedo_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemListCopy_Click(object sender, EventArgs e) => ButtonCopyList_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemListSave_Click(object sender, EventArgs e) => ButtonSaveList_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemSettingsDisableVisualStyle_Click(object sender, EventArgs e) => ToolStripStatusLabelStyle_Click(sender: sender, e: e);
+
+		private void ToolStripMenuItemSettingsStayOnTop_Click(object sender, EventArgs e) => CheckStayOnTop();
 	}
 }

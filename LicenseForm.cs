@@ -1,20 +1,7 @@
-﻿using MijoSoftware.AssemblyInformation;
-
-namespace Numeric_List_Generator
+﻿namespace Numeric_List_Generator
 {
-	partial class AboutBoxForm : Form
+	partial class LicenseForm : Form
 	{
-		public AboutBoxForm()
-		{
-			InitializeComponent();
-			Text = $"Info über {AssemblyInfo.AssemblyTitle}";
-			labelProductName.Text = AssemblyInfo.AssemblyProduct;
-			labelVersion.Text = $"Version {AssemblyInfo.AssemblyVersion}";
-			labelCopyright.Text = AssemblyInfo.AssemblyCopyright;
-			labelCompanyName.Text = AssemblyInfo.AssemblyCompany;
-			textBoxDescription.Text = AssemblyInfo.AssemblyDescription;
-		}
-
 		/// <summary>
 		/// Set a specific text to the status bar
 		/// </summary>
@@ -25,7 +12,18 @@ namespace Numeric_List_Generator
 			labelInformation.Text = text;
 		}
 
-		private void AboutBoxForm_Load(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public LicenseForm() => InitializeComponent();
+
+		/// <summary>
+		/// Load the form
+		/// </summary>
+		/// <param name="sender">object sender</param>
+		/// <param name="e">event arguments</param>
+		/// <remarks>The parameters <paramref name="e"/> and <paramref name="sender"/> are not needed, but must be indicated.</remarks>
+		private void LicenseForm_Load(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
 
 		/// <summary>
 		/// Detect the accessibility description to set as information text in the status bar
