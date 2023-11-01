@@ -105,9 +105,7 @@ namespace Numeric_List_Generator
 			buttonCopyList.Enabled = true;
 			buttonSaveList.Enabled = true;
 			buttonUndo.Enabled = true;
-			buttonRedo.Enabled = true;
 			toolStripMenuItemListUndo.Enabled = true;
-			toolStripMenuItemListRedo.Enabled = true;
 			textBoxList.Enabled = true;
 		}
 

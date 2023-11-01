@@ -38,7 +38,7 @@
 			numericUpDownNumberMaximum = new NumericUpDown();
 			checkBoxFillWithZeros = new CheckBox();
 			textBoxList = new TextBox();
-			labelProcress = new Label();
+			labelProgress = new Label();
 			progressBar = new ProgressBar();
 			toolTip = new ToolTip(components);
 			textBoxStringBeforeNumber = new TextBox();
@@ -103,6 +103,7 @@
 			labelStringBeforeNumber.Size = new Size(144, 15);
 			labelStringBeforeNumber.TabIndex = 0;
 			labelStringBeforeNumber.Text = "Zeichenkette &vor der Zahl:";
+			toolTip.SetToolTip(labelStringBeforeNumber, "Zeichenkette vor der Zahl");
 			labelStringBeforeNumber.Enter += SetStatusbar_Enter;
 			labelStringBeforeNumber.Leave += ClearStatusbar_Leave;
 			labelStringBeforeNumber.MouseEnter += SetStatusbar_Enter;
@@ -167,6 +168,7 @@
 			labelNumberMax.AccessibleDescription = "Zahlen Maximum";
 			labelNumberMax.AccessibleName = "Zahlen Maximum";
 			labelNumberMax.AccessibleRole = AccessibleRole.StaticText;
+			labelNumberMax.AutoEllipsis = true;
 			labelNumberMax.AutoSize = true;
 			labelNumberMax.Location = new Point(152, 70);
 			labelNumberMax.Margin = new Padding(4, 0, 4, 0);
@@ -235,24 +237,24 @@
 			textBoxList.MouseEnter += SetStatusbar_Enter;
 			textBoxList.MouseLeave += ClearStatusbar_Leave;
 			// 
-			// labelProcress
+			// labelProgress
 			// 
-			labelProcress.AccessibleDescription = "Verarbeitung";
-			labelProcress.AccessibleName = "Verarbeitung";
-			labelProcress.AccessibleRole = AccessibleRole.StaticText;
-			labelProcress.AutoEllipsis = true;
-			labelProcress.AutoSize = true;
-			labelProcress.Location = new Point(13, 254);
-			labelProcress.Margin = new Padding(4, 0, 4, 0);
-			labelProcress.Name = "labelProcress";
-			labelProcress.Size = new Size(77, 15);
-			labelProcress.TabIndex = 16;
-			labelProcress.Text = "Verarbeitun&g:";
-			toolTip.SetToolTip(labelProcress, "Verarbeitung");
-			labelProcress.Enter += SetStatusbar_Enter;
-			labelProcress.Leave += ClearStatusbar_Leave;
-			labelProcress.MouseEnter += SetStatusbar_Enter;
-			labelProcress.MouseLeave += ClearStatusbar_Leave;
+			labelProgress.AccessibleDescription = "Verarbeitung";
+			labelProgress.AccessibleName = "Verarbeitung";
+			labelProgress.AccessibleRole = AccessibleRole.StaticText;
+			labelProgress.AutoEllipsis = true;
+			labelProgress.AutoSize = true;
+			labelProgress.Location = new Point(13, 254);
+			labelProgress.Margin = new Padding(4, 0, 4, 0);
+			labelProgress.Name = "labelProgress";
+			labelProgress.Size = new Size(77, 15);
+			labelProgress.TabIndex = 16;
+			labelProgress.Text = "Verarbeitun&g:";
+			toolTip.SetToolTip(labelProgress, "Verarbeitung");
+			labelProgress.Enter += SetStatusbar_Enter;
+			labelProgress.Leave += ClearStatusbar_Leave;
+			labelProgress.MouseEnter += SetStatusbar_Enter;
+			labelProgress.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// progressBar
 			// 
@@ -912,7 +914,7 @@
 			toolStripContainer.ContentPanel.Controls.Add(buttonSaveList);
 			toolStripContainer.ContentPanel.Controls.Add(progressBar);
 			toolStripContainer.ContentPanel.Controls.Add(buttonDeleteList);
-			toolStripContainer.ContentPanel.Controls.Add(labelProcress);
+			toolStripContainer.ContentPanel.Controls.Add(labelProgress);
 			toolStripContainer.ContentPanel.Controls.Add(textBoxList);
 			toolStripContainer.ContentPanel.Size = new Size(422, 508);
 			toolStripContainer.Dock = DockStyle.Fill;
@@ -977,7 +979,7 @@
 		private Button buttonSaveList;
 		private Button buttonDeleteList;
 		private TextBox textBoxList;
-		private Label labelProcress;
+		private Label labelProgress;
 		private ProgressBar progressBar;
 		private Button buttonCreateList;
 		private ToolTip toolTip;
