@@ -51,6 +51,7 @@
 				case TrackBar trackBar: SetStatusbarText(text: trackBar.AccessibleDescription); break;
 				case WebBrowser webBrowser: SetStatusbarText(text: webBrowser.AccessibleDescription); break;
 				case DomainUpDown domainUpDown: SetStatusbarText(text: domainUpDown.AccessibleDescription); break;
+				case ProgressBar progressBar: SetStatusbarText(text: progressBar.AccessibleDescription); break;
 				case ToolStripButton toolStripButton: SetStatusbarText(text: toolStripButton.AccessibleDescription); break;
 				case ToolStripMenuItem toolStripMenuItem: SetStatusbarText(text: toolStripMenuItem.AccessibleDescription); break;
 				case ToolStripLabel toolStripLabel: SetStatusbarText(text: toolStripLabel.AccessibleDescription); break;

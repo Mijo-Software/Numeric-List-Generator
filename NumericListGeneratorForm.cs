@@ -1,39 +1,47 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Forms.VisualStyles;
+using NLog;
 
 namespace Numeric_List_Generator
 {
 	/// <summary>
-	/// Main Form
+	/// Represents the main form for generating numeric lists.
 	/// </summary>
 	[DebuggerDisplay(value: $"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 	public partial class NumericListGeneratorForm : Form
 	{
+		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
 		/// <summary>
-		/// timeSpan
+		/// Stores the duration of the list generation process.
 		/// </summary>
 		private TimeSpan timeSpan;
 
 		/// <summary>
-		/// backupListUndo, backupListRedo
+		/// Stores the backup of the list for undo operation.
 		/// </summary>
-		private string backupListUndo, backupListRedo;
+		private string backupListUndo = string.Empty, backupListRedo = string.Empty;
 
 		/// <summary>
-		/// startTime, endTime
+		/// Stores the start time of the list generation process.
 		/// </summary>
 		private DateTime startTime, endTime;
 
-		#region
+		#region Constructor
 
 		/// <summary>
-		/// Constructor
+		/// Initializes a new instance of the <see cref="NumericListGeneratorForm"/> class.
 		/// </summary>
-		public NumericListGeneratorForm() => InitializeComponent();
+		public NumericListGeneratorForm()
+		{
+			InitializeComponent();
+			Logger.Info(message: "NumericListGeneratorForm initialized.");
+		}
 
 		#endregion
 
-		#region
+		#region	Helpers
 
 		/// <summary>
 		/// Get Debugger Display
@@ -51,6 +59,9 @@ namespace Numeric_List_Generator
 			toolStripStatusLabelInformation.Text = text;
 		}
 
+		/// <summary>
+		/// Updates the status bar with the current statistics of the list.
+		/// </summary>
 		private void UpdateStatusBarStatistic()
 		{
 			if (toolStripStatusLabelSize.ForeColor == SystemColors.ControlText)
@@ -71,6 +82,9 @@ namespace Numeric_List_Generator
 			}
 		}
 
+		/// <summary>
+		/// Disables all controls on the form.
+		/// </summary>
 		private void DisableControls()
 		{
 			toolStripMenuItemList.Enabled = false;
@@ -91,6 +105,9 @@ namespace Numeric_List_Generator
 			textBoxList.Enabled = false;
 		}
 
+		/// <summary>
+		/// Enables all controls on the form.
+		/// </summary>
 		private void EnableControls()
 		{
 			toolStripMenuItemList.Enabled = true;
@@ -109,10 +126,18 @@ namespace Numeric_List_Generator
 			textBoxList.Enabled = true;
 		}
 
+		/// <summary>
+		/// Checks if the form should stay on top of other windows.
+		/// </summary>
 		private void CheckStayOnTop() => TopMost = toolStripMenuItemSettingsStayOnTop.Checked;
 
 		#endregion
 
+		/// <summary>
+		/// Handles the Load event of the form.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void NumericListGeneratorForm_Load(object sender, EventArgs e)
 		{
 			SetStatusbarText(text: string.Empty);
@@ -126,46 +151,15 @@ namespace Numeric_List_Generator
 		#region Enter event handlers
 
 		/// <summary>
-		/// Detect the accessibility description to set as information text in the status bar
+		/// Called when the mouse pointer moves over a control.
 		/// </summary>
-		/// <param name="sender">object sender</param>
-		/// <param name="e">event arguments</param>
+		/// <param name="sender">The event source.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void SetStatusbar_Enter(object sender, EventArgs e)
 		{
-			switch (sender)
+			if (sender is Control control && control.AccessibleDescription != null)
 			{
-				case TextBox textBox: SetStatusbarText(text: textBox.AccessibleDescription); break;
-				case Button button: SetStatusbarText(text: button.AccessibleDescription); break;
-				case RadioButton radioButton: SetStatusbarText(text: radioButton.AccessibleDescription); break;
-				case CheckBox checkBox: SetStatusbarText(text: checkBox.AccessibleDescription); break;
-				case DateTimePicker dateTimePicker: SetStatusbarText(text: dateTimePicker.AccessibleDescription); break;
-				case Label label: SetStatusbarText(text: label.AccessibleDescription); break;
-				case PictureBox pictureBox: SetStatusbarText(text: pictureBox.AccessibleDescription); break;
-				case CheckedListBox checkedListBox: SetStatusbarText(text: checkedListBox.AccessibleDescription); break;
-				case ComboBox box: SetStatusbarText(text: box.AccessibleDescription); break;
-				case DataGridView view: SetStatusbarText(text: view.AccessibleDescription); break;
-				case GroupBox group: SetStatusbarText(text: group.AccessibleDescription); break;
-				case ListBox box: SetStatusbarText(text: box.AccessibleDescription); break;
-				case ListView view: SetStatusbarText(text: view.AccessibleDescription); break;
-				case MaskedTextBox box: SetStatusbarText(text: box.AccessibleDescription); break;
-				case NumericUpDown numericUpDown: SetStatusbarText(text: numericUpDown.AccessibleDescription); break;
-				case MonthCalendar monthCalendar: SetStatusbarText(text: monthCalendar.AccessibleDescription); break;
-				case PropertyGrid propertyGrid: SetStatusbarText(text: propertyGrid.AccessibleDescription); break;
-				case RichTextBox richTextBox: SetStatusbarText(text: richTextBox.AccessibleDescription); break;
-				case ScrollBar scrollBar: SetStatusbarText(text: scrollBar.AccessibleDescription); break;
-				case TrackBar trackBar: SetStatusbarText(text: trackBar.AccessibleDescription); break;
-				case WebBrowser webBrowser: SetStatusbarText(text: webBrowser.AccessibleDescription); break;
-				case DomainUpDown domainUpDown: SetStatusbarText(text: domainUpDown.AccessibleDescription); break;
-				case ToolStripButton toolStripButton: SetStatusbarText(text: toolStripButton.AccessibleDescription); break;
-				case ToolStripMenuItem toolStripMenuItem: SetStatusbarText(text: toolStripMenuItem.AccessibleDescription); break;
-				case ToolStripLabel toolStripLabel: SetStatusbarText(text: toolStripLabel.AccessibleDescription); break;
-				case ToolStripComboBox toolStripComboBox: SetStatusbarText(text: toolStripComboBox.AccessibleDescription); break;
-				case ToolStripDropDown toolStripDropDown: SetStatusbarText(text: toolStripDropDown.AccessibleDescription); break;
-				case ToolStripDropDownButton toolStripDropDownButton: SetStatusbarText(text: toolStripDropDownButton.AccessibleDescription); break;
-				case ToolStripDropDownItem toolStripDropDownItem: SetStatusbarText(text: toolStripDropDownItem.AccessibleDescription); break;
-				case ToolStripProgressBar progressBar: SetStatusbarText(text: progressBar.AccessibleDescription); break;
-				case ToolStripSeparator toolStripSeparator: SetStatusbarText(text: toolStripSeparator.AccessibleDescription); break;
-				case ToolStripTextBox toolStripTextBox: SetStatusbarText(text: toolStripTextBox.AccessibleDescription); break;
+				SetStatusbarText(text: control.AccessibleDescription);
 			}
 		}
 
@@ -174,56 +168,96 @@ namespace Numeric_List_Generator
 		#region Leave event handlers
 
 		/// <summary>
-		/// Clear the information text of the status bar
+		/// Clears the information text of the status bar.
 		/// </summary>
-		/// <param name="sender">object sender</param>
-		/// <param name="e">event arguments</param>
-		/// <remarks>The parameters <paramref name="e"/> and <paramref name="sender"/> are not needed, but must be indicated.</remarks>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void ClearStatusbar_Leave(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
 
 		#endregion
 
+		/// <summary>
+		/// Handles the Click event of the Add To List button.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonAddToList_Click(object sender, EventArgs e)
 		{
-			DisableControls();
-			backupListUndo = textBoxList.Text;
-			startTime = DateTime.Now;
-			progressBar.Minimum = 0;
-			progressBar.Maximum = (int)numericUpDownNumberMaximum.Value;
-			progressBar.Value = 0;
-			progressBar.Step = 1;
-			backgroundWorker.RunWorkerAsync();
+			try
+			{
+				DisableControls();
+				backupListUndo = textBoxList.Text;
+				startTime = DateTime.Now;
+				progressBar.Minimum = 0;
+				progressBar.Maximum = (int)numericUpDownNumberMaximum.Value;
+				progressBar.Value = 0;
+				progressBar.Step = 1;
+				backgroundWorker.RunWorkerAsync();
+			}
+			catch (Exception ex)
+			{
+				// Log the exception (example: log to a file or logging framework)
+				Logger.Error(exception: ex, message: "An unexpected error occurred while adding to the list.");
+				Debug.WriteLine(value: ex);
+				_ = MessageBox.Show(text: "An unexpected error occurred while adding to the list. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				EnableControls();
+			}
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Copy List button.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonCopyList_Click(object sender, EventArgs e)
 		{
 			textBoxList.SelectAll();
 			textBoxList.Copy();
-			MessageBox.Show(text: "Die Liste wurde in die Zwischenablage kopiert.");
+			_ = MessageBox.Show(text: "Die Liste wurde in die Zwischenablage kopiert.");
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Save List button.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonSaveList_Click(object sender, EventArgs e)
 		{
-			using SaveFileDialog save = new()
+			try
 			{
-				FileName = "liste.txt",
-				Filter = "Textdatei | *.txt"
-			};
-			if (save.ShowDialog() == DialogResult.OK)
-			{
-				using StreamWriter writer = new(stream: save.OpenFile());
-				try
+				using SaveFileDialog save = new()
 				{
+					FileName = "liste.txt",
+					Filter = "Textdatei | *.txt"
+				};
+				if (save.ShowDialog() == DialogResult.OK)
+				{
+					using StreamWriter writer = new(stream: save.OpenFile());
 					writer.WriteLine(value: textBoxList.Text);
+					_ = MessageBox.Show(text: "Die Liste wurde in die Textdatei kopiert.");
 				}
-				finally
-				{
-					writer.Close();
-					MessageBox.Show(text: "Die Liste wurde in die Textdatei kopiert.");
-				}
+			}
+			catch (IOException ioEx)
+			{
+				// Log the exception (example: log to a file or logging framework)
+				Debug.WriteLine(value: ioEx);
+				Logger.Error(exception: ioEx, message: "An error occurred while saving the file.");
+				_ = MessageBox.Show(text: "An error occurred while saving the file. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+			}
+			catch (Exception ex)
+			{
+				// Log the exception (example: log to a file or logging framework)
+				Debug.WriteLine(value: ex);
+				Logger.Error(exception: ex, message: "An unexpected error occurred.");
+				_ = MessageBox.Show(text: "An unexpected error occurred. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Delete List button.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonDeleteList_Click(object sender, EventArgs e)
 		{
 			textBoxList.Clear();
@@ -231,6 +265,11 @@ namespace Numeric_List_Generator
 			UpdateStatusBarStatistic();
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Create List button.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonCreateList_Click(object sender, EventArgs e)
 		{
 			DisableControls();
@@ -238,6 +277,11 @@ namespace Numeric_List_Generator
 			ButtonAddToList_Click(sender: sender, e: e);
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Undo button.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonUndo_Click(object sender, EventArgs e)
 		{
 			textBoxList.Text = backupListUndo;
@@ -248,6 +292,11 @@ namespace Numeric_List_Generator
 			UpdateStatusBarStatistic();
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Redo button.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonRedo_Click(object sender, EventArgs e)
 		{
 			textBoxList.Text = backupListRedo;
@@ -258,38 +307,63 @@ namespace Numeric_List_Generator
 			UpdateStatusBarStatistic();
 		}
 
-		private void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+		/// <summary>
+		/// Handles the DoWork event of the BackgroundWorker.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="DoWorkEventArgs"/> instance containing the event data.</param>
+		private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			for (int i = (int)numericUpDownNumberMinimum.Value; i < (int)numericUpDownNumberMaximum.Value + 1; i++)
+			try
 			{
-				if (textBoxList.Text.Length > 0)
+				for (int i = (int)numericUpDownNumberMinimum.Value; i < (int)numericUpDownNumberMaximum.Value + 1; i++)
 				{
-					textBoxList.AppendText(text: Environment.NewLine);
+					if (textBoxList.Text.Length > 0)
+					{
+						textBoxList.AppendText(text: Environment.NewLine);
+					}
+					if (checkBoxFillWithZeros.Checked)
+					{
+						textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}");
+					}
+					else
+					{
+						textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
+					}
+					backgroundWorker.ReportProgress(percentProgress: i);
+					endTime = DateTime.Now;
+					timeSpan = endTime - startTime;
+					UpdateStatusBarStatistic();
+					backupListRedo = textBoxList.Text;
 				}
-				if (checkBoxFillWithZeros.Checked)
-				{
-					textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}");
-				}
-				else
-				{
-					textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
-				}
-				backgroundWorker.ReportProgress(percentProgress: i);
-				endTime = DateTime.Now;
-				timeSpan = endTime - startTime;
-				UpdateStatusBarStatistic();
-				backupListRedo = textBoxList.Text;
+			}
+			catch (Exception ex)
+			{
+				// Log the exception (example: log to a file or logging framework)
+				Debug.WriteLine(value: ex);
+				Logger.Error(exception: ex, message: "An unexpected error occurred during list generation.");
+				_ = MessageBox.Show(text: "An unexpected error occurred during list generation. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 		}
 
+		/// <summary>
+		/// Handles the ProgressChanged event of the BackgroundWorker.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="ProgressChangedEventArgs"/> instance containing the event data.</param>
 		private void BackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e) => progressBar.PerformStep();
 
+		/// <summary>
+		/// Handles the Click event of the Size status label.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelSize_Click(object sender, EventArgs e)
 		{
 			if (toolStripStatusLabelSize.ForeColor == SystemColors.ControlText)
 			{
 				toolStripStatusLabelSize.ForeColor = SystemColors.GrayText;
-				toolStripStatusLabelSize.Text = toolStripStatusLabelSize.Tag.ToString();
+				toolStripStatusLabelSize.Text = toolStripStatusLabelSize.Tag?.ToString() ?? string.Empty;
 			}
 			else
 			{
@@ -297,12 +371,17 @@ namespace Numeric_List_Generator
 			}
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Lines status label.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelLines_Click(object sender, EventArgs e)
 		{
 			if (toolStripStatusLabelLines.ForeColor == SystemColors.ControlText)
 			{
 				toolStripStatusLabelLines.ForeColor = SystemColors.GrayText;
-				toolStripStatusLabelLines.Text = toolStripStatusLabelLines.Tag.ToString();
+				toolStripStatusLabelLines.Text = toolStripStatusLabelLines.Tag?.ToString() ?? string.Empty;
 			}
 			else
 			{
@@ -310,12 +389,17 @@ namespace Numeric_List_Generator
 			}
 		}
 
+		/// <summary>
+		/// Handles the Click event of the TimeSpan status label.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelTimeSpan_Click(object sender, EventArgs e)
 		{
 			if (toolStripStatusLabelTimeSpan.ForeColor == SystemColors.ControlText)
 			{
 				toolStripStatusLabelTimeSpan.ForeColor = SystemColors.GrayText;
-				toolStripStatusLabelTimeSpan.Text = toolStripStatusLabelTimeSpan.Tag.ToString();
+				toolStripStatusLabelTimeSpan.Text = toolStripStatusLabelTimeSpan.Tag?.ToString() ?? string.Empty;
 			}
 			else
 			{
@@ -323,12 +407,17 @@ namespace Numeric_List_Generator
 			}
 		}
 
+		/// <summary>
+		/// Handles the Click event of the LIM status label.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelLim_Click(object sender, EventArgs e)
 		{
 			if (toolStripStatusLabelLim.ForeColor == SystemColors.ControlText)
 			{
 				toolStripStatusLabelLim.ForeColor = SystemColors.GrayText;
-				toolStripStatusLabelLim.Text = toolStripStatusLabelLim.Tag.ToString();
+				toolStripStatusLabelLim.Text = toolStripStatusLabelLim.Tag?.ToString() ?? string.Empty;
 			}
 			else
 			{
@@ -336,6 +425,11 @@ namespace Numeric_List_Generator
 			}
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Style status label.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelStyle_Click(object sender, EventArgs e)
 		{
 			Application.VisualStyleState = Application.VisualStyleState == VisualStyleState.ClientAndNonClientAreasEnabled
@@ -344,41 +438,119 @@ namespace Numeric_List_Generator
 			Invalidate(invalidateChildren: true);
 		}
 
-		private void BackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) => EnableControls();
+		/// <summary>
+		/// Handles the RunWorkerCompleted event of the BackgroundWorker.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
+		private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => EnableControls();
 
+		/// <summary>
+		/// Handles the Click event of the Info menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemInfo_Click(object sender, EventArgs e)
 		{
 			using AboutBoxForm formAboutBox = new();
 			formAboutBox.TopMost = TopMost;
-			formAboutBox.ShowDialog();
+			_ = formAboutBox.ShowDialog();
 		}
 
+		/// <summary>
+		/// Handles the Click event of the License menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemLicense_Click(object sender, EventArgs e)
 		{
-			//LicenseForm
 			using LicenseForm formLicense = new();
 			formLicense.TopMost = TopMost;
-			formLicense.ShowDialog();
+			_ = formLicense.ShowDialog();
 		}
 
+		/// <summary>
+		/// Handles the Click event of the Exit menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemExit_Click(object sender, EventArgs e) => Close();
 
+		/// <summary>
+		/// Handles the Click event of the Create List menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListCreate_Click(object sender, EventArgs e) => ButtonCreateList_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Add List menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListAdd_Click(object sender, EventArgs e) => ButtonAddToList_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Delete List menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListDelete_Click(object sender, EventArgs e) => ButtonDeleteList_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Undo menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListUndo_Click(object sender, EventArgs e) => ButtonUndo_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Redo menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListRedo_Click(object sender, EventArgs e) => ButtonRedo_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Copy List menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListCopy_Click(object sender, EventArgs e) => ButtonCopyList_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Save List menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListSave_Click(object sender, EventArgs e) => ButtonSaveList_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Disable Visual Style menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemSettingsDisableVisualStyle_Click(object sender, EventArgs e) => ToolStripStatusLabelStyle_Click(sender: sender, e: e);
 
+		/// <summary>
+		/// Handles the Click event of the Stay On Top menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemSettingsStayOnTop_Click(object sender, EventArgs e) => CheckStayOnTop();
+
+		/// <summary>
+		/// Handles the Click event of the Batch menu item.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void ToolStripMenuItemBatch_Click(object sender, EventArgs e)
+		{
+			Hide();
+			using BatchForm formBatch = new();
+			formBatch.TopMost = TopMost;
+			_ = formBatch.ShowDialog();
+			Show();
+		}
 	}
 }

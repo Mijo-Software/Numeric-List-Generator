@@ -53,7 +53,7 @@ namespace Numeric_List_Generator
 			statusStrip.Location = new Point(0, 0);
 			statusStrip.Name = "statusStrip";
 			statusStrip.ShowItemToolTips = true;
-			statusStrip.Size = new Size(281, 22);
+			statusStrip.Size = new Size(348, 22);
 			statusStrip.SizingGrip = false;
 			statusStrip.TabIndex = 0;
 			statusStrip.TabStop = true;
@@ -84,8 +84,9 @@ namespace Numeric_List_Generator
 			textBoxLicense.PlaceholderText = "Lizenz hier... 😉";
 			textBoxLicense.ReadOnly = true;
 			textBoxLicense.ScrollBars = ScrollBars.Both;
-			textBoxLicense.Size = new Size(281, 142);
+			textBoxLicense.Size = new Size(348, 382);
 			textBoxLicense.TabIndex = 6;
+			textBoxLicense.TabStop = false;
 			textBoxLicense.Text = resources.GetString("textBoxLicense.Text");
 			toolTip.SetToolTip(textBoxLicense, "Lizenz");
 			textBoxLicense.Enter += SetStatusbar_Enter;
@@ -107,12 +108,12 @@ namespace Numeric_List_Generator
 			// 
 			toolStripContainer.ContentPanel.Controls.Add(textBoxLicense);
 			toolStripContainer.ContentPanel.Margin = new Padding(4, 3, 4, 3);
-			toolStripContainer.ContentPanel.Size = new Size(281, 142);
+			toolStripContainer.ContentPanel.Size = new Size(348, 382);
 			toolStripContainer.Dock = DockStyle.Fill;
 			toolStripContainer.Location = new Point(10, 10);
 			toolStripContainer.Margin = new Padding(4, 3, 4, 3);
 			toolStripContainer.Name = "toolStripContainer";
-			toolStripContainer.Size = new Size(281, 189);
+			toolStripContainer.Size = new Size(348, 429);
 			toolStripContainer.TabIndex = 8;
 			toolStripContainer.Text = "toolStripContainer";
 			// 
@@ -123,7 +124,7 @@ namespace Numeric_List_Generator
 			AccessibleRole = AccessibleRole.Dialog;
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(301, 209);
+			ClientSize = new Size(368, 449);
 			Controls.Add(toolStripContainer);
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			Margin = new Padding(4, 3, 4, 3);
