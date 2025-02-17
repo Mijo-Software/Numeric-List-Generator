@@ -65,6 +65,8 @@
 			toolStripSeparator1 = new ToolStripSeparator();
 			toolStripMenuItemExit = new ToolStripMenuItem();
 			toolStripMenuItemList = new ToolStripMenuItem();
+			toolStripMenuItemBatch = new ToolStripMenuItem();
+			toolStripSeparator4 = new ToolStripSeparator();
 			toolStripMenuItemListCreate = new ToolStripMenuItem();
 			toolStripMenuItemListAdd = new ToolStripMenuItem();
 			toolStripMenuItemListDelete = new ToolStripMenuItem();
@@ -249,7 +251,7 @@
 			labelProgress.Name = "labelProgress";
 			labelProgress.Size = new Size(77, 15);
 			labelProgress.TabIndex = 16;
-			labelProgress.Text = "Verarbeitun&g:";
+			labelProgress.Text = "Verarbeitung:";
 			toolTip.SetToolTip(labelProgress, "Verarbeitung");
 			labelProgress.Enter += SetStatusbar_Enter;
 			labelProgress.Leave += ClearStatusbar_Leave;
@@ -701,13 +703,32 @@
 			toolStripMenuItemList.AccessibleName = "Menü \"Liste\"";
 			toolStripMenuItemList.AccessibleRole = AccessibleRole.MenuPopup;
 			toolStripMenuItemList.AutoToolTip = true;
-			toolStripMenuItemList.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemListCreate, toolStripMenuItemListAdd, toolStripMenuItemListDelete, toolStripSeparator2, toolStripMenuItemListUndo, toolStripMenuItemListRedo, toolStripSeparator3, toolStripMenuItemListCopy, toolStripMenuItemListSave });
+			toolStripMenuItemList.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemBatch, toolStripSeparator4, toolStripMenuItemListCreate, toolStripMenuItemListAdd, toolStripMenuItemListDelete, toolStripSeparator2, toolStripMenuItemListUndo, toolStripMenuItemListRedo, toolStripSeparator3, toolStripMenuItemListCopy, toolStripMenuItemListSave });
 			toolStripMenuItemList.Name = "toolStripMenuItemList";
 			toolStripMenuItemList.ShortcutKeys = Keys.Alt | Keys.L;
 			toolStripMenuItemList.Size = new Size(43, 20);
 			toolStripMenuItemList.Text = "Lis&te";
 			toolStripMenuItemList.MouseEnter += SetStatusbar_Enter;
 			toolStripMenuItemList.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripMenuItemBatch
+			// 
+			toolStripMenuItemBatch.AccessibleDescription = "Öffnet die Stapelverarbeitung";
+			toolStripMenuItemBatch.AccessibleName = "Stapelverarbeitung öffnen";
+			toolStripMenuItemBatch.AutoToolTip = true;
+			toolStripMenuItemBatch.Enabled = false;
+			toolStripMenuItemBatch.Image = Properties.Resources.category;
+			toolStripMenuItemBatch.Name = "toolStripMenuItemBatch";
+			toolStripMenuItemBatch.Size = new Size(180, 22);
+			toolStripMenuItemBatch.Text = "Stapelverarbeitung";
+			toolStripMenuItemBatch.Click += ToolStripMenuItemBatch_Click;
+			toolStripMenuItemBatch.MouseEnter += SetStatusbar_Enter;
+			toolStripMenuItemBatch.MouseLeave += ClearStatusbar_Leave;
+			// 
+			// toolStripSeparator4
+			// 
+			toolStripSeparator4.Name = "toolStripSeparator4";
+			toolStripSeparator4.Size = new Size(177, 6);
 			// 
 			// toolStripMenuItemListCreate
 			// 
@@ -717,7 +738,7 @@
 			toolStripMenuItemListCreate.Image = Properties.Resources.document_index;
 			toolStripMenuItemListCreate.Name = "toolStripMenuItemListCreate";
 			toolStripMenuItemListCreate.ShortcutKeys = Keys.Alt | Keys.E;
-			toolStripMenuItemListCreate.Size = new Size(179, 22);
+			toolStripMenuItemListCreate.Size = new Size(180, 22);
 			toolStripMenuItemListCreate.Text = "Neu &erstellen";
 			toolStripMenuItemListCreate.ToolTipText = "Liste neu erstellen";
 			toolStripMenuItemListCreate.Click += ToolStripMenuItemListCreate_Click;
@@ -732,7 +753,7 @@
 			toolStripMenuItemListAdd.Image = Properties.Resources.add;
 			toolStripMenuItemListAdd.Name = "toolStripMenuItemListAdd";
 			toolStripMenuItemListAdd.ShortcutKeys = Keys.Alt | Keys.A;
-			toolStripMenuItemListAdd.Size = new Size(179, 22);
+			toolStripMenuItemListAdd.Size = new Size(180, 22);
 			toolStripMenuItemListAdd.Text = "&Anfügen";
 			toolStripMenuItemListAdd.ToolTipText = "Liste anfügen";
 			toolStripMenuItemListAdd.Click += ToolStripMenuItemListAdd_Click;
@@ -747,7 +768,7 @@
 			toolStripMenuItemListDelete.Image = Properties.Resources.bin_empty;
 			toolStripMenuItemListDelete.Name = "toolStripMenuItemListDelete";
 			toolStripMenuItemListDelete.ShortcutKeys = Keys.Alt | Keys.L;
-			toolStripMenuItemListDelete.Size = new Size(179, 22);
+			toolStripMenuItemListDelete.Size = new Size(180, 22);
 			toolStripMenuItemListDelete.Text = "&Löschen";
 			toolStripMenuItemListDelete.ToolTipText = "Liste löschen";
 			toolStripMenuItemListDelete.Click += ToolStripMenuItemListDelete_Click;
@@ -758,7 +779,7 @@
 			// 
 			toolStripSeparator2.AccessibleRole = AccessibleRole.Separator;
 			toolStripSeparator2.Name = "toolStripSeparator2";
-			toolStripSeparator2.Size = new Size(176, 6);
+			toolStripSeparator2.Size = new Size(177, 6);
 			toolStripSeparator2.MouseEnter += SetStatusbar_Enter;
 			toolStripSeparator2.MouseLeave += ClearStatusbar_Leave;
 			// 
@@ -771,7 +792,7 @@
 			toolStripMenuItemListUndo.Image = Properties.Resources.undo;
 			toolStripMenuItemListUndo.Name = "toolStripMenuItemListUndo";
 			toolStripMenuItemListUndo.ShortcutKeys = Keys.Alt | Keys.U;
-			toolStripMenuItemListUndo.Size = new Size(179, 22);
+			toolStripMenuItemListUndo.Size = new Size(180, 22);
 			toolStripMenuItemListUndo.Text = "&Undo";
 			toolStripMenuItemListUndo.Click += ToolStripMenuItemListUndo_Click;
 			toolStripMenuItemListUndo.MouseEnter += SetStatusbar_Enter;
@@ -786,7 +807,7 @@
 			toolStripMenuItemListRedo.Image = Properties.Resources.redo;
 			toolStripMenuItemListRedo.Name = "toolStripMenuItemListRedo";
 			toolStripMenuItemListRedo.ShortcutKeys = Keys.Alt | Keys.R;
-			toolStripMenuItemListRedo.Size = new Size(179, 22);
+			toolStripMenuItemListRedo.Size = new Size(180, 22);
 			toolStripMenuItemListRedo.Text = "&Redo";
 			toolStripMenuItemListRedo.Click += ToolStripMenuItemListRedo_Click;
 			toolStripMenuItemListRedo.MouseEnter += SetStatusbar_Enter;
@@ -796,7 +817,7 @@
 			// 
 			toolStripSeparator3.AccessibleRole = AccessibleRole.Separator;
 			toolStripSeparator3.Name = "toolStripSeparator3";
-			toolStripSeparator3.Size = new Size(176, 6);
+			toolStripSeparator3.Size = new Size(177, 6);
 			toolStripSeparator3.MouseEnter += SetStatusbar_Enter;
 			toolStripSeparator3.MouseLeave += ClearStatusbar_Leave;
 			// 
@@ -808,7 +829,7 @@
 			toolStripMenuItemListCopy.Image = Properties.Resources.page_copy;
 			toolStripMenuItemListCopy.Name = "toolStripMenuItemListCopy";
 			toolStripMenuItemListCopy.ShortcutKeys = Keys.Alt | Keys.K;
-			toolStripMenuItemListCopy.Size = new Size(179, 22);
+			toolStripMenuItemListCopy.Size = new Size(180, 22);
 			toolStripMenuItemListCopy.Text = "&Kopieren";
 			toolStripMenuItemListCopy.ToolTipText = "Liste kopieren";
 			toolStripMenuItemListCopy.Click += ToolStripMenuItemListCopy_Click;
@@ -823,7 +844,7 @@
 			toolStripMenuItemListSave.Image = Properties.Resources.diskette;
 			toolStripMenuItemListSave.Name = "toolStripMenuItemListSave";
 			toolStripMenuItemListSave.ShortcutKeys = Keys.Alt | Keys.S;
-			toolStripMenuItemListSave.Size = new Size(179, 22);
+			toolStripMenuItemListSave.Size = new Size(180, 22);
 			toolStripMenuItemListSave.Text = "&Speichern";
 			toolStripMenuItemListSave.ToolTipText = "Liste speichern";
 			toolStripMenuItemListSave.Click += ToolStripMenuItemListSave_Click;
@@ -1016,6 +1037,8 @@
 		private ToolStripMenuItem toolStripMenuItemSettings;
 		private ToolStripMenuItem toolStripMenuItemSettingsStayOnTop;
 		private ToolStripMenuItem toolStripMenuItemSettingsDisableVisualStyle;
+		private ToolStripMenuItem toolStripMenuItemBatch;
+		private ToolStripSeparator toolStripSeparator4;
 	}
 }
 

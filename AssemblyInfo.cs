@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace MijoSoftware.AssemblyInformation
+namespace Numeric_List_Generator
 {
 	/// <summary>
 	/// Provide some assembly information
@@ -25,14 +25,21 @@ namespace MijoSoftware.AssemblyInformation
 						return titleAttribute.Title;
 					}
 				}
-				return Path.GetFileNameWithoutExtension(path: Assembly.GetExecutingAssembly().CodeBase);
+				return Path.GetFileNameWithoutExtension(path: Assembly.GetExecutingAssembly().Location);
 			}
 		}
 
 		/// <summary>
 		/// Return the version of the assembly
 		/// </summary>
-		public static string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
+		public static string AssemblyVersion
+		{
+			get
+			{
+				Version? version = Assembly.GetExecutingAssembly().GetName().Version;
+				return version?.ToString() ?? "Version not available";
+			}
+		}
 
 		/// <summary>
 		/// Return the description of the assembly

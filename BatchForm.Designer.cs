@@ -48,10 +48,10 @@
 			labelStringAfterNumber = new Label();
 			labelStringBeforeNumber = new Label();
 			listView = new ListView();
-			columnHeader1 = new ColumnHeader();
-			columnHeader2 = new ColumnHeader();
-			columnHeader3 = new ColumnHeader();
-			columnHeader4 = new ColumnHeader();
+			columnHeaderStringBefore = new ColumnHeader();
+			columnHeaderNumberMin = new ColumnHeader();
+			columnHeaderNumberMax = new ColumnHeader();
+			columnHeaderStringAfter = new ColumnHeader();
 			statusStripInfo = new StatusStrip();
 			toolStripStatusLabelInformation = new ToolStripStatusLabel();
 			statusStripStatistic = new StatusStrip();
@@ -65,6 +65,7 @@
 			buttonAddToList = new Button();
 			backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			toolTip = new ToolTip(components);
+			columnHeaderFillUpWithZeros = new ColumnHeader();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMaximum).BeginInit();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMinimum).BeginInit();
 			statusStripInfo.SuspendLayout();
@@ -412,8 +413,11 @@
 			// 
 			// listView
 			// 
+			listView.AccessibleDescription = "Zeigt die Liste der zu erstellten Einträge an";
+			listView.AccessibleName = "Liste der zu erstellten Einträge";
+			listView.AccessibleRole = AccessibleRole.List;
 			listView.Activation = ItemActivation.OneClick;
-			listView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
+			listView.Columns.AddRange(new ColumnHeader[] { columnHeaderStringBefore, columnHeaderNumberMin, columnHeaderNumberMax, columnHeaderFillUpWithZeros, columnHeaderStringAfter });
 			listView.FullRowSelect = true;
 			listView.GridLines = true;
 			listView.HoverSelection = true;
@@ -422,6 +426,7 @@
 			listView.ShowItemToolTips = true;
 			listView.Size = new Size(396, 145);
 			listView.TabIndex = 12;
+			toolTip.SetToolTip(listView, "Liste der zu erstellten Einträge");
 			listView.UseCompatibleStateImageBehavior = false;
 			listView.View = View.Details;
 			listView.Enter += SetStatusbar_Enter;
@@ -429,25 +434,25 @@
 			listView.MouseEnter += SetStatusbar_Enter;
 			listView.MouseLeave += ClearStatusbar_Leave;
 			// 
-			// columnHeader1
+			// columnHeaderStringBefore
 			// 
-			columnHeader1.Text = "Zeichenkette davor";
-			columnHeader1.Width = 180;
+			columnHeaderStringBefore.Text = "Zeichenkette davor";
+			columnHeaderStringBefore.Width = 180;
 			// 
-			// columnHeader2
+			// columnHeaderNumberMin
 			// 
-			columnHeader2.Text = "Zahl Min.";
-			columnHeader2.Width = 65;
+			columnHeaderNumberMin.Text = "Zahl Min.";
+			columnHeaderNumberMin.Width = 65;
 			// 
-			// columnHeader3
+			// columnHeaderNumberMax
 			// 
-			columnHeader3.Text = "Zahl Max.";
-			columnHeader3.Width = 65;
+			columnHeaderNumberMax.Text = "Zahl Max.";
+			columnHeaderNumberMax.Width = 65;
 			// 
-			// columnHeader4
+			// columnHeaderStringAfter
 			// 
-			columnHeader4.Text = "Zeichenkette danach";
-			columnHeader4.Width = 180;
+			columnHeaderStringAfter.Text = "Zeichenkette danach";
+			columnHeaderStringAfter.Width = 180;
 			// 
 			// statusStripInfo
 			// 
@@ -632,6 +637,10 @@
 			backgroundWorker.WorkerReportsProgress = true;
 			backgroundWorker.WorkerSupportsCancellation = true;
 			// 
+			// columnHeaderFillUpWithZeros
+			// 
+			columnHeaderFillUpWithZeros.Text = "Nullen?";
+			// 
 			// BatchForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -658,8 +667,11 @@
 			Controls.Add(labelNumberMin);
 			Controls.Add(labelStringAfterNumber);
 			Controls.Add(labelStringBeforeNumber);
+			FormBorderStyle = FormBorderStyle.FixedSingle;
 			Icon = (Icon)resources.GetObject("$this.Icon");
+			MaximizeBox = false;
 			Name = "BatchForm";
+			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Stapelverarbeitung";
 			Load += BatchForm_Load;
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMaximum).EndInit();
@@ -692,10 +704,10 @@
 		private Label labelStringAfterNumber;
 		private Label labelStringBeforeNumber;
 		private ListView listView;
-		private ColumnHeader columnHeader1;
-		private ColumnHeader columnHeader2;
-		private ColumnHeader columnHeader3;
-		private ColumnHeader columnHeader4;
+		private ColumnHeader columnHeaderStringBefore;
+		private ColumnHeader columnHeaderNumberMin;
+		private ColumnHeader columnHeaderNumberMax;
+		private ColumnHeader columnHeaderStringAfter;
 		private StatusStrip statusStripInfo;
 		private ToolStripStatusLabel toolStripStatusLabelInformation;
 		private StatusStrip statusStripStatistic;
@@ -709,5 +721,6 @@
 		private ToolStripSplitButton toolStripSplitButtonStyle;
 		private ToolStripMenuItem toolStripMenuItemActivateVisualStyle;
 		private ToolStripMenuItem toolStripMenuItemDeactivateVisualStyle;
+		private ColumnHeader columnHeaderFillUpWithZeros;
 	}
 }
