@@ -64,9 +64,17 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void SetStatusbar_Enter(object sender, EventArgs e)
 		{
-			if (sender is Control control && control.AccessibleDescription != null)
+			if (sender is Control { AccessibleDescription: { } } control)
 			{
 				SetStatusbarText(text: control.AccessibleDescription);
+			}
+			else if (sender is ToolStripMenuItem { AccessibleDescription: { } } control2)
+			{
+				SetStatusbarText(text: control2.AccessibleDescription);
+			}
+			else if (sender is ToolStripStatusLabel { AccessibleDescription: { } } control3)
+			{
+				SetStatusbarText(text: control3.AccessibleDescription);
 			}
 		}
 
