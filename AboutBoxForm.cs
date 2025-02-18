@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using NLog;
 
 namespace Numeric_List_Generator
 {
@@ -9,6 +10,12 @@ namespace Numeric_List_Generator
 
 	internal partial class AboutBoxForm : Form
 	{
+		/// <summary>
+		/// Logger instance for logging messages and exceptions.
+		/// </summary>
+		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+
 		/// <summary>
 		/// Returns a string that represents the current object for debugging purposes.
 		/// </summary>
@@ -36,7 +43,7 @@ namespace Numeric_List_Generator
 			labelProductName.Text = AssemblyInfo.AssemblyProduct;
 			labelVersion.Text = $"Version {AssemblyInfo.AssemblyVersion}";
 			labelCopyright.Text = AssemblyInfo.AssemblyCopyright;
-			labelCompanyName.Text = AssemblyInfo.AssemblyCompany;
+			linkLabelCompanyName.Text = AssemblyInfo.AssemblyCompany;
 			textBoxDescription.Text = AssemblyInfo.AssemblyDescription;
 		}
 
@@ -67,5 +74,26 @@ namespace Numeric_List_Generator
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void ClearStatusbar_Leave(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+
+		private void LabelCompanyName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (linkLabelCompanyName.Tag != null)
+			{
+				string? url = linkLabelCompanyName.Tag.ToString();
+				if (!string.IsNullOrWhiteSpace(value: url))
+				{
+					try
+					{
+						using Process _ = Process.Start(fileName: url);
+					}
+					catch (Exception ex)
+					{
+						Debug.WriteLine(value: ex);
+						Logger.Error(exception: ex, message: $"Fehler beim Öffnen der URL: {ex.Message}.");
+						_ = MessageBox.Show(text: $"Fehler beim Öffnen der URL: {ex.Message}", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+					}
+				}
+			}
+		}
 	}
 }

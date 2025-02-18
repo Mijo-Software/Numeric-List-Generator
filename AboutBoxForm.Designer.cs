@@ -34,7 +34,7 @@
 			labelProductName = new Label();
 			labelVersion = new Label();
 			labelCopyright = new Label();
-			labelCompanyName = new Label();
+			linkLabelCompanyName = new LinkLabel();
 			textBoxDescription = new TextBox();
 			okButton = new Button();
 			toolTip = new ToolTip(components);
@@ -61,7 +61,7 @@
 			tableLayoutPanel.Controls.Add(labelProductName, 1, 0);
 			tableLayoutPanel.Controls.Add(labelVersion, 1, 1);
 			tableLayoutPanel.Controls.Add(labelCopyright, 1, 2);
-			tableLayoutPanel.Controls.Add(labelCompanyName, 1, 3);
+			tableLayoutPanel.Controls.Add(linkLabelCompanyName, 1, 3);
 			tableLayoutPanel.Controls.Add(textBoxDescription, 1, 4);
 			tableLayoutPanel.Controls.Add(okButton, 1, 5);
 			tableLayoutPanel.Dock = DockStyle.Fill;
@@ -159,26 +159,29 @@
 			labelCopyright.MouseEnter += SetStatusbar_Enter;
 			labelCopyright.MouseLeave += ClearStatusbar_Leave;
 			// 
-			// labelCompanyName
+			// linkLabelCompanyName
 			// 
-			labelCompanyName.AccessibleDescription = "Zeigt den Firmenname an";
-			labelCompanyName.AccessibleName = "Firmenname";
-			labelCompanyName.AccessibleRole = AccessibleRole.StaticText;
-			labelCompanyName.AutoEllipsis = true;
-			labelCompanyName.Dock = DockStyle.Fill;
-			labelCompanyName.Location = new Point(50, 48);
-			labelCompanyName.Margin = new Padding(7, 0, 4, 0);
-			labelCompanyName.MaximumSize = new Size(0, 20);
-			labelCompanyName.Name = "labelCompanyName";
-			labelCompanyName.Size = new Size(267, 16);
-			labelCompanyName.TabIndex = 3;
-			labelCompanyName.Text = "Firmenname";
-			labelCompanyName.TextAlign = ContentAlignment.MiddleLeft;
-			toolTip.SetToolTip(labelCompanyName, "Firmenname");
-			labelCompanyName.Enter += SetStatusbar_Enter;
-			labelCompanyName.Leave += ClearStatusbar_Leave;
-			labelCompanyName.MouseEnter += SetStatusbar_Enter;
-			labelCompanyName.MouseLeave += ClearStatusbar_Leave;
+			linkLabelCompanyName.AccessibleDescription = "Zeigt den Firmenname an";
+			linkLabelCompanyName.AccessibleName = "Firmenname";
+			linkLabelCompanyName.AccessibleRole = AccessibleRole.StaticText;
+			linkLabelCompanyName.AutoEllipsis = true;
+			linkLabelCompanyName.Dock = DockStyle.Fill;
+			linkLabelCompanyName.Location = new Point(50, 48);
+			linkLabelCompanyName.Margin = new Padding(7, 0, 4, 0);
+			linkLabelCompanyName.MaximumSize = new Size(0, 20);
+			linkLabelCompanyName.Name = "linkLabelCompanyName";
+			linkLabelCompanyName.Size = new Size(267, 16);
+			linkLabelCompanyName.TabIndex = 3;
+			linkLabelCompanyName.TabStop = true;
+			linkLabelCompanyName.Tag = "https://mijo-software.de/numeric-list-generator/";
+			linkLabelCompanyName.Text = "Firmenname";
+			linkLabelCompanyName.TextAlign = ContentAlignment.MiddleLeft;
+			toolTip.SetToolTip(linkLabelCompanyName, "Firmenname");
+			linkLabelCompanyName.LinkClicked += LabelCompanyName_LinkClicked;
+			linkLabelCompanyName.Enter += SetStatusbar_Enter;
+			linkLabelCompanyName.Leave += ClearStatusbar_Leave;
+			linkLabelCompanyName.MouseEnter += SetStatusbar_Enter;
+			linkLabelCompanyName.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// textBoxDescription
 			// 
@@ -322,7 +325,7 @@
 		private Label labelProductName;
 		private Label labelVersion;
 		private Label labelCopyright;
-		private Label labelCompanyName;
+		private LinkLabel linkLabelCompanyName;
 		private TextBox textBoxDescription;
 		private Button okButton;
 		private ToolTip toolTip;

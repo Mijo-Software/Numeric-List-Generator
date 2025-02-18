@@ -55,7 +55,6 @@
 			toolStripStatusLabelSize = new ToolStripStatusLabel();
 			toolStripStatusLabelLines = new ToolStripStatusLabel();
 			toolStripStatusLabelTimeSpan = new ToolStripStatusLabel();
-			toolStripStatusLabelLim = new ToolStripStatusLabel();
 			statusStripInfo = new StatusStrip();
 			toolStripStatusLabelInformation = new ToolStripStatusLabel();
 			menuStrip = new MenuStrip();
@@ -497,7 +496,7 @@
 			statusStripStatistic.AccessibleRole = AccessibleRole.StatusBar;
 			statusStripStatistic.AllowItemReorder = true;
 			statusStripStatistic.Dock = DockStyle.None;
-			statusStripStatistic.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelSize, toolStripStatusLabelLines, toolStripStatusLabelTimeSpan, toolStripStatusLabelLim });
+			statusStripStatistic.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelSize, toolStripStatusLabelLines, toolStripStatusLabelTimeSpan });
 			statusStripStatistic.Location = new Point(0, 22);
 			statusStripStatistic.Name = "statusStripStatistic";
 			statusStripStatistic.Padding = new Padding(1, 0, 16, 0);
@@ -558,22 +557,6 @@
 			toolStripStatusLabelTimeSpan.Click += ToolStripStatusLabelTimeSpan_Click;
 			toolStripStatusLabelTimeSpan.MouseEnter += SetStatusbar_Enter;
 			toolStripStatusLabelTimeSpan.MouseLeave += ClearStatusbar_Leave;
-			// 
-			// toolStripStatusLabelLim
-			// 
-			toolStripStatusLabelLim.AccessibleDescription = "Zeigt den berechneten LIM an";
-			toolStripStatusLabelLim.AccessibleName = "Berechneter LIM";
-			toolStripStatusLabelLim.AccessibleRole = AccessibleRole.StaticText;
-			toolStripStatusLabelLim.AutoToolTip = true;
-			toolStripStatusLabelLim.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top | ToolStripStatusLabelBorderSides.Right | ToolStripStatusLabelBorderSides.Bottom;
-			toolStripStatusLabelLim.Name = "toolStripStatusLabelLim";
-			toolStripStatusLabelLim.Size = new Size(277, 19);
-			toolStripStatusLabelLim.Spring = true;
-			toolStripStatusLabelLim.Tag = "LIM";
-			toolStripStatusLabelLim.Text = "LIM";
-			toolStripStatusLabelLim.Click += ToolStripStatusLabelLim_Click;
-			toolStripStatusLabelLim.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelLim.MouseLeave += ClearStatusbar_Leave;
 			// 
 			// statusStripInfo
 			// 
@@ -1000,7 +983,6 @@
 		private StatusStrip statusStripStatistic;
 		private ToolStripStatusLabel toolStripStatusLabelSize;
 		private ToolStripStatusLabel toolStripStatusLabelLines;
-		private ToolStripStatusLabel toolStripStatusLabelLim;
 		private TextBox textBoxStringBeforeNumber;
 		private TextBox textBoxStringAfterNumber;
 		private Button buttonRedo;
