@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Windows.Forms.VisualStyles;
 using NLog;
 
@@ -11,6 +11,9 @@ namespace Numeric_List_Generator
 	[DebuggerDisplay(value: $"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 	public partial class NumericListGeneratorForm : Form
 	{
+		/// <summary>
+		/// Logger instance for logging messages and exceptions.
+		/// </summary>
 		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
 		/// <summary>
@@ -181,18 +184,22 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-		private void ButtonAddToList_Click(object sender, EventArgs e)
+		private async void ButtonAddToList_Click(object sender, EventArgs e)
 		{
 			try
 			{
 				DisableControls();
+				if (!String.IsNullOrEmpty(value: textBoxList.Text))
+				{
+					textBoxList.Text = textBoxList.Text + Environment.NewLine;
+				}
 				backupListUndo = textBoxList.Text;
 				startTime = DateTime.Now;
 				progressBar.Minimum = 0;
 				progressBar.Maximum = (int)numericUpDownNumberMaximum.Value;
 				progressBar.Value = 0;
 				progressBar.Step = 1;
-				backgroundWorker.RunWorkerAsync();
+				await GenerateListAsync();
 			}
 			catch (Exception ex)
 			{
@@ -308,34 +315,30 @@ namespace Numeric_List_Generator
 		}
 
 		/// <summary>
-		/// Handles the DoWork event of the BackgroundWorker.
+		/// Generates the list asynchronously.
 		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="DoWorkEventArgs"/> instance containing the event data.</param>
-		private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+		private async Task GenerateListAsync()
 		{
 			try
 			{
-				for (int i = (int)numericUpDownNumberMinimum.Value; i < (int)numericUpDownNumberMaximum.Value + 1; i++)
+				StringBuilder sb = new();
+				for (int i = (int)numericUpDownNumberMinimum.Value; i <= (int)numericUpDownNumberMaximum.Value; i++)
 				{
-					if (textBoxList.Text.Length > 0)
+					if (sb.Length > 0)
 					{
-						textBoxList.AppendText(text: Environment.NewLine);
+						_ = sb.AppendLine();
 					}
-					if (checkBoxFillWithZeros.Checked)
-					{
-						textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}");
-					}
-					else
-					{
-						textBoxList.AppendText(text: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
-					}
-					backgroundWorker.ReportProgress(percentProgress: i);
+					_ = checkBoxFillWithZeros.Checked
+						? sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}")
+						: sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
+					progressBar.Value = i;
 					endTime = DateTime.Now;
 					timeSpan = endTime - startTime;
 					UpdateStatusBarStatistic();
-					backupListRedo = textBoxList.Text;
+					backupListRedo = sb.ToString();
+					await Task.Delay(millisecondsDelay: 0); // Simulate async work
 				}
+				textBoxList.Text += sb.ToString();
 			}
 			catch (Exception ex)
 			{
@@ -344,14 +347,11 @@ namespace Numeric_List_Generator
 				Logger.Error(exception: ex, message: "An unexpected error occurred during list generation.");
 				_ = MessageBox.Show(text: "An unexpected error occurred during list generation. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
+			finally
+			{
+				EnableControls();
+			}
 		}
-
-		/// <summary>
-		/// Handles the ProgressChanged event of the BackgroundWorker.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="ProgressChangedEventArgs"/> instance containing the event data.</param>
-		private void BackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e) => progressBar.PerformStep();
 
 		/// <summary>
 		/// Handles the Click event of the Size status label.
@@ -437,13 +437,6 @@ namespace Numeric_List_Generator
 				: VisualStyleState.ClientAndNonClientAreasEnabled;
 			Invalidate(invalidateChildren: true);
 		}
-
-		/// <summary>
-		/// Handles the RunWorkerCompleted event of the BackgroundWorker.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
-		private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => EnableControls();
 
 		/// <summary>
 		/// Handles the Click event of the Info menu item.

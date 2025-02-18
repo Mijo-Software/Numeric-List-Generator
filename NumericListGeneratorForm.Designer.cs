@@ -79,7 +79,6 @@
 			toolStripMenuItemSettings = new ToolStripMenuItem();
 			toolStripMenuItemSettingsStayOnTop = new ToolStripMenuItem();
 			toolStripMenuItemSettingsDisableVisualStyle = new ToolStripMenuItem();
-			backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			toolStripContainer = new ToolStripContainer();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMinimum).BeginInit();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMaximum).BeginInit();
@@ -719,7 +718,7 @@
 			toolStripMenuItemBatch.Enabled = false;
 			toolStripMenuItemBatch.Image = Properties.Resources.category;
 			toolStripMenuItemBatch.Name = "toolStripMenuItemBatch";
-			toolStripMenuItemBatch.Size = new Size(180, 22);
+			toolStripMenuItemBatch.Size = new Size(179, 22);
 			toolStripMenuItemBatch.Text = "Stapelverarbeitung";
 			toolStripMenuItemBatch.Click += ToolStripMenuItemBatch_Click;
 			toolStripMenuItemBatch.MouseEnter += SetStatusbar_Enter;
@@ -728,7 +727,7 @@
 			// toolStripSeparator4
 			// 
 			toolStripSeparator4.Name = "toolStripSeparator4";
-			toolStripSeparator4.Size = new Size(177, 6);
+			toolStripSeparator4.Size = new Size(176, 6);
 			// 
 			// toolStripMenuItemListCreate
 			// 
@@ -738,7 +737,7 @@
 			toolStripMenuItemListCreate.Image = Properties.Resources.document_index;
 			toolStripMenuItemListCreate.Name = "toolStripMenuItemListCreate";
 			toolStripMenuItemListCreate.ShortcutKeys = Keys.Alt | Keys.E;
-			toolStripMenuItemListCreate.Size = new Size(180, 22);
+			toolStripMenuItemListCreate.Size = new Size(179, 22);
 			toolStripMenuItemListCreate.Text = "Neu &erstellen";
 			toolStripMenuItemListCreate.ToolTipText = "Liste neu erstellen";
 			toolStripMenuItemListCreate.Click += ToolStripMenuItemListCreate_Click;
@@ -753,7 +752,7 @@
 			toolStripMenuItemListAdd.Image = Properties.Resources.add;
 			toolStripMenuItemListAdd.Name = "toolStripMenuItemListAdd";
 			toolStripMenuItemListAdd.ShortcutKeys = Keys.Alt | Keys.A;
-			toolStripMenuItemListAdd.Size = new Size(180, 22);
+			toolStripMenuItemListAdd.Size = new Size(179, 22);
 			toolStripMenuItemListAdd.Text = "&Anfügen";
 			toolStripMenuItemListAdd.ToolTipText = "Liste anfügen";
 			toolStripMenuItemListAdd.Click += ToolStripMenuItemListAdd_Click;
@@ -768,7 +767,7 @@
 			toolStripMenuItemListDelete.Image = Properties.Resources.bin_empty;
 			toolStripMenuItemListDelete.Name = "toolStripMenuItemListDelete";
 			toolStripMenuItemListDelete.ShortcutKeys = Keys.Alt | Keys.L;
-			toolStripMenuItemListDelete.Size = new Size(180, 22);
+			toolStripMenuItemListDelete.Size = new Size(179, 22);
 			toolStripMenuItemListDelete.Text = "&Löschen";
 			toolStripMenuItemListDelete.ToolTipText = "Liste löschen";
 			toolStripMenuItemListDelete.Click += ToolStripMenuItemListDelete_Click;
@@ -779,7 +778,7 @@
 			// 
 			toolStripSeparator2.AccessibleRole = AccessibleRole.Separator;
 			toolStripSeparator2.Name = "toolStripSeparator2";
-			toolStripSeparator2.Size = new Size(177, 6);
+			toolStripSeparator2.Size = new Size(176, 6);
 			toolStripSeparator2.MouseEnter += SetStatusbar_Enter;
 			toolStripSeparator2.MouseLeave += ClearStatusbar_Leave;
 			// 
@@ -792,7 +791,7 @@
 			toolStripMenuItemListUndo.Image = Properties.Resources.undo;
 			toolStripMenuItemListUndo.Name = "toolStripMenuItemListUndo";
 			toolStripMenuItemListUndo.ShortcutKeys = Keys.Alt | Keys.U;
-			toolStripMenuItemListUndo.Size = new Size(180, 22);
+			toolStripMenuItemListUndo.Size = new Size(179, 22);
 			toolStripMenuItemListUndo.Text = "&Undo";
 			toolStripMenuItemListUndo.Click += ToolStripMenuItemListUndo_Click;
 			toolStripMenuItemListUndo.MouseEnter += SetStatusbar_Enter;
@@ -807,7 +806,7 @@
 			toolStripMenuItemListRedo.Image = Properties.Resources.redo;
 			toolStripMenuItemListRedo.Name = "toolStripMenuItemListRedo";
 			toolStripMenuItemListRedo.ShortcutKeys = Keys.Alt | Keys.R;
-			toolStripMenuItemListRedo.Size = new Size(180, 22);
+			toolStripMenuItemListRedo.Size = new Size(179, 22);
 			toolStripMenuItemListRedo.Text = "&Redo";
 			toolStripMenuItemListRedo.Click += ToolStripMenuItemListRedo_Click;
 			toolStripMenuItemListRedo.MouseEnter += SetStatusbar_Enter;
@@ -817,7 +816,7 @@
 			// 
 			toolStripSeparator3.AccessibleRole = AccessibleRole.Separator;
 			toolStripSeparator3.Name = "toolStripSeparator3";
-			toolStripSeparator3.Size = new Size(177, 6);
+			toolStripSeparator3.Size = new Size(176, 6);
 			toolStripSeparator3.MouseEnter += SetStatusbar_Enter;
 			toolStripSeparator3.MouseLeave += ClearStatusbar_Leave;
 			// 
@@ -829,7 +828,7 @@
 			toolStripMenuItemListCopy.Image = Properties.Resources.page_copy;
 			toolStripMenuItemListCopy.Name = "toolStripMenuItemListCopy";
 			toolStripMenuItemListCopy.ShortcutKeys = Keys.Alt | Keys.K;
-			toolStripMenuItemListCopy.Size = new Size(180, 22);
+			toolStripMenuItemListCopy.Size = new Size(179, 22);
 			toolStripMenuItemListCopy.Text = "&Kopieren";
 			toolStripMenuItemListCopy.ToolTipText = "Liste kopieren";
 			toolStripMenuItemListCopy.Click += ToolStripMenuItemListCopy_Click;
@@ -844,7 +843,7 @@
 			toolStripMenuItemListSave.Image = Properties.Resources.diskette;
 			toolStripMenuItemListSave.Name = "toolStripMenuItemListSave";
 			toolStripMenuItemListSave.ShortcutKeys = Keys.Alt | Keys.S;
-			toolStripMenuItemListSave.Size = new Size(180, 22);
+			toolStripMenuItemListSave.Size = new Size(179, 22);
 			toolStripMenuItemListSave.Text = "&Speichern";
 			toolStripMenuItemListSave.ToolTipText = "Liste speichern";
 			toolStripMenuItemListSave.Click += ToolStripMenuItemListSave_Click;
@@ -894,14 +893,6 @@
 			toolStripMenuItemSettingsDisableVisualStyle.Click += ToolStripMenuItemSettingsDisableVisualStyle_Click;
 			toolStripMenuItemSettingsDisableVisualStyle.MouseEnter += SetStatusbar_Enter;
 			toolStripMenuItemSettingsDisableVisualStyle.MouseLeave += ClearStatusbar_Leave;
-			// 
-			// backgroundWorker
-			// 
-			backgroundWorker.WorkerReportsProgress = true;
-			backgroundWorker.WorkerSupportsCancellation = true;
-			backgroundWorker.DoWork += BackgroundWorker_DoWork;
-			backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
-			backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
 			// 
 			// toolStripContainer
 			// 
@@ -1012,7 +1003,6 @@
 		private ToolStripStatusLabel toolStripStatusLabelLim;
 		private TextBox textBoxStringBeforeNumber;
 		private TextBox textBoxStringAfterNumber;
-		private System.ComponentModel.BackgroundWorker backgroundWorker;
 		private Button buttonRedo;
 		private ToolStripStatusLabel toolStripStatusLabelTimeSpan;
 		private StatusStrip statusStripInfo;
