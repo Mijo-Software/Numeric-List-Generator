@@ -16,30 +16,18 @@ namespace Numeric_List_Generator
 		{
 			get
 			{
-				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(attributeType: typeof(AssemblyTitleAttribute), inherit: false);
-				if (attributes.Length > 0)
-				{
-					AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-					if (!string.IsNullOrEmpty(value: titleAttribute.Title))
-					{
-						return titleAttribute.Title;
-					}
-				}
-				return Path.GetFileNameWithoutExtension(path: Assembly.GetExecutingAssembly().Location);
+				object[] attributes = Assembly.GetExecutingAssembly()
+					.GetCustomAttributes(attributeType: typeof(AssemblyTitleAttribute), inherit: false);
+				return attributes.Length > 0 && attributes[0] is AssemblyTitleAttribute titleAttribute
+					? !string.IsNullOrEmpty(value: titleAttribute.Title) ? titleAttribute.Title : Path.GetFileNameWithoutExtension(path: Assembly.GetExecutingAssembly().Location)
+					: Path.GetFileNameWithoutExtension(path: Assembly.GetExecutingAssembly().Location);
 			}
 		}
 
 		/// <summary>
 		/// Return the version of the assembly
 		/// </summary>
-		public static string AssemblyVersion
-		{
-			get
-			{
-				Version? version = Assembly.GetExecutingAssembly().GetName().Version;
-				return version?.ToString() ?? "Version not available";
-			}
-		}
+		public static string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? string.Empty;
 
 		/// <summary>
 		/// Return the description of the assembly

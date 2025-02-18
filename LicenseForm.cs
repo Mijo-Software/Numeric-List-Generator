@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using NLog;
 
 namespace Numeric_List_Generator
 {
@@ -16,6 +17,11 @@ namespace Numeric_List_Generator
 		private string GetDebuggerDisplay() => ToString();
 
 		/// <summary>
+		/// Logger instance for logging messages and exceptions.
+		/// </summary>
+		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+		/// <summary>
 		/// Sets a specific text to the status bar.
 		/// </summary>
 		/// <param name="text">The text with some information to display in the status bar.</param>
@@ -28,7 +34,13 @@ namespace Numeric_List_Generator
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LicenseForm"/> class.
 		/// </summary>
-		public LicenseForm() => InitializeComponent();
+		public LicenseForm()
+		{
+			InitializeComponent();
+			Logger.Info(message: "LicenseForm initialisiert.");
+			this.KeyDown += new KeyEventHandler(LicenseForm_KeyDown);
+			this.KeyPreview = true; // Ensures the form receives key events before the controls
+		}
 
 		/// <summary>
 		/// Load the form
@@ -57,5 +69,19 @@ namespace Numeric_List_Generator
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void ClearStatusbar_Leave(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+
+		/// <summary>
+		/// Handles the KeyDown event of the ExportDataSheetForm.
+		/// Closes the form when the Escape key is pressed.
+		/// </summary>
+		/// <param name="sender">The event source.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
+		private void LicenseForm_KeyDown(object? sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Escape)
+			{
+				this.Close();
+			}
+		}
 	}
 }
