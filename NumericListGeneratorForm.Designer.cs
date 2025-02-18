@@ -79,6 +79,7 @@
 			toolStripMenuItemSettingsStayOnTop = new ToolStripMenuItem();
 			toolStripMenuItemSettingsDisableVisualStyle = new ToolStripMenuItem();
 			toolStripContainer = new ToolStripContainer();
+			backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMinimum).BeginInit();
 			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMaximum).BeginInit();
 			statusStripStatistic.SuspendLayout();
@@ -923,6 +924,14 @@
 			// 
 			toolStripContainer.TopToolStripPanel.Controls.Add(menuStrip);
 			// 
+			// backgroundWorker
+			// 
+			backgroundWorker.WorkerReportsProgress = true;
+			backgroundWorker.WorkerSupportsCancellation = true;
+			backgroundWorker.DoWork += BackgroundWorker_DoWork;
+			backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
+			backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+			// 
 			// NumericListGeneratorForm
 			// 
 			AccessibleDescription = "Programmfenster";
@@ -1011,6 +1020,7 @@
 		private ToolStripMenuItem toolStripMenuItemSettingsDisableVisualStyle;
 		private ToolStripMenuItem toolStripMenuItemBatch;
 		private ToolStripSeparator toolStripSeparator4;
+		private System.ComponentModel.BackgroundWorker backgroundWorker;
 	}
 }
 

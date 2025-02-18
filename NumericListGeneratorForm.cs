@@ -166,10 +166,6 @@ namespace Numeric_List_Generator
 				Logger.Error(exception: ex, message: message);
 				_ = MessageBox.Show(text: message, caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
-			finally
-			{
-				EnableControls();
-			}
 		}
 
 		#endregion
@@ -228,7 +224,7 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-		private async void ButtonAddToList_Click(object sender, EventArgs e)
+		private void ButtonAddToList_Click(object sender, EventArgs e)
 		{
 			try
 			{
@@ -243,7 +239,7 @@ namespace Numeric_List_Generator
 				progressBar.Maximum = (int)numericUpDownNumberMaximum.Value;
 				progressBar.Value = 0;
 				progressBar.Step = 1;
-				await GenerateListAsync();
+				backgroundWorker.RunWorkerAsync();
 			}
 			catch (Exception ex)
 			{
@@ -545,6 +541,32 @@ namespace Numeric_List_Generator
 				this.Close();
 			}
 		}
+
+		#endregion
+
+		#region BackgroundWorker event handlers
+
+		/// <summary>
+		/// Performs the asynchronous generation of the list in the background.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
+		private async void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) => await GenerateListAsync();
+
+		/// <summary>
+		/// Called when the progress of the background work changes.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.ComponentModel.ProgressChangedEventArgs"/> instance containing the event data.</param>
+		private void BackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e) => progressBar.PerformStep();
+
+		/// <summary>
+		/// Called when the background work is completed.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.ComponentModel.RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
+		private void BackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) => EnableControls();
+
 
 		#endregion
 	}
