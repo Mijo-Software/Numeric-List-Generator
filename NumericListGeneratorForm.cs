@@ -39,6 +39,8 @@ namespace Numeric_List_Generator
 		public NumericListGeneratorForm()
 		{
 			InitializeComponent();
+			this.KeyDown += new KeyEventHandler(NumericListGeneratorForm_KeyDown);
+			this.KeyPreview = true; // Ensures the form receives key events before the controls
 			Logger.Info(message: "NumericListGeneratorForm initialisiert.");
 		}
 
@@ -130,7 +132,49 @@ namespace Numeric_List_Generator
 		/// </summary>
 		private void CheckStayOnTop() => TopMost = toolStripMenuItemSettingsStayOnTop.Checked;
 
+		/// <summary>
+		/// Generates the list asynchronously.
+		/// </summary>
+		private async Task GenerateListAsync()
+		{
+			try
+			{
+				StringBuilder sb = new();
+				for (int i = (int)numericUpDownNumberMinimum.Value; i <= (int)numericUpDownNumberMaximum.Value; i++)
+				{
+					if (sb.Length > 0)
+					{
+						_ = sb.AppendLine();
+					}
+					_ = checkBoxFillWithZeros.Checked
+						? sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}")
+						: sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
+					progressBar.Value = i;
+					endTime = DateTime.Now;
+					timeSpan = endTime - startTime;
+					backupListRedo = sb.ToString();
+					await Task.Delay(millisecondsDelay: 0);
+				}
+				textBoxList.Text += sb.ToString();
+				UpdateStatusBarStatistic();
+			}
+			catch (Exception ex)
+			{
+				// Log the exception (example: log to a file or logging framework)
+				string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
+				Debug.WriteLine(value: ex);
+				Logger.Error(exception: ex, message: message);
+				_ = MessageBox.Show(text: message, caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+			}
+			finally
+			{
+				EnableControls();
+			}
+		}
+
 		#endregion
+
+		#region Form event handlers
 
 		/// <summary>
 		/// Handles the Load event of the form.
@@ -146,6 +190,8 @@ namespace Numeric_List_Generator
 			toolStripMenuItemListRedo.Enabled = false;
 			UpdateStatusBarStatistic();
 		}
+
+		#endregion
 
 		#region Enter event handlers
 
@@ -175,6 +221,8 @@ namespace Numeric_List_Generator
 
 		#endregion
 
+		#region Click event handlers
+
 		/// <summary>
 		/// Handles the Click event of the Add To List button.
 		/// </summary>
@@ -200,9 +248,10 @@ namespace Numeric_List_Generator
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
+				string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
 				Debug.WriteLine(value: ex);
-				Logger.Error(exception: ex, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
-				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				Logger.Error(exception: ex, message: message);
+				_ = MessageBox.Show(text: $"{message} Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 				EnableControls();
 			}
 		}
@@ -240,19 +289,13 @@ namespace Numeric_List_Generator
 					_ = MessageBox.Show(text: "Die Liste wurde in die Textdatei kopiert.");
 				}
 			}
-			catch (IOException ioEx)
-			{
-				// Log the exception (example: log to a file or logging framework)
-				Debug.WriteLine(value: ioEx);
-				Logger.Error(exception: ioEx, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
-				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
-			}
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
+				string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
 				Debug.WriteLine(value: ex);
-				Logger.Error(exception: ex, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
-				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				Logger.Error(exception: ex, message: message);
+				_ = MessageBox.Show(text: $"{message} Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 		}
 
@@ -308,45 +351,6 @@ namespace Numeric_List_Generator
 			toolStripMenuItemListUndo.Enabled = true;
 			toolStripMenuItemListRedo.Enabled = false;
 			UpdateStatusBarStatistic();
-		}
-
-		/// <summary>
-		/// Generates the list asynchronously.
-		/// </summary>
-		private async Task GenerateListAsync()
-		{
-			try
-			{
-				StringBuilder sb = new();
-				for (int i = (int)numericUpDownNumberMinimum.Value; i <= (int)numericUpDownNumberMaximum.Value; i++)
-				{
-					if (sb.Length > 0)
-					{
-						_ = sb.AppendLine();
-					}
-					_ = checkBoxFillWithZeros.Checked
-						? sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}")
-						: sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
-					progressBar.Value = i;
-					endTime = DateTime.Now;
-					timeSpan = endTime - startTime;
-					backupListRedo = sb.ToString();
-					await Task.Delay(millisecondsDelay: 0);
-				}
-				textBoxList.Text += sb.ToString();
-				UpdateStatusBarStatistic();
-			}
-			catch (Exception ex)
-			{
-				// Log the exception (example: log to a file or logging framework)
-				Debug.WriteLine(value: ex);
-				Logger.Error(exception: ex, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
-				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
-			}
-			finally
-			{
-				EnableControls();
-			}
 		}
 
 		/// <summary>
@@ -523,5 +527,25 @@ namespace Numeric_List_Generator
 			_ = formBatch.ShowDialog();
 			Show();
 		}
+
+		#endregion
+
+		#region KeyDown event handler
+
+		/// <summary>
+		/// Handles the KeyDown event of the ExportDataSheetForm.
+		/// Closes the form when the Escape key is pressed.
+		/// </summary>
+		/// <param name="sender">The event source.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
+		private void NumericListGeneratorForm_KeyDown(object? sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Escape)
+			{
+				this.Close();
+			}
+		}
+
+		#endregion
 	}
 }
