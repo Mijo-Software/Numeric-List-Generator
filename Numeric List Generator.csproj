@@ -9,7 +9,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Numeric List Generator</Title>
     <Authors>Mijo Software</Authors>
-    <Version>1.5.2.9</Version>
+    <Version>1.6.0.9</Version>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Platforms>AnyCPU;ARM32;ARM64;x64;x86</Platforms>
     <StartupObject>Numeric_List_Generator.Program</StartupObject>

@@ -39,7 +39,7 @@ namespace Numeric_List_Generator
 		public NumericListGeneratorForm()
 		{
 			InitializeComponent();
-			Logger.Info(message: "NumericListGeneratorForm initialized.");
+			Logger.Info(message: "NumericListGeneratorForm initialisiert.");
 		}
 
 		#endregion
@@ -78,10 +78,6 @@ namespace Numeric_List_Generator
 			if (toolStripStatusLabelTimeSpan.ForeColor == SystemColors.ControlText)
 			{
 				toolStripStatusLabelTimeSpan.Text = $"Dauer: {timeSpan:hh\\:mm\\:ss\\.ff}";
-			}
-			if (toolStripStatusLabelLim.ForeColor == SystemColors.ControlText)
-			{
-				toolStripStatusLabelLim.Text = $"LIM: {(int)numericUpDownNumberMaximum.Value / timeSpan.TotalSeconds:N4} ips";
 			}
 		}
 
@@ -191,7 +187,7 @@ namespace Numeric_List_Generator
 				DisableControls();
 				if (!String.IsNullOrEmpty(value: textBoxList.Text))
 				{
-					textBoxList.Text = textBoxList.Text + Environment.NewLine;
+					textBoxList.Text += Environment.NewLine;
 				}
 				backupListUndo = textBoxList.Text;
 				startTime = DateTime.Now;
@@ -204,9 +200,9 @@ namespace Numeric_List_Generator
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
-				Logger.Error(exception: ex, message: "An unexpected error occurred while adding to the list.");
 				Debug.WriteLine(value: ex);
-				_ = MessageBox.Show(text: "An unexpected error occurred while adding to the list. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				Logger.Error(exception: ex, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
+				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 				EnableControls();
 			}
 		}
@@ -248,15 +244,15 @@ namespace Numeric_List_Generator
 			{
 				// Log the exception (example: log to a file or logging framework)
 				Debug.WriteLine(value: ioEx);
-				Logger.Error(exception: ioEx, message: "An error occurred while saving the file.");
-				_ = MessageBox.Show(text: "An error occurred while saving the file. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				Logger.Error(exception: ioEx, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
+				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
 				Debug.WriteLine(value: ex);
-				Logger.Error(exception: ex, message: "An unexpected error occurred.");
-				_ = MessageBox.Show(text: "An unexpected error occurred. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				Logger.Error(exception: ex, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
+				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 		}
 
@@ -334,18 +330,18 @@ namespace Numeric_List_Generator
 					progressBar.Value = i;
 					endTime = DateTime.Now;
 					timeSpan = endTime - startTime;
-					UpdateStatusBarStatistic();
 					backupListRedo = sb.ToString();
-					await Task.Delay(millisecondsDelay: 0); // Simulate async work
+					await Task.Delay(millisecondsDelay: 0);
 				}
 				textBoxList.Text += sb.ToString();
+				UpdateStatusBarStatistic();
 			}
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
 				Debug.WriteLine(value: ex);
-				Logger.Error(exception: ex, message: "An unexpected error occurred during list generation.");
-				_ = MessageBox.Show(text: "An unexpected error occurred during list generation. Please try again.", caption: "Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				Logger.Error(exception: ex, message: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.");
+				_ = MessageBox.Show(text: "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten. Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 			finally
 			{
@@ -404,24 +400,6 @@ namespace Numeric_List_Generator
 			else
 			{
 				toolStripStatusLabelTimeSpan.ForeColor = SystemColors.ControlText;
-			}
-		}
-
-		/// <summary>
-		/// Handles the Click event of the LIM status label.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-		private void ToolStripStatusLabelLim_Click(object sender, EventArgs e)
-		{
-			if (toolStripStatusLabelLim.ForeColor == SystemColors.ControlText)
-			{
-				toolStripStatusLabelLim.ForeColor = SystemColors.GrayText;
-				toolStripStatusLabelLim.Text = toolStripStatusLabelLim.Tag?.ToString() ?? string.Empty;
-			}
-			else
-			{
-				toolStripStatusLabelLim.ForeColor = SystemColors.ControlText;
 			}
 		}
 
