@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms.VisualStyles;
 using NLog;
@@ -17,19 +18,24 @@ namespace Numeric_List_Generator
 		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
 		/// <summary>
+		/// Indicates whether the cancellation of the list generation process is requested.
+		/// </summary>
+		private bool _isCancelling;
+
+		/// <summary>
 		/// Stores the duration of the list generation process.
 		/// </summary>
-		private TimeSpan timeSpan;
+		private TimeSpan _timeSpan;
 
 		/// <summary>
 		/// Stores the backup of the list for undo operation.
 		/// </summary>
-		private string backupListUndo = string.Empty, backupListRedo = string.Empty;
+		private string _backupListUndo = string.Empty, _backupListRedo = string.Empty;
 
 		/// <summary>
 		/// Stores the start time of the list generation process.
 		/// </summary>
-		private DateTime startTime, endTime;
+		private DateTime _startTime, _endTime;
 
 		#region Constructor
 
@@ -39,8 +45,8 @@ namespace Numeric_List_Generator
 		public NumericListGeneratorForm()
 		{
 			InitializeComponent();
-			this.KeyDown += new KeyEventHandler(NumericListGeneratorForm_KeyDown);
-			this.KeyPreview = true; // Ensures the form receives key events before the controls
+			KeyDown += NumericListGeneratorForm_KeyDown;
+			KeyPreview = true; // Ensures the form receives key events before the controls
 			Logger.Info(message: "NumericListGeneratorForm initialisiert.");
 		}
 
@@ -58,7 +64,7 @@ namespace Numeric_List_Generator
 		/// Set a specific text to the status bar
 		/// </summary>
 		/// <param name="text">text with some information</param>
-		private void SetStatusbarText(string text)
+		private void SetStatusBar(string text)
 		{
 			toolStripStatusLabelInformation.Enabled = !string.IsNullOrEmpty(value: text);
 			toolStripStatusLabelInformation.Text = text;
@@ -71,15 +77,15 @@ namespace Numeric_List_Generator
 		{
 			if (toolStripStatusLabelSize.ForeColor == SystemColors.ControlText)
 			{
-				toolStripStatusLabelSize.Text = $"Größe: {textBoxList.Text.Length} Bytes";
+				toolStripStatusLabelSize.Text = $@"Größe: {textBoxList.Text.Length} Bytes";
 			}
 			if (toolStripStatusLabelLines.ForeColor == SystemColors.ControlText)
 			{
-				toolStripStatusLabelLines.Text = $"Zeilen: {textBoxList.Lines.LongLength}";
+				toolStripStatusLabelLines.Text = $@"Zeilen: {textBoxList.Lines.LongLength}";
 			}
 			if (toolStripStatusLabelTimeSpan.ForeColor == SystemColors.ControlText)
 			{
-				toolStripStatusLabelTimeSpan.Text = $"Dauer: {timeSpan:hh\\:mm\\:ss\\.ff}";
+				toolStripStatusLabelTimeSpan.Text = $@"Dauer: {_timeSpan:hh\:mm\:ss\.ff}";
 			}
 		}
 
@@ -137,11 +143,16 @@ namespace Numeric_List_Generator
 		/// </summary>
 		private async Task GenerateListAsync()
 		{
+			buttonCancelProgress.Enabled = true;
 			try
 			{
 				StringBuilder sb = new();
 				for (int i = (int)numericUpDownNumberMinimum.Value; i <= (int)numericUpDownNumberMaximum.Value; i++)
 				{
+					if (_isCancelling)
+					{
+						break;
+					}
 					if (sb.Length > 0)
 					{
 						_ = sb.AppendLine();
@@ -150,9 +161,9 @@ namespace Numeric_List_Generator
 						? sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i.ToString().PadLeft(totalWidth: ((int)numericUpDownNumberMaximum.Value).ToString().Length, paddingChar: '0')}{textBoxStringAfterNumber.Text}")
 						: sb.Append(handler: $"{textBoxStringBeforeNumber.Text}{i}{textBoxStringAfterNumber.Text}");
 					progressBar.Value = i;
-					endTime = DateTime.Now;
-					timeSpan = endTime - startTime;
-					backupListRedo = sb.ToString();
+					_endTime = DateTime.Now;
+					_timeSpan = _endTime - _startTime;
+					_backupListRedo = sb.ToString();
 					await Task.Delay(millisecondsDelay: 0);
 				}
 				textBoxList.Text += sb.ToString();
@@ -161,11 +172,14 @@ namespace Numeric_List_Generator
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
-				string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
+				const string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
 				Debug.WriteLine(value: ex);
 				Logger.Error(exception: ex, message: message);
-				_ = MessageBox.Show(text: message, caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				_ = MessageBox.Show(text: message, caption: @"Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
+			buttonCancelProgress.Enabled = false;
+			_isCancelling = false;
+			progressBar.Value = 0;
 		}
 
 		#endregion
@@ -179,9 +193,10 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void NumericListGeneratorForm_Load(object sender, EventArgs e)
 		{
-			SetStatusbarText(text: string.Empty);
+			SetStatusBar(text: string.Empty);
 			buttonUndo.Enabled = false;
 			buttonRedo.Enabled = false;
+			buttonCancelProgress.Enabled = false;
 			toolStripMenuItemListUndo.Enabled = false;
 			toolStripMenuItemListRedo.Enabled = false;
 			UpdateStatusBarStatistic();
@@ -196,19 +211,19 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
-		private void SetStatusbar_Enter(object sender, EventArgs e)
+		private void SetStatusBar_Enter(object sender, EventArgs e)
 		{
-			if (sender is Control { AccessibleDescription: { } } control)
+			// Set the status bar text based on the sender's accessible description
+			switch (sender)
 			{
-				SetStatusbarText(text: control.AccessibleDescription);
-			}
-			else if (sender is ToolStripMenuItem { AccessibleDescription: { } } control2)
-			{
-				SetStatusbarText(text: control2.AccessibleDescription);
-			}
-			else if (sender is ToolStripStatusLabel { AccessibleDescription: { } } control3)
-			{
-				SetStatusbarText(text: control3.AccessibleDescription);
+				// If the sender is a control with an accessible description, set the status bar text
+				// If the sender is a ToolStripItem with an accessible description, set the status bar text
+				case Control { AccessibleDescription: not null } control:
+					SetStatusBar(text: control.AccessibleDescription);
+					break;
+				case ToolStripItem { AccessibleDescription: not null } item:
+					SetStatusBar(text: item.AccessibleDescription);
+					break;
 			}
 		}
 
@@ -221,7 +236,7 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
-		private void ClearStatusbar_Leave(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+		private void ClearStatusBar_Leave(object sender, EventArgs e) => SetStatusBar(text: string.Empty);
 
 		#endregion
 
@@ -237,12 +252,12 @@ namespace Numeric_List_Generator
 			try
 			{
 				DisableControls();
-				if (!String.IsNullOrEmpty(value: textBoxList.Text))
+				if (!string.IsNullOrEmpty(value: textBoxList.Text))
 				{
 					textBoxList.Text += Environment.NewLine;
 				}
-				backupListUndo = textBoxList.Text;
-				startTime = DateTime.Now;
+				_backupListUndo = textBoxList.Text;
+				_startTime = DateTime.Now;
 				progressBar.Minimum = 0;
 				progressBar.Maximum = (int)numericUpDownNumberMaximum.Value;
 				progressBar.Value = 0;
@@ -252,10 +267,10 @@ namespace Numeric_List_Generator
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
-				string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
+				const string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
 				Debug.WriteLine(value: ex);
 				Logger.Error(exception: ex, message: message);
-				_ = MessageBox.Show(text: $"{message} Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				_ = MessageBox.Show(text: $@"{message} Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 				EnableControls();
 			}
 		}
@@ -269,7 +284,7 @@ namespace Numeric_List_Generator
 		{
 			textBoxList.SelectAll();
 			textBoxList.Copy();
-			_ = MessageBox.Show(text: "Die Liste wurde in die Zwischenablage kopiert.");
+			_ = MessageBox.Show(text: @"Die Liste wurde in die Zwischenablage kopiert.");
 		}
 
 		/// <summary>
@@ -286,20 +301,22 @@ namespace Numeric_List_Generator
 					FileName = "liste.txt",
 					Filter = "Textdatei | *.txt"
 				};
-				if (save.ShowDialog() == DialogResult.OK)
+				if (save.ShowDialog() != DialogResult.OK)
 				{
-					using StreamWriter writer = new(stream: save.OpenFile());
-					writer.WriteLine(value: textBoxList.Text);
-					_ = MessageBox.Show(text: "Die Liste wurde in die Textdatei kopiert.");
+					return;
 				}
+
+				using StreamWriter writer = new(stream: save.OpenFile());
+				writer.WriteLine(value: textBoxList.Text);
+				_ = MessageBox.Show(text: @"Die Liste wurde in die Textdatei kopiert.");
 			}
 			catch (Exception ex)
 			{
 				// Log the exception (example: log to a file or logging framework)
-				string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
+				const string message = "Ein unerwarteter Fehler ist beim Hinzufügen zur Liste aufgetreten.";
 				Debug.WriteLine(value: ex);
 				Logger.Error(exception: ex, message: message);
-				_ = MessageBox.Show(text: $"{message} Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
+				_ = MessageBox.Show(text: $@"{message} Bitte versuchen Sie es erneut.", caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 		}
 
@@ -311,7 +328,7 @@ namespace Numeric_List_Generator
 		private void ButtonDeleteList_Click(object sender, EventArgs e)
 		{
 			textBoxList.Clear();
-			timeSpan = TimeSpan.Zero;
+			_timeSpan = TimeSpan.Zero;
 			UpdateStatusBarStatistic();
 		}
 
@@ -334,7 +351,7 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonUndo_Click(object sender, EventArgs e)
 		{
-			textBoxList.Text = backupListUndo;
+			textBoxList.Text = _backupListUndo;
 			buttonUndo.Enabled = false;
 			buttonRedo.Enabled = true;
 			toolStripMenuItemListUndo.Enabled = false;
@@ -349,7 +366,7 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonRedo_Click(object sender, EventArgs e)
 		{
-			textBoxList.Text = backupListRedo;
+			textBoxList.Text = _backupListRedo;
 			buttonUndo.Enabled = true;
 			buttonRedo.Enabled = false;
 			toolStripMenuItemListUndo.Enabled = true;
@@ -544,9 +561,11 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void NumericListGeneratorForm_KeyDown(object? sender, KeyEventArgs e)
 		{
+			// Check if the Escape key was pressed
+			// If so, close the form
 			if (e.KeyCode == Keys.Escape)
 			{
-				this.Close();
+				Close();
 			}
 		}
 
@@ -559,23 +578,31 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
-		private async void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) => await GenerateListAsync();
+		private async void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e) => await GenerateListAsync();
 
 		/// <summary>
 		/// Called when the progress of the background work changes.
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.ComponentModel.ProgressChangedEventArgs"/> instance containing the event data.</param>
-		private void BackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e) => progressBar.PerformStep();
+		private void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => progressBar.PerformStep();
 
 		/// <summary>
 		/// Called when the background work is completed.
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.ComponentModel.RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
-		private void BackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) => EnableControls();
+		private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => EnableControls();
 
 
 		#endregion
+
+		/// <summary>
+		/// Handles the Click event of the Cancel Progress button.
+		/// Sets the isCancelling flag to true to indicate that the list generation process should be cancelled.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void ButtonCancelProgress_Click(object sender, EventArgs e) => _isCancelling = true;
 	}
 }

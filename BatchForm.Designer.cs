@@ -1,11 +1,13 @@
-﻿namespace Numeric_List_Generator
+﻿using System.ComponentModel;
+
+namespace Numeric_List_Generator
 {
 	partial class BatchForm
 	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+		private IContainer components = null;
 
 		/// <summary>
 		/// Clean up any resources being used.
@@ -90,10 +92,10 @@
 			toolTip.SetToolTip(buttonRedo, "Letzte Änderung verwerfen");
 			buttonRedo.UseVisualStyleBackColor = true;
 			buttonRedo.Click += ButtonRedo_Click;
-			buttonRedo.Enter += SetStatusbar_Enter;
-			buttonRedo.Leave += ClearStatusbar_Leave;
-			buttonRedo.MouseEnter += SetStatusbar_Enter;
-			buttonRedo.MouseLeave += ClearStatusbar_Leave;
+			buttonRedo.Enter += SetStatusBar_Enter;
+			buttonRedo.Leave += ClearStatusBar_Leave;
+			buttonRedo.MouseEnter += SetStatusBar_Enter;
+			buttonRedo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// textBoxStringAfterNumber
 			// 
@@ -110,10 +112,10 @@
 			textBoxStringAfterNumber.TabIndex = 8;
 			textBoxStringAfterNumber.Text = ".jpg";
 			toolTip.SetToolTip(textBoxStringAfterNumber, "Eingabe des Textes nach der Zahlenangabe");
-			textBoxStringAfterNumber.Enter += SetStatusbar_Enter;
-			textBoxStringAfterNumber.Leave += ClearStatusbar_Leave;
-			textBoxStringAfterNumber.MouseEnter += SetStatusbar_Enter;
-			textBoxStringAfterNumber.MouseLeave += ClearStatusbar_Leave;
+			textBoxStringAfterNumber.Enter += SetStatusBar_Enter;
+			textBoxStringAfterNumber.Leave += ClearStatusBar_Leave;
+			textBoxStringAfterNumber.MouseEnter += SetStatusBar_Enter;
+			textBoxStringAfterNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// textBoxStringBeforeNumber
 			// 
@@ -130,10 +132,10 @@
 			textBoxStringBeforeNumber.TabIndex = 1;
 			textBoxStringBeforeNumber.Text = "http://www.domain.com/files/picture";
 			toolTip.SetToolTip(textBoxStringBeforeNumber, "Eingabe des Textes vor der Zahlenangabe");
-			textBoxStringBeforeNumber.Enter += SetStatusbar_Enter;
-			textBoxStringBeforeNumber.Leave += ClearStatusbar_Leave;
-			textBoxStringBeforeNumber.MouseEnter += SetStatusbar_Enter;
-			textBoxStringBeforeNumber.MouseLeave += ClearStatusbar_Leave;
+			textBoxStringBeforeNumber.Enter += SetStatusBar_Enter;
+			textBoxStringBeforeNumber.Leave += ClearStatusBar_Leave;
+			textBoxStringBeforeNumber.MouseEnter += SetStatusBar_Enter;
+			textBoxStringBeforeNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonUndo
 			// 
@@ -153,10 +155,10 @@
 			toolTip.SetToolTip(buttonUndo, "Änderung rückgängigmachen");
 			buttonUndo.UseVisualStyleBackColor = true;
 			buttonUndo.Click += ButtonUndo_Click;
-			buttonUndo.Enter += SetStatusbar_Enter;
-			buttonUndo.Leave += ClearStatusbar_Leave;
-			buttonUndo.MouseEnter += SetStatusbar_Enter;
-			buttonUndo.MouseLeave += ClearStatusbar_Leave;
+			buttonUndo.Enter += SetStatusBar_Enter;
+			buttonUndo.Leave += ClearStatusBar_Leave;
+			buttonUndo.MouseEnter += SetStatusBar_Enter;
+			buttonUndo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonCreateList
 			// 
@@ -176,10 +178,10 @@
 			toolTip.SetToolTip(buttonCreateList, "Liste neu erstellen");
 			buttonCreateList.UseVisualStyleBackColor = true;
 			buttonCreateList.Click += ButtonCreateList_Click;
-			buttonCreateList.Enter += SetStatusbar_Enter;
-			buttonCreateList.Leave += ClearStatusbar_Leave;
-			buttonCreateList.MouseEnter += SetStatusbar_Enter;
-			buttonCreateList.MouseLeave += ClearStatusbar_Leave;
+			buttonCreateList.Enter += SetStatusBar_Enter;
+			buttonCreateList.Leave += ClearStatusBar_Leave;
+			buttonCreateList.MouseEnter += SetStatusBar_Enter;
+			buttonCreateList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// progressBar
 			// 
@@ -193,8 +195,8 @@
 			progressBar.Style = ProgressBarStyle.Continuous;
 			progressBar.TabIndex = 18;
 			toolTip.SetToolTip(progressBar, "Zeigt den laufenden Verarbeitungsstatus an");
-			progressBar.MouseEnter += SetStatusbar_Enter;
-			progressBar.MouseLeave += ClearStatusbar_Leave;
+			progressBar.MouseEnter += SetStatusBar_Enter;
+			progressBar.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelProgess
 			// 
@@ -210,10 +212,10 @@
 			labelProgess.TabIndex = 17;
 			labelProgess.Text = "Verarbeitun&g:";
 			toolTip.SetToolTip(labelProgess, "Verarbeitung");
-			labelProgess.Enter += SetStatusbar_Enter;
-			labelProgess.Leave += ClearStatusbar_Leave;
-			labelProgess.MouseEnter += SetStatusbar_Enter;
-			labelProgess.MouseLeave += ClearStatusbar_Leave;
+			labelProgess.Enter += SetStatusBar_Enter;
+			labelProgess.Leave += ClearStatusBar_Leave;
+			labelProgess.MouseEnter += SetStatusBar_Enter;
+			labelProgess.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonDeleteList
 			// 
@@ -233,10 +235,10 @@
 			toolTip.SetToolTip(buttonDeleteList, "Liste löschen");
 			buttonDeleteList.UseVisualStyleBackColor = true;
 			buttonDeleteList.Click += ButtonDeleteList_Click;
-			buttonDeleteList.Enter += SetStatusbar_Enter;
-			buttonDeleteList.Leave += ClearStatusbar_Leave;
-			buttonDeleteList.MouseEnter += SetStatusbar_Enter;
-			buttonDeleteList.MouseLeave += ClearStatusbar_Leave;
+			buttonDeleteList.Enter += SetStatusBar_Enter;
+			buttonDeleteList.Leave += ClearStatusBar_Leave;
+			buttonDeleteList.MouseEnter += SetStatusBar_Enter;
+			buttonDeleteList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonSaveList
 			// 
@@ -256,10 +258,10 @@
 			toolTip.SetToolTip(buttonSaveList, "Liste abspeichern");
 			buttonSaveList.UseVisualStyleBackColor = true;
 			buttonSaveList.Click += ButtonSaveList_Click;
-			buttonSaveList.Enter += SetStatusbar_Enter;
-			buttonSaveList.Leave += ClearStatusbar_Leave;
-			buttonSaveList.MouseEnter += SetStatusbar_Enter;
-			buttonSaveList.MouseLeave += ClearStatusbar_Leave;
+			buttonSaveList.Enter += SetStatusBar_Enter;
+			buttonSaveList.Leave += ClearStatusBar_Leave;
+			buttonSaveList.MouseEnter += SetStatusBar_Enter;
+			buttonSaveList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonCopyList
 			// 
@@ -279,10 +281,10 @@
 			toolTip.SetToolTip(buttonCopyList, "Liste kopieren");
 			buttonCopyList.UseVisualStyleBackColor = true;
 			buttonCopyList.Click += ButtonCopyList_Click;
-			buttonCopyList.Enter += SetStatusbar_Enter;
-			buttonCopyList.Leave += ClearStatusbar_Leave;
-			buttonCopyList.MouseEnter += SetStatusbar_Enter;
-			buttonCopyList.MouseLeave += ClearStatusbar_Leave;
+			buttonCopyList.Enter += SetStatusBar_Enter;
+			buttonCopyList.Leave += ClearStatusBar_Leave;
+			buttonCopyList.MouseEnter += SetStatusBar_Enter;
+			buttonCopyList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// checkBoxFillWithZeros
 			// 
@@ -298,10 +300,10 @@
 			checkBoxFillWithZeros.Text = "&mit Nullen auffüllen";
 			toolTip.SetToolTip(checkBoxFillWithZeros, "Markieren, wenn die Einträge mit voranführenden Nullen aufgefüllt werden sollen");
 			checkBoxFillWithZeros.UseVisualStyleBackColor = true;
-			checkBoxFillWithZeros.Enter += SetStatusbar_Enter;
-			checkBoxFillWithZeros.Leave += ClearStatusbar_Leave;
-			checkBoxFillWithZeros.MouseEnter += SetStatusbar_Enter;
-			checkBoxFillWithZeros.MouseLeave += ClearStatusbar_Leave;
+			checkBoxFillWithZeros.Enter += SetStatusBar_Enter;
+			checkBoxFillWithZeros.Leave += ClearStatusBar_Leave;
+			checkBoxFillWithZeros.MouseEnter += SetStatusBar_Enter;
+			checkBoxFillWithZeros.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// numericUpDownNumberMaximum
 			// 
@@ -316,8 +318,8 @@
 			numericUpDownNumberMaximum.TabIndex = 5;
 			toolTip.SetToolTip(numericUpDownNumberMaximum, "Maximun der Zahl, mit der die Einträge erstellt werden sollen");
 			numericUpDownNumberMaximum.Value = new decimal(new int[] { 10, 0, 0, 0 });
-			numericUpDownNumberMaximum.Enter += SetStatusbar_Enter;
-			numericUpDownNumberMaximum.Leave += ClearStatusbar_Leave;
+			numericUpDownNumberMaximum.Enter += SetStatusBar_Enter;
+			numericUpDownNumberMaximum.Leave += ClearStatusBar_Leave;
 			// 
 			// labelNumberMax
 			// 
@@ -333,10 +335,10 @@
 			labelNumberMax.TabIndex = 4;
 			labelNumberMax.Text = "b&is";
 			toolTip.SetToolTip(labelNumberMax, "Zahlen Maximum");
-			labelNumberMax.Enter += SetStatusbar_Enter;
-			labelNumberMax.Leave += ClearStatusbar_Leave;
-			labelNumberMax.MouseEnter += SetStatusbar_Enter;
-			labelNumberMax.MouseLeave += ClearStatusbar_Leave;
+			labelNumberMax.Enter += SetStatusBar_Enter;
+			labelNumberMax.Leave += ClearStatusBar_Leave;
+			labelNumberMax.MouseEnter += SetStatusBar_Enter;
+			labelNumberMax.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// numericUpDownNumberMinimum
 			// 
@@ -351,8 +353,8 @@
 			numericUpDownNumberMinimum.TabIndex = 3;
 			toolTip.SetToolTip(numericUpDownNumberMinimum, "Minimun der Zahl, mit der die Einträge erstellt werden sollen");
 			numericUpDownNumberMinimum.Value = new decimal(new int[] { 1, 0, 0, 0 });
-			numericUpDownNumberMinimum.Enter += SetStatusbar_Enter;
-			numericUpDownNumberMinimum.Leave += ClearStatusbar_Leave;
+			numericUpDownNumberMinimum.Enter += SetStatusBar_Enter;
+			numericUpDownNumberMinimum.Leave += ClearStatusBar_Leave;
 			// 
 			// labelNumberMin
 			// 
@@ -368,10 +370,10 @@
 			labelNumberMin.TabIndex = 2;
 			labelNumberMin.Text = "Zahlen v&on";
 			toolTip.SetToolTip(labelNumberMin, "Zahlen Minimum");
-			labelNumberMin.Enter += SetStatusbar_Enter;
-			labelNumberMin.Leave += ClearStatusbar_Leave;
-			labelNumberMin.MouseEnter += SetStatusbar_Enter;
-			labelNumberMin.MouseLeave += ClearStatusbar_Leave;
+			labelNumberMin.Enter += SetStatusBar_Enter;
+			labelNumberMin.Leave += ClearStatusBar_Leave;
+			labelNumberMin.MouseEnter += SetStatusBar_Enter;
+			labelNumberMin.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelStringAfterNumber
 			// 
@@ -387,10 +389,10 @@
 			labelStringAfterNumber.TabIndex = 7;
 			labelStringAfterNumber.Text = "Zeichenkette &nach der Zahl:";
 			toolTip.SetToolTip(labelStringAfterNumber, "Zeichenkette nach der Zahl");
-			labelStringAfterNumber.Enter += SetStatusbar_Enter;
-			labelStringAfterNumber.Leave += ClearStatusbar_Leave;
-			labelStringAfterNumber.MouseEnter += SetStatusbar_Enter;
-			labelStringAfterNumber.MouseLeave += ClearStatusbar_Leave;
+			labelStringAfterNumber.Enter += SetStatusBar_Enter;
+			labelStringAfterNumber.Leave += ClearStatusBar_Leave;
+			labelStringAfterNumber.MouseEnter += SetStatusBar_Enter;
+			labelStringAfterNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelStringBeforeNumber
 			// 
@@ -406,10 +408,10 @@
 			labelStringBeforeNumber.TabIndex = 0;
 			labelStringBeforeNumber.Text = "Zeichenkette &vor der Zahl:";
 			toolTip.SetToolTip(labelStringBeforeNumber, "Zeichenkette vor der Zahl");
-			labelStringBeforeNumber.Enter += SetStatusbar_Enter;
-			labelStringBeforeNumber.Leave += ClearStatusbar_Leave;
-			labelStringBeforeNumber.MouseEnter += SetStatusbar_Enter;
-			labelStringBeforeNumber.MouseLeave += ClearStatusbar_Leave;
+			labelStringBeforeNumber.Enter += SetStatusBar_Enter;
+			labelStringBeforeNumber.Leave += ClearStatusBar_Leave;
+			labelStringBeforeNumber.MouseEnter += SetStatusBar_Enter;
+			labelStringBeforeNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// listView
 			// 
@@ -429,10 +431,10 @@
 			toolTip.SetToolTip(listView, "Liste der zu erstellten Einträge");
 			listView.UseCompatibleStateImageBehavior = false;
 			listView.View = View.Details;
-			listView.Enter += SetStatusbar_Enter;
-			listView.Leave += ClearStatusbar_Leave;
-			listView.MouseEnter += SetStatusbar_Enter;
-			listView.MouseLeave += ClearStatusbar_Leave;
+			listView.Enter += SetStatusBar_Enter;
+			listView.Leave += ClearStatusBar_Leave;
+			listView.MouseEnter += SetStatusBar_Enter;
+			listView.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// columnHeaderStringBefore
 			// 
@@ -469,10 +471,10 @@
 			statusStripInfo.TabStop = true;
 			statusStripInfo.Text = "statusStripInfo";
 			toolTip.SetToolTip(statusStripInfo, "Statusbar für Informationstext");
-			statusStripInfo.Enter += SetStatusbar_Enter;
-			statusStripInfo.Leave += ClearStatusbar_Leave;
-			statusStripInfo.MouseEnter += SetStatusbar_Enter;
-			statusStripInfo.MouseLeave += ClearStatusbar_Leave;
+			statusStripInfo.Enter += SetStatusBar_Enter;
+			statusStripInfo.Leave += ClearStatusBar_Leave;
+			statusStripInfo.MouseEnter += SetStatusBar_Enter;
+			statusStripInfo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelInformation
 			// 
@@ -483,8 +485,8 @@
 			toolStripStatusLabelInformation.Name = "toolStripStatusLabelInformation";
 			toolStripStatusLabelInformation.Size = new Size(28, 17);
 			toolStripStatusLabelInformation.Text = "info";
-			toolStripStatusLabelInformation.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelInformation.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelInformation.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelInformation.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// statusStripStatistic
 			// 
@@ -503,10 +505,10 @@
 			statusStripStatistic.TabStop = true;
 			statusStripStatistic.Text = "statusStripStatistic";
 			toolTip.SetToolTip(statusStripStatistic, "Statusbar für statistische Angaben");
-			statusStripStatistic.Enter += SetStatusbar_Enter;
-			statusStripStatistic.Leave += ClearStatusbar_Leave;
-			statusStripStatistic.MouseEnter += SetStatusbar_Enter;
-			statusStripStatistic.MouseLeave += ClearStatusbar_Leave;
+			statusStripStatistic.Enter += SetStatusBar_Enter;
+			statusStripStatistic.Leave += ClearStatusBar_Leave;
+			statusStripStatistic.MouseEnter += SetStatusBar_Enter;
+			statusStripStatistic.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelSize
 			// 
@@ -519,8 +521,8 @@
 			toolStripStatusLabelSize.Size = new Size(43, 19);
 			toolStripStatusLabelSize.Tag = "Größe";
 			toolStripStatusLabelSize.Text = "Größe";
-			toolStripStatusLabelSize.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelSize.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelSize.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelSize.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelLines
 			// 
@@ -533,8 +535,8 @@
 			toolStripStatusLabelLines.Size = new Size(43, 19);
 			toolStripStatusLabelLines.Tag = "Zeilen";
 			toolStripStatusLabelLines.Text = "Zeilen";
-			toolStripStatusLabelLines.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelLines.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelLines.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelLines.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelTimeSpan
 			// 
@@ -548,8 +550,8 @@
 			toolStripStatusLabelTimeSpan.Tag = "Dauer";
 			toolStripStatusLabelTimeSpan.Text = "Dauer";
 			toolStripStatusLabelTimeSpan.ToolTipText = "Dauer";
-			toolStripStatusLabelTimeSpan.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelTimeSpan.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelTimeSpan.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelTimeSpan.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelLim
 			// 
@@ -563,8 +565,8 @@
 			toolStripStatusLabelLim.Spring = true;
 			toolStripStatusLabelLim.Tag = "LIM";
 			toolStripStatusLabelLim.Text = "LIM";
-			toolStripStatusLabelLim.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelLim.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelLim.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelLim.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripSplitButtonStyle
 			// 
@@ -578,8 +580,8 @@
 			toolStripSplitButtonStyle.Name = "toolStripSplitButtonStyle";
 			toolStripSplitButtonStyle.Size = new Size(32, 22);
 			toolStripSplitButtonStyle.Text = "Visueller Stil";
-			toolStripSplitButtonStyle.MouseEnter += SetStatusbar_Enter;
-			toolStripSplitButtonStyle.MouseLeave += ClearStatusbar_Leave;
+			toolStripSplitButtonStyle.MouseEnter += SetStatusBar_Enter;
+			toolStripSplitButtonStyle.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemActivateVisualStyle
 			// 
@@ -592,8 +594,8 @@
 			toolStripMenuItemActivateVisualStyle.Size = new Size(204, 22);
 			toolStripMenuItemActivateVisualStyle.Text = "Visueller Stil &aktivieren";
 			toolStripMenuItemActivateVisualStyle.ToolTipText = "Visueller Stil aktivieren";
-			toolStripMenuItemActivateVisualStyle.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemActivateVisualStyle.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemActivateVisualStyle.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemActivateVisualStyle.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemDeactivateVisualStyle
 			// 
@@ -606,8 +608,8 @@
 			toolStripMenuItemDeactivateVisualStyle.Size = new Size(204, 22);
 			toolStripMenuItemDeactivateVisualStyle.Text = "Visueller Stil &deaktivieren";
 			toolStripMenuItemDeactivateVisualStyle.ToolTipText = "Visueller Stil deaktivieren";
-			toolStripMenuItemDeactivateVisualStyle.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemDeactivateVisualStyle.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemDeactivateVisualStyle.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemDeactivateVisualStyle.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonAddToList
 			// 
@@ -627,10 +629,10 @@
 			toolTip.SetToolTip(buttonAddToList, "Liste anfügen");
 			buttonAddToList.UseVisualStyleBackColor = true;
 			buttonAddToList.Click += ButtonAddToList_Click;
-			buttonAddToList.Enter += SetStatusbar_Enter;
-			buttonAddToList.Leave += ClearStatusbar_Leave;
-			buttonAddToList.MouseEnter += SetStatusbar_Enter;
-			buttonAddToList.MouseLeave += ClearStatusbar_Leave;
+			buttonAddToList.Enter += SetStatusBar_Enter;
+			buttonAddToList.Leave += ClearStatusBar_Leave;
+			buttonAddToList.MouseEnter += SetStatusBar_Enter;
+			buttonAddToList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// backgroundWorker
 			// 
@@ -716,7 +718,7 @@
 		private ToolStripStatusLabel toolStripStatusLabelTimeSpan;
 		private ToolStripStatusLabel toolStripStatusLabelLim;
 		private Button buttonAddToList;
-		private System.ComponentModel.BackgroundWorker backgroundWorker;
+		private BackgroundWorker backgroundWorker;
 		private ToolTip toolTip;
 		private ToolStripSplitButton toolStripSplitButtonStyle;
 		private ToolStripMenuItem toolStripMenuItemActivateVisualStyle;

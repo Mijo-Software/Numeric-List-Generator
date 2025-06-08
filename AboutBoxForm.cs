@@ -8,7 +8,7 @@ namespace Numeric_List_Generator
 	/// </summary>
 	[DebuggerDisplay(value: $"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 
-	internal partial class AboutBoxForm : Form
+	internal sealed partial class AboutBoxForm : Form
 	{
 		/// <summary>
 		/// Logger instance for logging messages and exceptions.
@@ -25,7 +25,7 @@ namespace Numeric_List_Generator
 		/// Sets a specific text to the status bar.
 		/// </summary>
 		/// <param name="text">The text with some information to display in the status bar.</param>
-		private void SetStatusbarText(string text)
+		private void SetStatusBarText(string text)
 		{
 			labelInformation.Enabled = !string.IsNullOrWhiteSpace(value: text);
 			labelInformation.Text = text;
@@ -39,14 +39,14 @@ namespace Numeric_List_Generator
 		{
 			InitializeComponent();
 			Logger.Info(message: "AboutBoxForm initialisiert.");
-			Text = $"Info über {AssemblyInfo.AssemblyTitle}";
+			Text = $@"Info über {AssemblyInfo.AssemblyTitle}";
 			labelProductName.Text = AssemblyInfo.AssemblyProduct;
-			labelVersion.Text = $"Version {AssemblyInfo.AssemblyVersion}";
+			labelVersion.Text = $@"Version {AssemblyInfo.AssemblyVersion}";
 			labelCopyright.Text = AssemblyInfo.AssemblyCopyright;
 			linkLabelCompanyName.Text = AssemblyInfo.AssemblyCompany;
 			textBoxDescription.Text = AssemblyInfo.AssemblyDescription;
-			this.KeyDown += new KeyEventHandler(AboutBoxForm_KeyDown);
-			this.KeyPreview = true; // Ensures the form receives key events before the controls
+			KeyDown += AboutBoxForm_KeyDown;
+			KeyPreview = true; // Ensures the form receives key events before the controls
 		}
 
 		/// <summary>
@@ -55,26 +55,26 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
-		private void AboutBoxForm_Load(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+		private void AboutBoxForm_Load(object sender, EventArgs e) => SetStatusBarText(text: string.Empty);
 
 		/// <summary>
 		/// Called when the mouse pointer moves over a control.
 		/// </summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
-		private void SetStatusbar_Enter(object sender, EventArgs e)
+		private void SetStatusBar_Enter(object sender, EventArgs e)
 		{
-			if (sender is Control { AccessibleDescription: { } } control)
+			// Set the status bar text based on the sender's accessible description
+			switch (sender)
 			{
-				SetStatusbarText(text: control.AccessibleDescription);
-			}
-			else if (sender is ToolStripMenuItem { AccessibleDescription: { } } control2)
-			{
-				SetStatusbarText(text: control2.AccessibleDescription);
-			}
-			else if (sender is ToolStripStatusLabel { AccessibleDescription: { } } control3)
-			{
-				SetStatusbarText(text: control3.AccessibleDescription);
+				// If the sender is a control with an accessible description, set the status bar text
+				// If the sender is a ToolStripItem with an accessible description, set the status bar text
+				case Control { AccessibleDescription: not null } control:
+					SetStatusBarText(text: control.AccessibleDescription);
+					break;
+				case ToolStripItem { AccessibleDescription: not null } item:
+					SetStatusBarText(text: item.AccessibleDescription);
+					break;
 			}
 		}
 
@@ -83,27 +83,36 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
-		private void ClearStatusbar_Leave(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+		private void ClearStatusBar_Leave(object sender, EventArgs e) => SetStatusBarText(text: string.Empty);
 
 		private void LabelCompanyName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			if (linkLabelCompanyName.Tag != null)
+			// Handle the link click event for the company name label
+			if (linkLabelCompanyName.Tag == null)
 			{
-				string? url = linkLabelCompanyName.Tag.ToString();
-				if (!string.IsNullOrWhiteSpace(value: url))
-				{
-					try
-					{
-						using Process _ = Process.Start(fileName: url);
-					}
-					catch (Exception ex)
-					{
-						string message = $"Fehler beim Öffnen der URL: {ex.Message}.";
-						Debug.WriteLine(value: ex);
-						Logger.Error(exception: ex, message: message);
-						_ = MessageBox.Show(text: message, caption: "Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
-					}
-				}
+				return;
+			}
+
+			// Attempt to open the URL specified in the link label's Tag property
+			string? url = linkLabelCompanyName.Tag.ToString();
+			if (string.IsNullOrWhiteSpace(value: url))
+			{
+				return;
+			}
+
+			// Check if the URL starts with "http://" or "https://", if not, prepend "http://"
+			try
+			{
+				using Process _ = Process.Start(fileName: url);
+			}
+			// Catch any exceptions that occur when trying to open the URL
+			catch (Exception ex)
+			{
+				// Log the error and show a message box to the user
+				string message = $"Fehler beim Öffnen der URL: {ex.Message}.";
+				Debug.WriteLine(value: ex);
+				Logger.Error(exception: ex, message: message);
+				_ = MessageBox.Show(text: message, caption: @"Fehler", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
 			}
 		}
 
@@ -115,9 +124,11 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void AboutBoxForm_KeyDown(object? sender, KeyEventArgs e)
 		{
+			// Check if the Escape key was pressed
+			// If so, close the form
 			if (e.KeyCode == Keys.Escape)
 			{
-				this.Close();
+				Close();
 			}
 		}
 	}

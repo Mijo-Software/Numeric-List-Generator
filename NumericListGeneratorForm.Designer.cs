@@ -1,11 +1,14 @@
-﻿namespace Numeric_List_Generator
+﻿using System.ComponentModel;
+using Numeric_List_Generator.Properties;
+
+namespace Numeric_List_Generator
 {
 	partial class NumericListGeneratorForm
 	{
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+		private IContainer components = null;
 
 		/// <summary>
 		/// Verwendete Ressourcen bereinigen.
@@ -28,8 +31,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NumericListGeneratorForm));
+			components = new Container();
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(NumericListGeneratorForm));
 			labelStringBeforeNumber = new Label();
 			labelStringAfterNumber = new Label();
 			labelNumberMin = new Label();
@@ -78,10 +81,11 @@
 			toolStripMenuItemSettings = new ToolStripMenuItem();
 			toolStripMenuItemSettingsStayOnTop = new ToolStripMenuItem();
 			toolStripMenuItemSettingsDisableVisualStyle = new ToolStripMenuItem();
+			buttonCancelProgress = new Button();
 			toolStripContainer = new ToolStripContainer();
-			backgroundWorker = new System.ComponentModel.BackgroundWorker();
-			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMinimum).BeginInit();
-			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMaximum).BeginInit();
+			backgroundWorker = new BackgroundWorker();
+			((ISupportInitialize)numericUpDownNumberMinimum).BeginInit();
+			((ISupportInitialize)numericUpDownNumberMaximum).BeginInit();
 			statusStripStatistic.SuspendLayout();
 			statusStripInfo.SuspendLayout();
 			menuStrip.SuspendLayout();
@@ -105,10 +109,10 @@
 			labelStringBeforeNumber.TabIndex = 0;
 			labelStringBeforeNumber.Text = "Zeichenkette &vor der Zahl:";
 			toolTip.SetToolTip(labelStringBeforeNumber, "Zeichenkette vor der Zahl");
-			labelStringBeforeNumber.Enter += SetStatusbar_Enter;
-			labelStringBeforeNumber.Leave += ClearStatusbar_Leave;
-			labelStringBeforeNumber.MouseEnter += SetStatusbar_Enter;
-			labelStringBeforeNumber.MouseLeave += ClearStatusbar_Leave;
+			labelStringBeforeNumber.Enter += SetStatusBar_Enter;
+			labelStringBeforeNumber.Leave += ClearStatusBar_Leave;
+			labelStringBeforeNumber.MouseEnter += SetStatusBar_Enter;
+			labelStringBeforeNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelStringAfterNumber
 			// 
@@ -124,10 +128,10 @@
 			labelStringAfterNumber.TabIndex = 7;
 			labelStringAfterNumber.Text = "Zeichenkette &nach der Zahl:";
 			toolTip.SetToolTip(labelStringAfterNumber, "Zeichenkette nach der Zahl");
-			labelStringAfterNumber.Enter += SetStatusbar_Enter;
-			labelStringAfterNumber.Leave += ClearStatusbar_Leave;
-			labelStringAfterNumber.MouseEnter += SetStatusbar_Enter;
-			labelStringAfterNumber.MouseLeave += ClearStatusbar_Leave;
+			labelStringAfterNumber.Enter += SetStatusBar_Enter;
+			labelStringAfterNumber.Leave += ClearStatusBar_Leave;
+			labelStringAfterNumber.MouseEnter += SetStatusBar_Enter;
+			labelStringAfterNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelNumberMin
 			// 
@@ -143,10 +147,10 @@
 			labelNumberMin.TabIndex = 2;
 			labelNumberMin.Text = "Zahlen v&on";
 			toolTip.SetToolTip(labelNumberMin, "Zahlen Minimum");
-			labelNumberMin.Enter += SetStatusbar_Enter;
-			labelNumberMin.Leave += ClearStatusbar_Leave;
-			labelNumberMin.MouseEnter += SetStatusbar_Enter;
-			labelNumberMin.MouseLeave += ClearStatusbar_Leave;
+			labelNumberMin.Enter += SetStatusBar_Enter;
+			labelNumberMin.Leave += ClearStatusBar_Leave;
+			labelNumberMin.MouseEnter += SetStatusBar_Enter;
+			labelNumberMin.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// numericUpDownNumberMinimum
 			// 
@@ -161,8 +165,8 @@
 			numericUpDownNumberMinimum.TabIndex = 3;
 			toolTip.SetToolTip(numericUpDownNumberMinimum, "Minimun der Zahl, mit der die Einträge erstellt werden sollen");
 			numericUpDownNumberMinimum.Value = new decimal(new int[] { 1, 0, 0, 0 });
-			numericUpDownNumberMinimum.Enter += SetStatusbar_Enter;
-			numericUpDownNumberMinimum.Leave += ClearStatusbar_Leave;
+			numericUpDownNumberMinimum.Enter += SetStatusBar_Enter;
+			numericUpDownNumberMinimum.Leave += ClearStatusBar_Leave;
 			// 
 			// labelNumberMax
 			// 
@@ -178,10 +182,10 @@
 			labelNumberMax.TabIndex = 4;
 			labelNumberMax.Text = "b&is";
 			toolTip.SetToolTip(labelNumberMax, "Zahlen Maximum");
-			labelNumberMax.Enter += SetStatusbar_Enter;
-			labelNumberMax.Leave += ClearStatusbar_Leave;
-			labelNumberMax.MouseEnter += SetStatusbar_Enter;
-			labelNumberMax.MouseLeave += ClearStatusbar_Leave;
+			labelNumberMax.Enter += SetStatusBar_Enter;
+			labelNumberMax.Leave += ClearStatusBar_Leave;
+			labelNumberMax.MouseEnter += SetStatusBar_Enter;
+			labelNumberMax.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// numericUpDownNumberMaximum
 			// 
@@ -196,8 +200,8 @@
 			numericUpDownNumberMaximum.TabIndex = 5;
 			toolTip.SetToolTip(numericUpDownNumberMaximum, "Maximun der Zahl, mit der die Einträge erstellt werden sollen");
 			numericUpDownNumberMaximum.Value = new decimal(new int[] { 10, 0, 0, 0 });
-			numericUpDownNumberMaximum.Enter += SetStatusbar_Enter;
-			numericUpDownNumberMaximum.Leave += ClearStatusbar_Leave;
+			numericUpDownNumberMaximum.Enter += SetStatusBar_Enter;
+			numericUpDownNumberMaximum.Leave += ClearStatusBar_Leave;
 			// 
 			// checkBoxFillWithZeros
 			// 
@@ -213,10 +217,10 @@
 			checkBoxFillWithZeros.Text = "&mit Nullen auffüllen";
 			toolTip.SetToolTip(checkBoxFillWithZeros, "Markieren, wenn die Einträge mit voranführenden Nullen aufgefüllt werden sollen");
 			checkBoxFillWithZeros.UseVisualStyleBackColor = true;
-			checkBoxFillWithZeros.Enter += SetStatusbar_Enter;
-			checkBoxFillWithZeros.Leave += ClearStatusbar_Leave;
-			checkBoxFillWithZeros.MouseEnter += SetStatusbar_Enter;
-			checkBoxFillWithZeros.MouseLeave += ClearStatusbar_Leave;
+			checkBoxFillWithZeros.Enter += SetStatusBar_Enter;
+			checkBoxFillWithZeros.Leave += ClearStatusBar_Leave;
+			checkBoxFillWithZeros.MouseEnter += SetStatusBar_Enter;
+			checkBoxFillWithZeros.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// textBoxList
 			// 
@@ -230,13 +234,13 @@
 			textBoxList.Name = "textBoxList";
 			textBoxList.ScrollBars = ScrollBars.Both;
 			textBoxList.Size = new Size(395, 192);
-			textBoxList.TabIndex = 0;
+			textBoxList.TabIndex = 20;
 			toolTip.SetToolTip(textBoxList, "Zeigt die Liste mit den generierten Einträgen an");
 			textBoxList.WordWrap = false;
-			textBoxList.Enter += SetStatusbar_Enter;
-			textBoxList.Leave += ClearStatusbar_Leave;
-			textBoxList.MouseEnter += SetStatusbar_Enter;
-			textBoxList.MouseLeave += ClearStatusbar_Leave;
+			textBoxList.Enter += SetStatusBar_Enter;
+			textBoxList.Leave += ClearStatusBar_Leave;
+			textBoxList.MouseEnter += SetStatusBar_Enter;
+			textBoxList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelProgress
 			// 
@@ -249,13 +253,13 @@
 			labelProgress.Margin = new Padding(4, 0, 4, 0);
 			labelProgress.Name = "labelProgress";
 			labelProgress.Size = new Size(77, 15);
-			labelProgress.TabIndex = 16;
+			labelProgress.TabIndex = 17;
 			labelProgress.Text = "Verarbeitung:";
 			toolTip.SetToolTip(labelProgress, "Verarbeitung");
-			labelProgress.Enter += SetStatusbar_Enter;
-			labelProgress.Leave += ClearStatusbar_Leave;
-			labelProgress.MouseEnter += SetStatusbar_Enter;
-			labelProgress.MouseLeave += ClearStatusbar_Leave;
+			labelProgress.Enter += SetStatusBar_Enter;
+			labelProgress.Leave += ClearStatusBar_Leave;
+			labelProgress.MouseEnter += SetStatusBar_Enter;
+			labelProgress.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// progressBar
 			// 
@@ -267,10 +271,10 @@
 			progressBar.Name = "progressBar";
 			progressBar.Size = new Size(310, 20);
 			progressBar.Style = ProgressBarStyle.Continuous;
-			progressBar.TabIndex = 17;
+			progressBar.TabIndex = 18;
 			toolTip.SetToolTip(progressBar, "Zeigt den laufenden Verarbeitungsstatus an");
-			progressBar.MouseEnter += SetStatusbar_Enter;
-			progressBar.MouseLeave += ClearStatusbar_Leave;
+			progressBar.MouseEnter += SetStatusBar_Enter;
+			progressBar.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// textBoxStringBeforeNumber
 			// 
@@ -287,10 +291,10 @@
 			textBoxStringBeforeNumber.TabIndex = 1;
 			textBoxStringBeforeNumber.Text = "http://www.domain.com/files/picture";
 			toolTip.SetToolTip(textBoxStringBeforeNumber, "Eingabe des Textes vor der Zahlenangabe");
-			textBoxStringBeforeNumber.Enter += SetStatusbar_Enter;
-			textBoxStringBeforeNumber.Leave += ClearStatusbar_Leave;
-			textBoxStringBeforeNumber.MouseEnter += SetStatusbar_Enter;
-			textBoxStringBeforeNumber.MouseLeave += ClearStatusbar_Leave;
+			textBoxStringBeforeNumber.Enter += SetStatusBar_Enter;
+			textBoxStringBeforeNumber.Leave += ClearStatusBar_Leave;
+			textBoxStringBeforeNumber.MouseEnter += SetStatusBar_Enter;
+			textBoxStringBeforeNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// textBoxStringAfterNumber
 			// 
@@ -303,14 +307,14 @@
 			textBoxStringAfterNumber.Margin = new Padding(4, 3, 4, 3);
 			textBoxStringAfterNumber.Name = "textBoxStringAfterNumber";
 			textBoxStringAfterNumber.PlaceholderText = "Eingabe des Textes nach der Zahlenangabe";
-			textBoxStringAfterNumber.Size = new Size(395, 23);
+			textBoxStringAfterNumber.Size = new Size(251, 23);
 			textBoxStringAfterNumber.TabIndex = 8;
 			textBoxStringAfterNumber.Text = ".jpg";
 			toolTip.SetToolTip(textBoxStringAfterNumber, "Eingabe des Textes nach der Zahlenangabe");
-			textBoxStringAfterNumber.Enter += SetStatusbar_Enter;
-			textBoxStringAfterNumber.Leave += ClearStatusbar_Leave;
-			textBoxStringAfterNumber.MouseEnter += SetStatusbar_Enter;
-			textBoxStringAfterNumber.MouseLeave += ClearStatusbar_Leave;
+			textBoxStringAfterNumber.Enter += SetStatusBar_Enter;
+			textBoxStringAfterNumber.Leave += ClearStatusBar_Leave;
+			textBoxStringAfterNumber.MouseEnter += SetStatusBar_Enter;
+			textBoxStringAfterNumber.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonRedo
 			// 
@@ -318,22 +322,22 @@
 			buttonRedo.AccessibleName = "Letzte Änderung verwerfen";
 			buttonRedo.AccessibleRole = AccessibleRole.PushButton;
 			buttonRedo.AutoEllipsis = true;
-			buttonRedo.Image = Properties.Resources.redo;
+			buttonRedo.Image = Resources.redo;
 			buttonRedo.Location = new Point(85, 206);
 			buttonRedo.Margin = new Padding(4, 3, 4, 3);
 			buttonRedo.Name = "buttonRedo";
 			buttonRedo.Size = new Size(68, 30);
-			buttonRedo.TabIndex = 13;
+			buttonRedo.TabIndex = 14;
 			buttonRedo.Text = "&Redo";
 			buttonRedo.TextAlign = ContentAlignment.MiddleRight;
 			buttonRedo.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(buttonRedo, "Verwirft die letzte rückgängig gemachte Änderung");
 			buttonRedo.UseVisualStyleBackColor = true;
 			buttonRedo.Click += ButtonRedo_Click;
-			buttonRedo.Enter += SetStatusbar_Enter;
-			buttonRedo.Leave += ClearStatusbar_Leave;
-			buttonRedo.MouseEnter += SetStatusbar_Enter;
-			buttonRedo.MouseLeave += ClearStatusbar_Leave;
+			buttonRedo.Enter += SetStatusBar_Enter;
+			buttonRedo.Leave += ClearStatusBar_Leave;
+			buttonRedo.MouseEnter += SetStatusBar_Enter;
+			buttonRedo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonUndo
 			// 
@@ -346,17 +350,17 @@
 			buttonUndo.Margin = new Padding(4, 3, 4, 3);
 			buttonUndo.Name = "buttonUndo";
 			buttonUndo.Size = new Size(68, 30);
-			buttonUndo.TabIndex = 12;
+			buttonUndo.TabIndex = 13;
 			buttonUndo.Text = "&Undo";
 			buttonUndo.TextAlign = ContentAlignment.MiddleRight;
 			buttonUndo.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(buttonUndo, "Macht die letzte Änderung rückgängig");
 			buttonUndo.UseVisualStyleBackColor = true;
 			buttonUndo.Click += ButtonUndo_Click;
-			buttonUndo.Enter += SetStatusbar_Enter;
-			buttonUndo.Leave += ClearStatusbar_Leave;
-			buttonUndo.MouseEnter += SetStatusbar_Enter;
-			buttonUndo.MouseLeave += ClearStatusbar_Leave;
+			buttonUndo.Enter += SetStatusBar_Enter;
+			buttonUndo.Leave += ClearStatusBar_Leave;
+			buttonUndo.MouseEnter += SetStatusBar_Enter;
+			buttonUndo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonCreateList
 			// 
@@ -364,22 +368,22 @@
 			buttonCreateList.AccessibleName = "Liste neu erstellen";
 			buttonCreateList.AccessibleRole = AccessibleRole.PushButton;
 			buttonCreateList.AutoEllipsis = true;
-			buttonCreateList.Image = Properties.Resources.document_index;
+			buttonCreateList.Image = Resources.document_index;
 			buttonCreateList.Location = new Point(13, 169);
 			buttonCreateList.Margin = new Padding(4, 3, 4, 3);
 			buttonCreateList.Name = "buttonCreateList";
 			buttonCreateList.Size = new Size(140, 30);
-			buttonCreateList.TabIndex = 9;
+			buttonCreateList.TabIndex = 10;
 			buttonCreateList.Text = "Liste neu &erstellen";
 			buttonCreateList.TextAlign = ContentAlignment.MiddleRight;
 			buttonCreateList.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(buttonCreateList, "Erstellt eine neue Liste");
 			buttonCreateList.UseVisualStyleBackColor = true;
 			buttonCreateList.Click += ButtonCreateList_Click;
-			buttonCreateList.Enter += SetStatusbar_Enter;
-			buttonCreateList.Leave += ClearStatusbar_Leave;
-			buttonCreateList.MouseEnter += SetStatusbar_Enter;
-			buttonCreateList.MouseLeave += ClearStatusbar_Leave;
+			buttonCreateList.Enter += SetStatusBar_Enter;
+			buttonCreateList.Leave += ClearStatusBar_Leave;
+			buttonCreateList.MouseEnter += SetStatusBar_Enter;
+			buttonCreateList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonDeleteList
 			// 
@@ -387,22 +391,22 @@
 			buttonDeleteList.AccessibleName = "Liste löschen";
 			buttonDeleteList.AccessibleRole = AccessibleRole.PushButton;
 			buttonDeleteList.AutoEllipsis = true;
-			buttonDeleteList.Image = Properties.Resources.bin_empty;
+			buttonDeleteList.Image = Resources.bin_empty;
 			buttonDeleteList.Location = new Point(288, 169);
 			buttonDeleteList.Margin = new Padding(4, 3, 4, 3);
 			buttonDeleteList.Name = "buttonDeleteList";
 			buttonDeleteList.Size = new Size(120, 30);
-			buttonDeleteList.TabIndex = 11;
+			buttonDeleteList.TabIndex = 12;
 			buttonDeleteList.Text = "Liste &löschen";
 			buttonDeleteList.TextAlign = ContentAlignment.MiddleRight;
 			buttonDeleteList.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(buttonDeleteList, "Löscht die Liste");
 			buttonDeleteList.UseVisualStyleBackColor = true;
 			buttonDeleteList.Click += ButtonDeleteList_Click;
-			buttonDeleteList.Enter += SetStatusbar_Enter;
-			buttonDeleteList.Leave += ClearStatusbar_Leave;
-			buttonDeleteList.MouseEnter += SetStatusbar_Enter;
-			buttonDeleteList.MouseLeave += ClearStatusbar_Leave;
+			buttonDeleteList.Enter += SetStatusBar_Enter;
+			buttonDeleteList.Leave += ClearStatusBar_Leave;
+			buttonDeleteList.MouseEnter += SetStatusBar_Enter;
+			buttonDeleteList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonSaveList
 			// 
@@ -410,22 +414,22 @@
 			buttonSaveList.AccessibleName = "Liste speichern";
 			buttonSaveList.AccessibleRole = AccessibleRole.PushButton;
 			buttonSaveList.AutoEllipsis = true;
-			buttonSaveList.Image = Properties.Resources.diskette;
+			buttonSaveList.Image = Resources.diskette;
 			buttonSaveList.Location = new Point(288, 206);
 			buttonSaveList.Margin = new Padding(4, 3, 4, 3);
 			buttonSaveList.Name = "buttonSaveList";
 			buttonSaveList.Size = new Size(120, 30);
-			buttonSaveList.TabIndex = 15;
+			buttonSaveList.TabIndex = 16;
 			buttonSaveList.Text = "Liste &speichern";
 			buttonSaveList.TextAlign = ContentAlignment.MiddleRight;
 			buttonSaveList.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(buttonSaveList, "Speichert die Liste als Textdatei ab");
 			buttonSaveList.UseVisualStyleBackColor = true;
 			buttonSaveList.Click += ButtonSaveList_Click;
-			buttonSaveList.Enter += SetStatusbar_Enter;
-			buttonSaveList.Leave += ClearStatusbar_Leave;
-			buttonSaveList.MouseEnter += SetStatusbar_Enter;
-			buttonSaveList.MouseLeave += ClearStatusbar_Leave;
+			buttonSaveList.Enter += SetStatusBar_Enter;
+			buttonSaveList.Leave += ClearStatusBar_Leave;
+			buttonSaveList.MouseEnter += SetStatusBar_Enter;
+			buttonSaveList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonCopyList
 			// 
@@ -433,22 +437,22 @@
 			buttonCopyList.AccessibleName = "Liste kopieren";
 			buttonCopyList.AccessibleRole = AccessibleRole.PushButton;
 			buttonCopyList.AutoEllipsis = true;
-			buttonCopyList.Image = Properties.Resources.page_copy;
+			buttonCopyList.Image = Resources.page_copy;
 			buttonCopyList.Location = new Point(160, 206);
 			buttonCopyList.Margin = new Padding(4, 3, 4, 3);
 			buttonCopyList.Name = "buttonCopyList";
 			buttonCopyList.Size = new Size(121, 30);
-			buttonCopyList.TabIndex = 14;
+			buttonCopyList.TabIndex = 15;
 			buttonCopyList.Text = "Liste &kopieren";
 			buttonCopyList.TextAlign = ContentAlignment.MiddleRight;
 			buttonCopyList.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(buttonCopyList, "Kopiert die Liste in die Zwischenanlage");
 			buttonCopyList.UseVisualStyleBackColor = true;
 			buttonCopyList.Click += ButtonCopyList_Click;
-			buttonCopyList.Enter += SetStatusbar_Enter;
-			buttonCopyList.Leave += ClearStatusbar_Leave;
-			buttonCopyList.MouseEnter += SetStatusbar_Enter;
-			buttonCopyList.MouseLeave += ClearStatusbar_Leave;
+			buttonCopyList.Enter += SetStatusBar_Enter;
+			buttonCopyList.Leave += ClearStatusBar_Leave;
+			buttonCopyList.MouseEnter += SetStatusBar_Enter;
+			buttonCopyList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// buttonAddToList
 			// 
@@ -456,22 +460,22 @@
 			buttonAddToList.AccessibleName = "Liste anfügen";
 			buttonAddToList.AccessibleRole = AccessibleRole.PushButton;
 			buttonAddToList.AutoEllipsis = true;
-			buttonAddToList.Image = Properties.Resources.add;
+			buttonAddToList.Image = Resources.add;
 			buttonAddToList.Location = new Point(160, 169);
 			buttonAddToList.Margin = new Padding(4, 3, 4, 3);
 			buttonAddToList.Name = "buttonAddToList";
 			buttonAddToList.Size = new Size(121, 30);
-			buttonAddToList.TabIndex = 10;
+			buttonAddToList.TabIndex = 11;
 			buttonAddToList.Text = "Liste &anfügen";
 			buttonAddToList.TextAlign = ContentAlignment.MiddleRight;
 			buttonAddToList.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(buttonAddToList, "Fügt die Einträge an der vorhandenen Liste an");
 			buttonAddToList.UseVisualStyleBackColor = true;
 			buttonAddToList.Click += ButtonAddToList_Click;
-			buttonAddToList.Enter += SetStatusbar_Enter;
-			buttonAddToList.Leave += ClearStatusbar_Leave;
-			buttonAddToList.MouseEnter += SetStatusbar_Enter;
-			buttonAddToList.MouseLeave += ClearStatusbar_Leave;
+			buttonAddToList.Enter += SetStatusBar_Enter;
+			buttonAddToList.Leave += ClearStatusBar_Leave;
+			buttonAddToList.MouseEnter += SetStatusBar_Enter;
+			buttonAddToList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelResult
 			// 
@@ -484,11 +488,11 @@
 			labelResult.Margin = new Padding(4, 0, 4, 0);
 			labelResult.Name = "labelResult";
 			labelResult.Size = new Size(55, 15);
-			labelResult.TabIndex = 18;
+			labelResult.TabIndex = 19;
 			labelResult.Text = "Er&gebnis:";
 			toolTip.SetToolTip(labelResult, "Ergebnis");
-			labelResult.MouseEnter += SetStatusbar_Enter;
-			labelResult.MouseLeave += ClearStatusbar_Leave;
+			labelResult.MouseEnter += SetStatusBar_Enter;
+			labelResult.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// statusStripStatistic
 			// 
@@ -508,10 +512,10 @@
 			statusStripStatistic.TabStop = true;
 			statusStripStatistic.Text = "statusStripStatistic";
 			toolTip.SetToolTip(statusStripStatistic, "Statusbar für statistische Angaben");
-			statusStripStatistic.Enter += SetStatusbar_Enter;
-			statusStripStatistic.Leave += SetStatusbar_Enter;
-			statusStripStatistic.MouseEnter += SetStatusbar_Enter;
-			statusStripStatistic.MouseLeave += ClearStatusbar_Leave;
+			statusStripStatistic.Enter += SetStatusBar_Enter;
+			statusStripStatistic.Leave += SetStatusBar_Enter;
+			statusStripStatistic.MouseEnter += SetStatusBar_Enter;
+			statusStripStatistic.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelSize
 			// 
@@ -525,8 +529,8 @@
 			toolStripStatusLabelSize.Tag = "Größe";
 			toolStripStatusLabelSize.Text = "Größe";
 			toolStripStatusLabelSize.Click += ToolStripStatusLabelSize_Click;
-			toolStripStatusLabelSize.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelSize.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelSize.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelSize.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelLines
 			// 
@@ -540,8 +544,8 @@
 			toolStripStatusLabelLines.Tag = "Zeilen";
 			toolStripStatusLabelLines.Text = "Zeilen";
 			toolStripStatusLabelLines.Click += ToolStripStatusLabelLines_Click;
-			toolStripStatusLabelLines.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelLines.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelLines.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelLines.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelTimeSpan
 			// 
@@ -556,8 +560,8 @@
 			toolStripStatusLabelTimeSpan.Text = "Dauer";
 			toolStripStatusLabelTimeSpan.ToolTipText = "Dauer";
 			toolStripStatusLabelTimeSpan.Click += ToolStripStatusLabelTimeSpan_Click;
-			toolStripStatusLabelTimeSpan.MouseEnter += SetStatusbar_Enter;
-			toolStripStatusLabelTimeSpan.MouseLeave += ClearStatusbar_Leave;
+			toolStripStatusLabelTimeSpan.MouseEnter += SetStatusBar_Enter;
+			toolStripStatusLabelTimeSpan.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// statusStripInfo
 			// 
@@ -575,10 +579,10 @@
 			statusStripInfo.TabStop = true;
 			statusStripInfo.Text = "statusStripInfo";
 			toolTip.SetToolTip(statusStripInfo, "Statusbar für Informationstext");
-			statusStripInfo.Enter += SetStatusbar_Enter;
-			statusStripInfo.Leave += ClearStatusbar_Leave;
-			statusStripInfo.MouseEnter += SetStatusbar_Enter;
-			statusStripInfo.MouseLeave += ClearStatusbar_Leave;
+			statusStripInfo.Enter += SetStatusBar_Enter;
+			statusStripInfo.Leave += ClearStatusBar_Leave;
+			statusStripInfo.MouseEnter += SetStatusBar_Enter;
+			statusStripInfo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripStatusLabelInformation
 			// 
@@ -607,10 +611,10 @@
 			menuStrip.TabIndex = 0;
 			menuStrip.Text = "Menu";
 			toolTip.SetToolTip(menuStrip, "Menü");
-			menuStrip.Enter += SetStatusbar_Enter;
-			menuStrip.Leave += ClearStatusbar_Leave;
-			menuStrip.MouseEnter += SetStatusbar_Enter;
-			menuStrip.MouseLeave += ClearStatusbar_Leave;
+			menuStrip.Enter += SetStatusBar_Enter;
+			menuStrip.Leave += ClearStatusBar_Leave;
+			menuStrip.MouseEnter += SetStatusBar_Enter;
+			menuStrip.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemProgram
 			// 
@@ -623,8 +627,8 @@
 			toolStripMenuItemProgram.ShortcutKeys = Keys.Alt | Keys.P;
 			toolStripMenuItemProgram.Size = new Size(76, 20);
 			toolStripMenuItemProgram.Text = "&Programm";
-			toolStripMenuItemProgram.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemProgram.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemProgram.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemProgram.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemInfo
 			// 
@@ -632,15 +636,15 @@
 			toolStripMenuItemInfo.AccessibleName = "Programminformationen";
 			toolStripMenuItemInfo.AccessibleRole = AccessibleRole.MenuItem;
 			toolStripMenuItemInfo.AutoToolTip = true;
-			toolStripMenuItemInfo.Image = Properties.Resources.information;
+			toolStripMenuItemInfo.Image = Resources.information;
 			toolStripMenuItemInfo.Name = "toolStripMenuItemInfo";
 			toolStripMenuItemInfo.ShortcutKeyDisplayString = "";
 			toolStripMenuItemInfo.ShortcutKeys = Keys.Alt | Keys.I;
 			toolStripMenuItemInfo.Size = new Size(157, 22);
 			toolStripMenuItemInfo.Text = "&Info";
 			toolStripMenuItemInfo.Click += ToolStripMenuItemInfo_Click;
-			toolStripMenuItemInfo.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemInfo.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemInfo.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemInfo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemLicense
 			// 
@@ -648,22 +652,22 @@
 			toolStripMenuItemLicense.AccessibleName = "Lizenz";
 			toolStripMenuItemLicense.AccessibleRole = AccessibleRole.MenuItem;
 			toolStripMenuItemLicense.AutoToolTip = true;
-			toolStripMenuItemLicense.Image = Properties.Resources.script;
+			toolStripMenuItemLicense.Image = Resources.script;
 			toolStripMenuItemLicense.Name = "toolStripMenuItemLicense";
 			toolStripMenuItemLicense.ShortcutKeys = Keys.Alt | Keys.Z;
 			toolStripMenuItemLicense.Size = new Size(157, 22);
 			toolStripMenuItemLicense.Text = "Lizen&z";
 			toolStripMenuItemLicense.Click += ToolStripMenuItemLicense_Click;
-			toolStripMenuItemLicense.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemLicense.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemLicense.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemLicense.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripSeparator1
 			// 
 			toolStripSeparator1.AccessibleRole = AccessibleRole.Separator;
 			toolStripSeparator1.Name = "toolStripSeparator1";
 			toolStripSeparator1.Size = new Size(154, 6);
-			toolStripSeparator1.MouseEnter += SetStatusbar_Enter;
-			toolStripSeparator1.MouseLeave += ClearStatusbar_Leave;
+			toolStripSeparator1.MouseEnter += SetStatusBar_Enter;
+			toolStripSeparator1.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemExit
 			// 
@@ -671,14 +675,14 @@
 			toolStripMenuItemExit.AccessibleName = "Programm beenden";
 			toolStripMenuItemExit.AccessibleRole = AccessibleRole.MenuItem;
 			toolStripMenuItemExit.AutoToolTip = true;
-			toolStripMenuItemExit.Image = Properties.Resources.door_open;
+			toolStripMenuItemExit.Image = Resources.door_open;
 			toolStripMenuItemExit.Name = "toolStripMenuItemExit";
 			toolStripMenuItemExit.ShortcutKeys = Keys.Alt | Keys.B;
 			toolStripMenuItemExit.Size = new Size(157, 22);
 			toolStripMenuItemExit.Text = "&Beenden";
 			toolStripMenuItemExit.Click += ToolStripMenuItemExit_Click;
-			toolStripMenuItemExit.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemExit.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemExit.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemExit.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemList
 			// 
@@ -691,8 +695,8 @@
 			toolStripMenuItemList.ShortcutKeys = Keys.Alt | Keys.L;
 			toolStripMenuItemList.Size = new Size(43, 20);
 			toolStripMenuItemList.Text = "Lis&te";
-			toolStripMenuItemList.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemList.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemList.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemList.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemBatch
 			// 
@@ -700,71 +704,71 @@
 			toolStripMenuItemBatch.AccessibleName = "Stapelverarbeitung öffnen";
 			toolStripMenuItemBatch.AutoToolTip = true;
 			toolStripMenuItemBatch.Enabled = false;
-			toolStripMenuItemBatch.Image = Properties.Resources.category;
+			toolStripMenuItemBatch.Image = Resources.category;
 			toolStripMenuItemBatch.Name = "toolStripMenuItemBatch";
-			toolStripMenuItemBatch.Size = new Size(179, 22);
+			toolStripMenuItemBatch.Size = new Size(180, 22);
 			toolStripMenuItemBatch.Text = "Stapelverarbeitung";
 			toolStripMenuItemBatch.Click += ToolStripMenuItemBatch_Click;
-			toolStripMenuItemBatch.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemBatch.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemBatch.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemBatch.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripSeparator4
 			// 
 			toolStripSeparator4.Name = "toolStripSeparator4";
-			toolStripSeparator4.Size = new Size(176, 6);
+			toolStripSeparator4.Size = new Size(177, 6);
 			// 
 			// toolStripMenuItemListCreate
 			// 
 			toolStripMenuItemListCreate.AccessibleDescription = "Erstellt eine neue Liste";
 			toolStripMenuItemListCreate.AccessibleName = "Liste neu erstellen";
 			toolStripMenuItemListCreate.AccessibleRole = AccessibleRole.MenuItem;
-			toolStripMenuItemListCreate.Image = Properties.Resources.document_index;
+			toolStripMenuItemListCreate.Image = Resources.document_index;
 			toolStripMenuItemListCreate.Name = "toolStripMenuItemListCreate";
 			toolStripMenuItemListCreate.ShortcutKeys = Keys.Alt | Keys.E;
-			toolStripMenuItemListCreate.Size = new Size(179, 22);
+			toolStripMenuItemListCreate.Size = new Size(180, 22);
 			toolStripMenuItemListCreate.Text = "Neu &erstellen";
 			toolStripMenuItemListCreate.ToolTipText = "Liste neu erstellen";
 			toolStripMenuItemListCreate.Click += ToolStripMenuItemListCreate_Click;
-			toolStripMenuItemListCreate.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemListCreate.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemListCreate.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemListCreate.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemListAdd
 			// 
 			toolStripMenuItemListAdd.AccessibleDescription = "Fügt die Einträge an der vorhandenen Liste an";
 			toolStripMenuItemListAdd.AccessibleName = "Liste anfügen";
 			toolStripMenuItemListAdd.AccessibleRole = AccessibleRole.MenuItem;
-			toolStripMenuItemListAdd.Image = Properties.Resources.add;
+			toolStripMenuItemListAdd.Image = Resources.add;
 			toolStripMenuItemListAdd.Name = "toolStripMenuItemListAdd";
 			toolStripMenuItemListAdd.ShortcutKeys = Keys.Alt | Keys.A;
-			toolStripMenuItemListAdd.Size = new Size(179, 22);
+			toolStripMenuItemListAdd.Size = new Size(180, 22);
 			toolStripMenuItemListAdd.Text = "&Anfügen";
 			toolStripMenuItemListAdd.ToolTipText = "Liste anfügen";
 			toolStripMenuItemListAdd.Click += ToolStripMenuItemListAdd_Click;
-			toolStripMenuItemListAdd.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemListAdd.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemListAdd.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemListAdd.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemListDelete
 			// 
 			toolStripMenuItemListDelete.AccessibleDescription = "Löscht die Liste";
 			toolStripMenuItemListDelete.AccessibleName = "Liste löschen";
 			toolStripMenuItemListDelete.AccessibleRole = AccessibleRole.MenuItem;
-			toolStripMenuItemListDelete.Image = Properties.Resources.bin_empty;
+			toolStripMenuItemListDelete.Image = Resources.bin_empty;
 			toolStripMenuItemListDelete.Name = "toolStripMenuItemListDelete";
 			toolStripMenuItemListDelete.ShortcutKeys = Keys.Alt | Keys.L;
-			toolStripMenuItemListDelete.Size = new Size(179, 22);
+			toolStripMenuItemListDelete.Size = new Size(180, 22);
 			toolStripMenuItemListDelete.Text = "&Löschen";
 			toolStripMenuItemListDelete.ToolTipText = "Liste löschen";
 			toolStripMenuItemListDelete.Click += ToolStripMenuItemListDelete_Click;
-			toolStripMenuItemListDelete.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemListDelete.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemListDelete.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemListDelete.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripSeparator2
 			// 
 			toolStripSeparator2.AccessibleRole = AccessibleRole.Separator;
 			toolStripSeparator2.Name = "toolStripSeparator2";
-			toolStripSeparator2.Size = new Size(176, 6);
-			toolStripSeparator2.MouseEnter += SetStatusbar_Enter;
-			toolStripSeparator2.MouseLeave += ClearStatusbar_Leave;
+			toolStripSeparator2.Size = new Size(177, 6);
+			toolStripSeparator2.MouseEnter += SetStatusBar_Enter;
+			toolStripSeparator2.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemListUndo
 			// 
@@ -772,14 +776,14 @@
 			toolStripMenuItemListUndo.AccessibleName = "Änderung rückgängigmachen";
 			toolStripMenuItemListUndo.AccessibleRole = AccessibleRole.MenuItem;
 			toolStripMenuItemListUndo.AutoToolTip = true;
-			toolStripMenuItemListUndo.Image = Properties.Resources.undo;
+			toolStripMenuItemListUndo.Image = Resources.undo;
 			toolStripMenuItemListUndo.Name = "toolStripMenuItemListUndo";
 			toolStripMenuItemListUndo.ShortcutKeys = Keys.Alt | Keys.U;
-			toolStripMenuItemListUndo.Size = new Size(179, 22);
+			toolStripMenuItemListUndo.Size = new Size(180, 22);
 			toolStripMenuItemListUndo.Text = "&Undo";
 			toolStripMenuItemListUndo.Click += ToolStripMenuItemListUndo_Click;
-			toolStripMenuItemListUndo.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemListUndo.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemListUndo.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemListUndo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemListRedo
 			// 
@@ -787,52 +791,52 @@
 			toolStripMenuItemListRedo.AccessibleName = "Letzte Änderung verwerfen";
 			toolStripMenuItemListRedo.AccessibleRole = AccessibleRole.MenuItem;
 			toolStripMenuItemListRedo.AutoToolTip = true;
-			toolStripMenuItemListRedo.Image = Properties.Resources.redo;
+			toolStripMenuItemListRedo.Image = Resources.redo;
 			toolStripMenuItemListRedo.Name = "toolStripMenuItemListRedo";
 			toolStripMenuItemListRedo.ShortcutKeys = Keys.Alt | Keys.R;
-			toolStripMenuItemListRedo.Size = new Size(179, 22);
+			toolStripMenuItemListRedo.Size = new Size(180, 22);
 			toolStripMenuItemListRedo.Text = "&Redo";
 			toolStripMenuItemListRedo.Click += ToolStripMenuItemListRedo_Click;
-			toolStripMenuItemListRedo.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemListRedo.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemListRedo.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemListRedo.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripSeparator3
 			// 
 			toolStripSeparator3.AccessibleRole = AccessibleRole.Separator;
 			toolStripSeparator3.Name = "toolStripSeparator3";
-			toolStripSeparator3.Size = new Size(176, 6);
-			toolStripSeparator3.MouseEnter += SetStatusbar_Enter;
-			toolStripSeparator3.MouseLeave += ClearStatusbar_Leave;
+			toolStripSeparator3.Size = new Size(177, 6);
+			toolStripSeparator3.MouseEnter += SetStatusBar_Enter;
+			toolStripSeparator3.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemListCopy
 			// 
 			toolStripMenuItemListCopy.AccessibleDescription = "Kopiert die Liste in die Windows-Zwischenablage";
 			toolStripMenuItemListCopy.AccessibleName = "Liste kopieren";
 			toolStripMenuItemListCopy.AccessibleRole = AccessibleRole.MenuItem;
-			toolStripMenuItemListCopy.Image = Properties.Resources.page_copy;
+			toolStripMenuItemListCopy.Image = Resources.page_copy;
 			toolStripMenuItemListCopy.Name = "toolStripMenuItemListCopy";
 			toolStripMenuItemListCopy.ShortcutKeys = Keys.Alt | Keys.K;
-			toolStripMenuItemListCopy.Size = new Size(179, 22);
+			toolStripMenuItemListCopy.Size = new Size(180, 22);
 			toolStripMenuItemListCopy.Text = "&Kopieren";
 			toolStripMenuItemListCopy.ToolTipText = "Liste kopieren";
 			toolStripMenuItemListCopy.Click += ToolStripMenuItemListCopy_Click;
-			toolStripMenuItemListCopy.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemListCopy.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemListCopy.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemListCopy.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemListSave
 			// 
 			toolStripMenuItemListSave.AccessibleDescription = "Speichert die Liste als Textdatei ab";
 			toolStripMenuItemListSave.AccessibleName = "Liste speichern";
 			toolStripMenuItemListSave.AccessibleRole = AccessibleRole.MenuItem;
-			toolStripMenuItemListSave.Image = Properties.Resources.diskette;
+			toolStripMenuItemListSave.Image = Resources.diskette;
 			toolStripMenuItemListSave.Name = "toolStripMenuItemListSave";
 			toolStripMenuItemListSave.ShortcutKeys = Keys.Alt | Keys.S;
-			toolStripMenuItemListSave.Size = new Size(179, 22);
+			toolStripMenuItemListSave.Size = new Size(180, 22);
 			toolStripMenuItemListSave.Text = "&Speichern";
 			toolStripMenuItemListSave.ToolTipText = "Liste speichern";
 			toolStripMenuItemListSave.Click += ToolStripMenuItemListSave_Click;
-			toolStripMenuItemListSave.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemListSave.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemListSave.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemListSave.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemSettings
 			// 
@@ -845,8 +849,8 @@
 			toolStripMenuItemSettings.ShortcutKeys = Keys.Alt | Keys.E;
 			toolStripMenuItemSettings.Size = new Size(90, 20);
 			toolStripMenuItemSettings.Text = "&Einstellungen";
-			toolStripMenuItemSettings.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemSettings.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemSettings.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemSettings.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemSettingsStayOnTop
 			// 
@@ -860,8 +864,8 @@
 			toolStripMenuItemSettingsStayOnTop.Size = new Size(267, 22);
 			toolStripMenuItemSettingsStayOnTop.Text = "Immer im Vordergrund halten";
 			toolStripMenuItemSettingsStayOnTop.Click += ToolStripMenuItemSettingsStayOnTop_Click;
-			toolStripMenuItemSettingsStayOnTop.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemSettingsStayOnTop.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemSettingsStayOnTop.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemSettingsStayOnTop.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripMenuItemSettingsDisableVisualStyle
 			// 
@@ -875,8 +879,31 @@
 			toolStripMenuItemSettingsDisableVisualStyle.Size = new Size(267, 22);
 			toolStripMenuItemSettingsDisableVisualStyle.Text = "Visuellen Stil deaktivieren";
 			toolStripMenuItemSettingsDisableVisualStyle.Click += ToolStripMenuItemSettingsDisableVisualStyle_Click;
-			toolStripMenuItemSettingsDisableVisualStyle.MouseEnter += SetStatusbar_Enter;
-			toolStripMenuItemSettingsDisableVisualStyle.MouseLeave += ClearStatusbar_Leave;
+			toolStripMenuItemSettingsDisableVisualStyle.MouseEnter += SetStatusBar_Enter;
+			toolStripMenuItemSettingsDisableVisualStyle.MouseLeave += ClearStatusBar_Leave;
+			// 
+			// buttonCancelProgress
+			// 
+			buttonCancelProgress.AccessibleDescription = "Bricht den Vorgang ab";
+			buttonCancelProgress.AccessibleName = "Vorgang abbrechen";
+			buttonCancelProgress.AccessibleRole = AccessibleRole.PushButton;
+			buttonCancelProgress.AutoEllipsis = true;
+			buttonCancelProgress.Image = Resources.cross;
+			buttonCancelProgress.Location = new Point(272, 120);
+			buttonCancelProgress.Margin = new Padding(4, 3, 4, 3);
+			buttonCancelProgress.Name = "buttonCancelProgress";
+			buttonCancelProgress.Size = new Size(136, 32);
+			buttonCancelProgress.TabIndex = 9;
+			buttonCancelProgress.Text = "Vor&gang abbrechen";
+			buttonCancelProgress.TextAlign = ContentAlignment.MiddleRight;
+			buttonCancelProgress.TextImageRelation = TextImageRelation.ImageBeforeText;
+			toolTip.SetToolTip(buttonCancelProgress, "Bricht den Vorgang ab");
+			buttonCancelProgress.UseVisualStyleBackColor = true;
+			buttonCancelProgress.Click += ButtonCancelProgress_Click;
+			buttonCancelProgress.Enter += SetStatusBar_Enter;
+			buttonCancelProgress.Leave += ClearStatusBar_Leave;
+			buttonCancelProgress.MouseEnter += SetStatusBar_Enter;
+			buttonCancelProgress.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripContainer
 			// 
@@ -892,6 +919,7 @@
 			// toolStripContainer.ContentPanel
 			// 
 			toolStripContainer.ContentPanel.BackColor = SystemColors.Control;
+			toolStripContainer.ContentPanel.Controls.Add(buttonCancelProgress);
 			toolStripContainer.ContentPanel.Controls.Add(labelStringBeforeNumber);
 			toolStripContainer.ContentPanel.Controls.Add(buttonRedo);
 			toolStripContainer.ContentPanel.Controls.Add(labelStringAfterNumber);
@@ -950,8 +978,8 @@
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Numeric List Generator";
 			Load += NumericListGeneratorForm_Load;
-			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMinimum).EndInit();
-			((System.ComponentModel.ISupportInitialize)numericUpDownNumberMaximum).EndInit();
+			((ISupportInitialize)numericUpDownNumberMinimum).EndInit();
+			((ISupportInitialize)numericUpDownNumberMaximum).EndInit();
 			statusStripStatistic.ResumeLayout(false);
 			statusStripStatistic.PerformLayout();
 			statusStripInfo.ResumeLayout(false);
@@ -1020,7 +1048,8 @@
 		private ToolStripMenuItem toolStripMenuItemSettingsDisableVisualStyle;
 		private ToolStripMenuItem toolStripMenuItemBatch;
 		private ToolStripSeparator toolStripSeparator4;
-		private System.ComponentModel.BackgroundWorker backgroundWorker;
+		private BackgroundWorker backgroundWorker;
+		private Button buttonCancelProgress;
 	}
 }
 
