@@ -25,7 +25,7 @@ namespace Numeric_List_Generator
 		/// Sets a specific text to the status bar.
 		/// </summary>
 		/// <param name="text">The text with some information to display in the status bar.</param>
-		private void SetStatusbarText(string text)
+		private void SetStatusBar(string text)
 		{
 			labelInformation.Enabled = !string.IsNullOrWhiteSpace(value: text);
 			labelInformation.Text = text;
@@ -38,8 +38,8 @@ namespace Numeric_List_Generator
 		{
 			InitializeComponent();
 			Logger.Info(message: "LicenseForm initialisiert.");
-			this.KeyDown += new KeyEventHandler(LicenseForm_KeyDown);
-			this.KeyPreview = true; // Ensures the form receives key events before the controls
+			KeyDown += LicenseForm_KeyDown;
+			KeyPreview = true; // Ensures the form receives key events before the controls
 		}
 
 		/// <summary>
@@ -48,26 +48,26 @@ namespace Numeric_List_Generator
 		/// <param name="sender">object sender</param>
 		/// <param name="e">event arguments</param>
 		/// <remarks>The parameters <paramref name="e"/> and <paramref name="sender"/> are not needed, but must be indicated.</remarks>
-		private void LicenseForm_Load(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+		private void LicenseForm_Load(object sender, EventArgs e) => SetStatusBar(text: string.Empty);
 
 		/// <summary>
 		/// Called when the mouse pointer moves over a control.
 		/// </summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
-		private void SetStatusbar_Enter(object sender, EventArgs e)
+		private void SetStatusBar_Enter(object sender, EventArgs e)
 		{
-			if (sender is Control { AccessibleDescription: { } } control)
+			// Set the status bar text based on the sender's accessible description
+			switch (sender)
 			{
-				SetStatusbarText(text: control.AccessibleDescription);
-			}
-			else if (sender is ToolStripMenuItem { AccessibleDescription: { } } control2)
-			{
-				SetStatusbarText(text: control2.AccessibleDescription);
-			}
-			else if (sender is ToolStripStatusLabel { AccessibleDescription: { } } control3)
-			{
-				SetStatusbarText(text: control3.AccessibleDescription);
+				// If the sender is a control with an accessible description, set the status bar text
+				// If the sender is a ToolStripItem with an accessible description, set the status bar text
+				case Control { AccessibleDescription: not null } control:
+					SetStatusBar(text: control.AccessibleDescription);
+					break;
+				case ToolStripItem { AccessibleDescription: not null } item:
+					SetStatusBar(text: item.AccessibleDescription);
+					break;
 			}
 		}
 
@@ -76,7 +76,7 @@ namespace Numeric_List_Generator
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
-		private void ClearStatusbar_Leave(object sender, EventArgs e) => SetStatusbarText(text: string.Empty);
+		private void ClearStatusBar_Leave(object sender, EventArgs e) => SetStatusBar(text: string.Empty);
 
 		/// <summary>
 		/// Handles the KeyDown event of the ExportDataSheetForm.
@@ -86,9 +86,11 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void LicenseForm_KeyDown(object? sender, KeyEventArgs e)
 		{
+			// Check if the Escape key was pressed
+			// If so, close the form
 			if (e.KeyCode == Keys.Escape)
 			{
-				this.Close();
+				Close();
 			}
 		}
 	}

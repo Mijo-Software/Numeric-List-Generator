@@ -1,11 +1,14 @@
-﻿namespace Numeric_List_Generator
+﻿using System.ComponentModel;
+using Numeric_List_Generator.Properties;
+
+namespace Numeric_List_Generator
 {
-	partial class AboutBoxForm
+	sealed partial class AboutBoxForm
 	{
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+		private IContainer components = null;
 
 		/// <summary>
 		/// Verwendete Ressourcen bereinigen.
@@ -27,8 +30,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBoxForm));
+			components = new Container();
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(AboutBoxForm));
 			tableLayoutPanel = new TableLayoutPanel();
 			logoPictureBox = new PictureBox();
 			labelProductName = new Label();
@@ -42,7 +45,7 @@
 			labelInformation = new ToolStripStatusLabel();
 			toolStripContainer = new ToolStripContainer();
 			tableLayoutPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
+			((ISupportInitialize)logoPictureBox).BeginInit();
 			statusStrip.SuspendLayout();
 			toolStripContainer.BottomToolStripPanel.SuspendLayout();
 			toolStripContainer.ContentPanel.SuspendLayout();
@@ -84,7 +87,7 @@
 			logoPictureBox.AccessibleName = "Programmlogo";
 			logoPictureBox.AccessibleRole = AccessibleRole.Graphic;
 			logoPictureBox.Dock = DockStyle.Fill;
-			logoPictureBox.Image = Properties.Resources.text_list_numbers;
+			logoPictureBox.Image = Resources.text_list_numbers;
 			logoPictureBox.Location = new Point(4, 3);
 			logoPictureBox.Margin = new Padding(4, 3, 4, 3);
 			logoPictureBox.Name = "logoPictureBox";
@@ -93,8 +96,8 @@
 			logoPictureBox.TabIndex = 12;
 			logoPictureBox.TabStop = false;
 			toolTip.SetToolTip(logoPictureBox, "Programmlogo");
-			logoPictureBox.MouseEnter += SetStatusbar_Enter;
-			logoPictureBox.MouseLeave += ClearStatusbar_Leave;
+			logoPictureBox.MouseEnter += SetStatusBar_Enter;
+			logoPictureBox.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelProductName
 			// 
@@ -112,10 +115,10 @@
 			labelProductName.Text = "Produktname";
 			labelProductName.TextAlign = ContentAlignment.MiddleLeft;
 			toolTip.SetToolTip(labelProductName, "Produktname");
-			labelProductName.Enter += SetStatusbar_Enter;
-			labelProductName.Leave += ClearStatusbar_Leave;
-			labelProductName.MouseEnter += SetStatusbar_Enter;
-			labelProductName.MouseLeave += ClearStatusbar_Leave;
+			labelProductName.Enter += SetStatusBar_Enter;
+			labelProductName.Leave += ClearStatusBar_Leave;
+			labelProductName.MouseEnter += SetStatusBar_Enter;
+			labelProductName.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelVersion
 			// 
@@ -133,10 +136,10 @@
 			labelVersion.Text = "Version";
 			labelVersion.TextAlign = ContentAlignment.MiddleLeft;
 			toolTip.SetToolTip(labelVersion, "Version");
-			labelVersion.Enter += SetStatusbar_Enter;
-			labelVersion.Leave += ClearStatusbar_Leave;
-			labelVersion.MouseEnter += SetStatusbar_Enter;
-			labelVersion.MouseLeave += ClearStatusbar_Leave;
+			labelVersion.Enter += SetStatusBar_Enter;
+			labelVersion.Leave += ClearStatusBar_Leave;
+			labelVersion.MouseEnter += SetStatusBar_Enter;
+			labelVersion.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelCopyright
 			// 
@@ -154,10 +157,10 @@
 			labelCopyright.Text = "Copyright";
 			labelCopyright.TextAlign = ContentAlignment.MiddleLeft;
 			toolTip.SetToolTip(labelCopyright, "Copyright");
-			labelCopyright.Enter += SetStatusbar_Enter;
-			labelCopyright.Leave += ClearStatusbar_Leave;
-			labelCopyright.MouseEnter += SetStatusbar_Enter;
-			labelCopyright.MouseLeave += ClearStatusbar_Leave;
+			labelCopyright.Enter += SetStatusBar_Enter;
+			labelCopyright.Leave += ClearStatusBar_Leave;
+			labelCopyright.MouseEnter += SetStatusBar_Enter;
+			labelCopyright.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// linkLabelCompanyName
 			// 
@@ -178,10 +181,10 @@
 			linkLabelCompanyName.TextAlign = ContentAlignment.MiddleLeft;
 			toolTip.SetToolTip(linkLabelCompanyName, "Firmenname");
 			linkLabelCompanyName.LinkClicked += LabelCompanyName_LinkClicked;
-			linkLabelCompanyName.Enter += SetStatusbar_Enter;
-			linkLabelCompanyName.Leave += ClearStatusbar_Leave;
-			linkLabelCompanyName.MouseEnter += SetStatusbar_Enter;
-			linkLabelCompanyName.MouseLeave += ClearStatusbar_Leave;
+			linkLabelCompanyName.Enter += SetStatusBar_Enter;
+			linkLabelCompanyName.Leave += ClearStatusBar_Leave;
+			linkLabelCompanyName.MouseEnter += SetStatusBar_Enter;
+			linkLabelCompanyName.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// textBoxDescription
 			// 
@@ -201,10 +204,10 @@
 			textBoxDescription.TabStop = false;
 			textBoxDescription.Text = "Beschreibung";
 			toolTip.SetToolTip(textBoxDescription, "Beschreibung");
-			textBoxDescription.Enter += SetStatusbar_Enter;
-			textBoxDescription.Leave += ClearStatusbar_Leave;
-			textBoxDescription.MouseEnter += SetStatusbar_Enter;
-			textBoxDescription.MouseLeave += ClearStatusbar_Leave;
+			textBoxDescription.Enter += SetStatusBar_Enter;
+			textBoxDescription.Leave += ClearStatusBar_Leave;
+			textBoxDescription.MouseEnter += SetStatusBar_Enter;
+			textBoxDescription.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// okButton
 			// 
@@ -214,7 +217,7 @@
 			okButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 			okButton.AutoEllipsis = true;
 			okButton.DialogResult = DialogResult.Cancel;
-			okButton.Image = Properties.Resources.tick;
+			okButton.Image = Resources.tick;
 			okButton.Location = new Point(251, 143);
 			okButton.Margin = new Padding(4, 3, 4, 3);
 			okButton.Name = "okButton";
@@ -224,10 +227,10 @@
 			okButton.TextAlign = ContentAlignment.MiddleRight;
 			okButton.TextImageRelation = TextImageRelation.ImageBeforeText;
 			toolTip.SetToolTip(okButton, "Okay");
-			okButton.Enter += SetStatusbar_Enter;
-			okButton.Leave += ClearStatusbar_Leave;
-			okButton.MouseEnter += SetStatusbar_Enter;
-			okButton.MouseLeave += ClearStatusbar_Leave;
+			okButton.Enter += SetStatusBar_Enter;
+			okButton.Leave += ClearStatusBar_Leave;
+			okButton.MouseEnter += SetStatusBar_Enter;
+			okButton.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// statusStrip
 			// 
@@ -247,10 +250,10 @@
 			statusStrip.TabStop = true;
 			statusStrip.Text = "statusStrip";
 			toolTip.SetToolTip(statusStrip, "Show the status bar");
-			statusStrip.Enter += SetStatusbar_Enter;
-			statusStrip.Leave += ClearStatusbar_Leave;
-			statusStrip.MouseEnter += SetStatusbar_Enter;
-			statusStrip.MouseLeave += ClearStatusbar_Leave;
+			statusStrip.Enter += SetStatusBar_Enter;
+			statusStrip.Leave += ClearStatusBar_Leave;
+			statusStrip.MouseEnter += SetStatusBar_Enter;
+			statusStrip.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// labelInformation
 			// 
@@ -261,8 +264,8 @@
 			labelInformation.Name = "labelInformation";
 			labelInformation.Size = new Size(28, 17);
 			labelInformation.Text = "info";
-			labelInformation.MouseEnter += SetStatusbar_Enter;
-			labelInformation.MouseLeave += ClearStatusbar_Leave;
+			labelInformation.MouseEnter += SetStatusBar_Enter;
+			labelInformation.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripContainer
 			// 
@@ -307,7 +310,7 @@
 			Load += AboutBoxForm_Load;
 			tableLayoutPanel.ResumeLayout(false);
 			tableLayoutPanel.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
+			((ISupportInitialize)logoPictureBox).EndInit();
 			statusStrip.ResumeLayout(false);
 			statusStrip.PerformLayout();
 			toolStripContainer.BottomToolStripPanel.ResumeLayout(false);

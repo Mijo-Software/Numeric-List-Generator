@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 namespace Numeric_List_Generator
 {
 	partial class LicenseForm
@@ -6,7 +8,7 @@ namespace Numeric_List_Generator
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+		private IContainer components = null;
 
 		/// <summary>
 		/// Verwendete Ressourcen bereinigen.
@@ -28,8 +30,8 @@ namespace Numeric_List_Generator
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LicenseForm));
+			components = new Container();
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(LicenseForm));
 			toolTip = new ToolTip(components);
 			statusStrip = new StatusStrip();
 			labelInformation = new ToolStripStatusLabel();
@@ -89,10 +91,10 @@ namespace Numeric_List_Generator
 			textBoxLicense.TabStop = false;
 			textBoxLicense.Text = resources.GetString("textBoxLicense.Text");
 			toolTip.SetToolTip(textBoxLicense, "Lizenz");
-			textBoxLicense.Enter += SetStatusbar_Enter;
-			textBoxLicense.Leave += ClearStatusbar_Leave;
-			textBoxLicense.MouseEnter += SetStatusbar_Enter;
-			textBoxLicense.MouseLeave += ClearStatusbar_Leave;
+			textBoxLicense.Enter += SetStatusBar_Enter;
+			textBoxLicense.Leave += ClearStatusBar_Leave;
+			textBoxLicense.MouseEnter += SetStatusBar_Enter;
+			textBoxLicense.MouseLeave += ClearStatusBar_Leave;
 			// 
 			// toolStripContainer
 			// 

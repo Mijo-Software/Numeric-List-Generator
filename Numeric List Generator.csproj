@@ -9,7 +9,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Numeric List Generator</Title>
     <Authors>Mijo Software</Authors>
-    <Version>1.6.1.10</Version>
+    <Version>1.6.2.11</Version>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Platforms>AnyCPU;ARM32;ARM64;x64;x86</Platforms>
     <StartupObject>Numeric_List_Generator.Program</StartupObject>
@@ -83,8 +83,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.2" />
-    <PackageReference Include="NLog" Version="5.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.5" />
+    <PackageReference Include="NLog" Version="5.5.0" />
   </ItemGroup>
 
   <ItemGroup>
